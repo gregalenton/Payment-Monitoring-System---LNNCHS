@@ -1,21 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Admin(models.Model):
-    admin_username = models.CharField(max_length=16)
-    admin_email_add = models.EmailField(max_length=255)
-    admin_password = models.CharField(max_length=32)
-
-
-class Project(models.Model):
-    project_name = models.CharField(max_length=45)
-    project_receiver = models.CharField(max_length=45, default="person")
-    project_cost = models.FloatField(default=0.0)
-
-
-class Disbursement(models.Model):
-    disbursement_project = models.ForeignKey(Project)
-    disbursement_cost = models.FloatField(default=0.0)
+    admin_user = models.OneToOneField(User)
+    admin_num = models.IntegerField(default=0)
 
 
 class Due(models.Model):
@@ -33,50 +22,57 @@ class Scholarship(models.Model):
     scholarship_name = models.CharField(max_length=50)
 
 
+class Project(models.Model):
+    project_name = models.CharField(max_length=50)
+    project_receiver = models.CharField(max_length=100)
+    project_cost = models.FloatField(default=0.0)
+
+
+class Disbursement(models.Model):
+    disbursement_project = models.ForeignKey(Project)
+    disbursement_cost = models.FloatField(default=0.0)
+
+
 class Student(models.Model):
-    G7 = '7'
-    G8 = '8'
-    G9 = '9'
-    G0 = '10'
-    G1 = '11'
-    G2 = '12'
-    ENROLLED = 'ER'
-    NOT_ENROLLED = 'NE'
-    student_username = models.CharField(max_length=45, default="stud")
-    student_password = models.CharField(max_length=32, default="password")
-    student_name = models.CharField(max_length=100)
+    G7 = "7"
+    G8 = "8"
+    G9 = "9"
+    G0 = "10"
+    G1 = "11"
+    G2 = "12"
     year_level = (
-        (G7, 'Grade 7'),
-        (G8, 'Grade 8'),
-        (G9, 'Grade 9'),
-        (G0, 'Grade 10'),
-        (G1, 'Grade 11'),
-        (G2, 'Grade 12'),
+        (G7, 'grade 7'),
+        (G8, 'grade 8'),
+        (G9, 'grade 9'),
+        (G0, 'grade 10'),
+        (G1, 'grade 11'),
+        (G2, 'grade 12'),
     )
-    student_year = models.CharField(max_length=2,
-                                    choices=year_level,
-                                    default=G7)
-    student_section = models.CharField(max_length=45)
-    student_address = models.CharField(max_length=100, default="n/a")
-    status = (
-        (ENROLLED, 'Enrolled'),
-        (NOT_ENROLLED, 'NotEnrolled'),
+    section = (
+        ('A', 'section A'),
+        ('B', 'section B'),
+        ('C', 'section C'),
+        ('D', 'section D'),
+        ('E', 'section E'),
+        ('F', 'section F'),
+        ('G', 'section G'),
+        ('H', 'section H'),
+        ('I', 'section I'),
+        ('J', 'section J'),
+        ('K', 'section K'),
+        ('L', 'section L'),
+        ('M', 'section M'),
+        ('N', 'section N'),
+        ('SA', 'Ssection A'),
+        ('SB', 'Ssection B'),
     )
-    student_status = models.CharField(max_length=2,
-                                      choices=status,
-                                      default=NOT_ENROLLED)
-    student_guardian = models.ForeignKey(Guardian, default="NULL")
-    student_siblings = models.ManyToManyField("self")
-    student_bandMember = models.BooleanField(default=False)
-    student_scholarship = models.ForeignKey(Scholarship, default="NULL")
-    student_currentPaid = models.FloatField(default=0.0)
+    student_user = models.OneToOneField(User)
+    student_year = models.IntegerField(choices=year_level)
+    student_section = models.CharField(max_length=2, choices=section)
+    student_address = models.CharField(max_length=100)
+    student_guardian = models.ForeignKey(Guardian)
+    student_sibling = models.ManyToManyField("self")
+    student_bandMem = models.BooleanField(default=False)
+    student_payed = models.FloatField(default=0.0)
     student_toPay = models.FloatField(default=0.0)
-
-
-class Receipt(models.Model):
-    receipt_no = models.CharField(max_length=15, primary_key=True)
-    receipt_date = models.DateField(auto_now=True)
-    receipt_student = models.ForeignKey(Student)
-    receipt_due = models.ForeignKey(Due)
-
 

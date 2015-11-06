@@ -2,11 +2,13 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
@@ -14,26 +16,23 @@ class Migration(migrations.Migration):
             name='Admin',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('username', models.CharField(max_length=16)),
-                ('email_add', models.EmailField(max_length=255)),
-                ('password', models.CharField(max_length=32)),
+                ('admin_num', models.IntegerField(default=0)),
+                ('admin_user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
             name='Disbursement',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('disbursement_id', models.IntegerField(default=0)),
-                ('total_cost', models.FloatField(default=0)),
+                ('disbursement_cost', models.FloatField(default=0.0)),
             ],
         ),
         migrations.CreateModel(
             name='Due',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('due_id', models.IntegerField(default=0)),
                 ('due_name', models.CharField(max_length=45)),
-                ('cost', models.IntegerField(default=0)),
+                ('due_cost', models.FloatField(default=0.0)),
             ],
         ),
         migrations.CreateModel(
@@ -49,54 +48,36 @@ class Migration(migrations.Migration):
             name='Project',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('project_number', models.IntegerField(default=0)),
                 ('project_name', models.CharField(max_length=50)),
-                ('receiver', models.CharField(max_length=100)),
-                ('cost', models.FloatField(default=0.0)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Receipt',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('receipt_no', models.IntegerField(default=0)),
-                ('date', models.DateField(auto_now=True)),
-                ('due', models.ForeignKey(to='Database.Due')),
+                ('project_receiver', models.CharField(max_length=100)),
+                ('project_cost', models.FloatField(default=0.0)),
             ],
         ),
         migrations.CreateModel(
             name='Scholarship',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('scholarship_id', models.IntegerField(default=0)),
                 ('scholarship_name', models.CharField(max_length=50)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Sibling',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('sibling_name', models.CharField(max_length=100)),
-                ('band_member', models.BooleanField(default=False)),
             ],
         ),
         migrations.CreateModel(
             name='Student',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('username', models.CharField(max_length=45)),
-                ('password', models.CharField(max_length=32)),
-                ('student_name', models.CharField(max_length=100)),
+                ('student_year', models.IntegerField(choices=[(b'7', b'grade 7'), (b'8', b'grade 8'), (b'9', b'grade 9'), (b'10', b'grade 10'), (b'11', b'grade 11'), (b'12', b'grade 12')])),
+                ('student_section', models.CharField(max_length=2, choices=[(b'A', b'section A'), (b'B', b'section B'), (b'C', b'section C'), (b'D', b'section D'), (b'E', b'section E'), (b'F', b'section F'), (b'G', b'section G'), (b'H', b'section H'), (b'I', b'section I'), (b'J', b'section J'), (b'K', b'section K'), (b'L', b'section L'), (b'M', b'section M'), (b'N', b'section N'), (b'SA', b'Ssection A'), (b'SB', b'Ssection B')])),
+                ('student_address', models.CharField(max_length=100)),
+                ('student_bandMem', models.BooleanField(default=False)),
+                ('student_payed', models.FloatField(default=0.0)),
+                ('student_toPay', models.FloatField(default=0.0)),
+                ('student_guardian', models.ForeignKey(to='database.Guardian')),
+                ('student_sibling', models.ManyToManyField(related_name='_student_sibling_+', to='database.Student')),
+                ('student_user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.AddField(
-            model_name='receipt',
-            name='student',
-            field=models.ForeignKey(to='Database.Student'),
-        ),
-        migrations.AddField(
             model_name='disbursement',
-            name='project',
-            field=models.ForeignKey(to='Database.Project'),
+            name='disbursement_project',
+            field=models.ForeignKey(to='database.Project'),
         ),
     ]
