@@ -9,18 +9,18 @@ class Admin(models.Model):
 
 class Project(models.Model):
     project_name = models.CharField(max_length=45)
-    project_receiver = models.CharField(max_length=45)
-    project_cost = models.FloatField()
+    project_receiver = models.CharField(max_length=45, default="person")
+    project_cost = models.FloatField(default=0.0)
 
 
 class Disbursement(models.Model):
     disbursement_project = models.ForeignKey(Project)
-    disbursement_cost = models.FloatField()
+    disbursement_cost = models.FloatField(default=0.0)
 
 
 class Due(models.Model):
     due_name = models.CharField(max_length=45)
-    due_cost = models.FloatField()
+    due_cost = models.FloatField(default=0.0)
 
 
 class Guardian(models.Model):
@@ -42,8 +42,8 @@ class Student(models.Model):
     G2 = '12'
     ENROLLED = 'ER'
     NOT_ENROLLED = 'NE'
-    student_username = models.CharField(max_length=45)
-    student_password = models.CharField(max_length=32)
+    student_username = models.CharField(max_length=45, default="stud")
+    student_password = models.CharField(max_length=32, default="password")
     student_name = models.CharField(max_length=100)
     year_level = (
         (G7, 'Grade 7'),
@@ -57,7 +57,7 @@ class Student(models.Model):
                                     choices=year_level,
                                     default=G7)
     student_section = models.CharField(max_length=45)
-    student_address = models.CharField(max_length=100)
+    student_address = models.CharField(max_length=100, default="n/a")
     status = (
         (ENROLLED, 'Enrolled'),
         (NOT_ENROLLED, 'NotEnrolled'),
@@ -65,17 +65,17 @@ class Student(models.Model):
     student_status = models.CharField(max_length=2,
                                       choices=status,
                                       default=NOT_ENROLLED)
-    student_guardian = models.ForeignKey(Guardian)
+    student_guardian = models.ForeignKey(Guardian, default="NULL")
     student_siblings = models.ManyToManyField("self")
     student_bandMember = models.BooleanField(default=False)
-    student_scholarship = models.ForeignKey(Scholarship)
-    student_currentPaid = models.FloatField()
-    student_toPay = models.FloatField()
+    student_scholarship = models.ForeignKey(Scholarship, default="NULL")
+    student_currentPaid = models.FloatField(default=0.0)
+    student_toPay = models.FloatField(default=0.0)
 
 
 class Receipt(models.Model):
     receipt_no = models.CharField(max_length=15, primary_key=True)
-    receipt_date = models.DateField()
+    receipt_date = models.DateField(auto_now=True)
     receipt_student = models.ForeignKey(Student)
     receipt_due = models.ForeignKey(Due)
 
