@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="funds.css">
+<title> LNNCHS Payment Monitoring System  | Admin 2 | Funds</title>
+</head>
+<body>
+
+<nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand text-danger" href="#">LNNCHS</a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-collapsible">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="students.html">Students</a></li>
+                <li><a href="Funds.html">Funds</a></li>
+                <li>&nbsp;</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" data-toggle="modal" data-target="#myModal">Logout</i></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="container-fluid">
+    <div class="v-center">
+        <div class="container" id = "containertable">
+    <div class="row clearfix">
+        <div class="col-md-12 table-responsive">
+            <table class="table table-bordered table-hover table-sortable" id="tab_logic">
+                <thead>
+                    <tr >
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th class="text-center">
+                            Name
+                        </th>
+                        <th class="text-center">
+                            Fee
+                        </th>
+                        <th class="text-center">
+                            Lorem Ipsum
+                        </th>
+                        <th class="text-center">
+                            Lorem Ipsum
+                        </th>
+                        <th class="text-center" style="border-top: 1px solid #ffffff; border-right: 1px solid #ffffff;">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id='addr0' data-id="0" class="hidden">
+                        <td>
+                        1
+                        </td>
+                        <td data-name="name">
+                            <input type="text" name='name0'  placeholder='Name' class="form-control"/>
+                        </td>
+                        <td data-name="mail">
+                            <input type="text" name='mail0' placeholder='Email' class="form-control"/>
+                        </td>
+                        <td data-name="desc">
+                            <textarea name="desc0" placeholder="Description" class="form-control"></textarea>
+                        </td>
+                        <td data-name="sel">
+                            <select name="sel0">
+                                <option value"">Select Option</option>
+                                <option value"1">Option 1</option>
+                                <option value"2">Option 2</option>
+                                <option value"3">Option 3</option>
+                            </select>
+                        </td>
+                        <td data-name="del">
+                            <button nam"del0" class='btn btn-danger glyphicon glyphicon-remove row-remove'></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a id="add_row" class="btn btn-default pull-right">Add Row</a>
+</div>
+    </div>
+</section>
+
+
+
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-3 column">
+                <h4>Information</h4>
+                <ul class="nav">
+                    <li><a href="about-us.html">Products</a></li>
+                    <li><a href="about-us.html">Services</a></li>
+                    <li><a href="about-us.html">Benefits</a></li>
+                    <li><a href="elements.html">Developers</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-md-3 column">
+                <h4>Follow Us</h4>
+                <ul class="nav">
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Google+</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-md-3 column">
+                <h4>Contact Us</h4>
+                <ul class="nav">
+                    <li><a href="#">Email</a></li>
+                    <li><a href="#">Headquarters</a></li>
+                    <li><a href="#">Management</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-md-3 column">
+                <h4>Customer Service</h4>
+                <ul class="nav">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Delivery Information</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--/row-->
+        <p class="text-right">©2015</p>
+    </div>
+</footer>
+
+<div class="scroll-up">
+    <a href="#"><i class="fa fa-angle-up"><img class="up-btn" src="up.png"></img></i></a>
+</div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="homepage.js"></script>
+    <script src="funds.js"></script>
+</body>
+</html>
