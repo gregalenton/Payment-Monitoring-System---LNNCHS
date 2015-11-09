@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Admin(models.Model):
-    admin_user = models.OneToOneField(User)
+    admin_user = models.OneToOneField(User, related_name='admin')
     admin_num = models.IntegerField(default=0)
 
 
@@ -66,7 +66,7 @@ class Student(models.Model):
         ('SA', 'Ssection A'),
         ('SB', 'Ssection B'),
     )
-    student_user = models.OneToOneField(User)
+    student_user = models.OneToOneField(User, related_name='student', unique=True)
     student_year = models.IntegerField(choices=year_level)
     student_section = models.CharField(max_length=2, choices=section)
     student_address = models.CharField(max_length=100)
