@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'Database',
     'PMS',
     'accounts',
+    'Funds',
 )
 
 MIDDLEWARE_CLASSES = (
