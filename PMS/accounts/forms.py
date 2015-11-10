@@ -20,3 +20,28 @@ class StudentForm(UserCreationForm):
         required=True
     )
 
+    year_level = forms.IntegerField(
+        required=True
+    )
+
+    section = forms.CharField(
+        required=True
+    )
+
+    address = forms.CharField(
+        required=True
+    )
+
+
+class GuardianForm(forms.ModelForm):
+    name = forms.CharField(
+        required=True
+    )
+
+    address = forms.CharField(
+        required=True
+    )
+
+    contact = forms.CharField(
+        required=True
+    )
