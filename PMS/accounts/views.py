@@ -16,7 +16,7 @@ def admin_home(request):
     if request.user.is_authenticated():
         return render_to_response('accounts/homepage-admin.html')
     else:
-        return HttpResponse("You are not logged in.")
+        return HttpResponseRedirect('/')
 
 def user_login(request):
     context = RequestContext(request)
