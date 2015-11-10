@@ -1,7 +1,7 @@
 from django import forms
-<<<<<<< HEAD
 from models import StudentInfo
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 
 class AddStudentForm(forms.ModelForm):
@@ -59,8 +59,7 @@ class AddStudentForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email', 'first_name', 'last_name')
-=======
-from django.contrib.auth.forms import UserCreationForm
+
 
 
 class StudentForm(UserCreationForm):
@@ -106,4 +105,3 @@ class GuardianForm(forms.ModelForm):
     contact = forms.CharField(
         required=True
     )
->>>>>>> d7898ae4b23a66e65e145d865fd08e25530b6eac
