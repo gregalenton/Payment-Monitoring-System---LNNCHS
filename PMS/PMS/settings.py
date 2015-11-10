@@ -38,7 +38,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'database',
+<<<<<<< HEAD
     'PMS',
+=======
+    'funds',
+>>>>>>> d7898ae4b23a66e65e145d865fd08e25530b6eac
     'accounts',
     'Funds',
 )

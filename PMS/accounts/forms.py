@@ -1,4 +1,5 @@
 from django import forms
+<<<<<<< HEAD
 from models import StudentInfo
 from django.contrib.auth.models import User
 
@@ -58,3 +59,51 @@ class AddStudentForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email', 'first_name', 'last_name')
+=======
+from django.contrib.auth.forms import UserCreationForm
+
+
+class StudentForm(UserCreationForm):
+    username = forms.CharField(
+        required=True
+    )
+
+    password1 = forms.CharField(
+        required=True,
+        label=("Password")
+    )
+
+    first_name = forms.CharField(
+        required=True
+    )
+
+    last_name = forms.CharField(
+        required=True
+    )
+
+    year_level = forms.IntegerField(
+        required=True
+    )
+
+    section = forms.CharField(
+        required=True
+    )
+
+    address = forms.CharField(
+        required=True
+    )
+
+
+class GuardianForm(forms.ModelForm):
+    name = forms.CharField(
+        required=True
+    )
+
+    address = forms.CharField(
+        required=True
+    )
+
+    contact = forms.CharField(
+        required=True
+    )
+>>>>>>> d7898ae4b23a66e65e145d865fd08e25530b6eac
