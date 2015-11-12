@@ -9,6 +9,7 @@ from . import models
 from django.views import generic
 from . import forms
 from django.core.urlresolvers import (reverse_lazy, reverse)
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render_to_response('accounts/index.html', {}, {})
@@ -52,7 +53,13 @@ def user_logout(request):
         return HttpResponseRedirect('/')
 
 
-class AddStudentView(generic.CreateView):
+class LoginRequiredMixin(object):
+    @classmethod
+    def as_view(cls, **kwargs):
+        view = super(LoginRequiredMixin, cls).as_view(**kwargs)
+        return login_required(view, login_url=reverse_lazy('accounts:login'))
+
+class AddStudentView(LoginRequiredMixin,generic.CreateView):
 
     template_name = 'accounts/add_student.html'
     form_class = forms.AddStudentForm
