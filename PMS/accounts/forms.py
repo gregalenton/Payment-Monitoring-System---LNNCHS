@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from django import forms
 from models import StudentInfo
 from django.contrib.auth.models import User
@@ -148,5 +147,3 @@ class GuardianForm(forms.ModelForm):
     contact = forms.CharField(
         required=True
     )
-=======
->>>>>>> fff3cb47dd44afc952ac1f280ec0b2ebeb523dff
