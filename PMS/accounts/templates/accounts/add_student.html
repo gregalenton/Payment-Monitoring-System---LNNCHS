@@ -12,8 +12,13 @@
                 {% endif %}
             </div>
         </div>
-        <form id="login_form" method="post" action="/users/addstudent/" role ="form">
-        <!-- waley pa -->
+        <form id="login_form" method="post" action="" role ="form">
+            {% csrf_token %}
+             <div class="form-group">
+             {{ form.as_p }}
+             </div>
+
+            <input type="submit" name="submit" value="Add student"/>
         </form>
 
     </body>

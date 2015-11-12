@@ -6,5 +6,7 @@ urlpatterns = patterns('',
         url(r'^accounts/login/$', views.user_login, name='login'),
         url(r'^accounts/home/$', views.admin_home, name='home'),
         url(r'^accounts/logout/$', views.user_logout, name='logout'),
-        url(r'^accounts/addstudent/$',views.add_student, name='addstudent'),
+        #url(r'^accounts/addstudent/$',views.add_student, name='addstudent'),
+        url(r'^accounts/addstudent/$',views.AddStudentView.as_view(), name='addstudent')
+        # url(r'^accounts/homepage-admin/$',views.AddStudentView.as)
         )
