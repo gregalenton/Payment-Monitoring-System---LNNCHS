@@ -1,10 +1,7 @@
 from django.db import models
 
-
-# Create your models here.
-#translate to form view
 class StudentInfo(models.Model):
-    #student_id = models.CharField(primary_key=True, max_length=50)
+    student_id = models.AutoField(primary_key=True)
     lastname = models.CharField(max_length=50)
     firstname = models.CharField(max_length=50)
     middlename = models.CharField(max_length=50)
@@ -23,5 +20,4 @@ class StudentInfo(models.Model):
     )
 
     def __unicode__(self):
-        # return self.student_id
-        return self.lastname
+        return unicode(self.student_id)
