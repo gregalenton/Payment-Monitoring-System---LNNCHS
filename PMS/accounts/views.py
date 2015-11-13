@@ -59,6 +59,7 @@ class LoginRequiredMixin(object):
         view = super(LoginRequiredMixin, cls).as_view(**kwargs)
         return login_required(view, login_url=reverse_lazy('accounts:login'))
 
+
 class AddStudentView(LoginRequiredMixin,generic.CreateView):
 
     template_name = 'accounts/add_student.html'

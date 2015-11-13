@@ -7,7 +7,9 @@ from django.contrib.auth.forms import UserCreationForm
 class AddStudentForm(forms.ModelForm):
     class Meta:
         model = StudentInfo
-        fields = ['lastname', 'firstname', 'middlename', 'birthday', 'gender']
+        fields = ['student_lastname', 'student_firstname', 'student_middlename', 
+                 'student_birthday', 'student_year', 'student_section',
+                 'student_gender', 'student_address']
         # attribute = {
         #     'placeholder': 'placeholder'
         # }
