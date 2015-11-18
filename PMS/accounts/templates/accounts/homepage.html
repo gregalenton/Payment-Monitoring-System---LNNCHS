@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/homepage.css">
-    <link rel="stylesheet" href="css/carousel.css">
-<title> LNNCHS Payment Monitoring System </title>
-</head>
-<body>
-
+{% load staticfiles %}
+{% block title %}{LNNCHS - PAYMENT MONITORING SYSTEM}{% endblock %}
+{% block body %}
 <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -49,7 +40,7 @@
     <a href="#section2">
         <div class="scroll-down bounceInDown animated">
             <span>
-                <i class="fa fa-angle-down fa-2x"><img class="down-btn" src="img/down.png"></img></i>
+                <i class="fa fa-angle-down fa-2x"><img class="down-btn" src="{% static 'img/down.png' %}"></img></i>
             </span>
         </div>
         </a>
@@ -229,7 +220,7 @@
 </footer>
 
 <div class="scroll-up">
-    <a href="#"><i class="fa fa-angle-up"><img class="up-btn" src="img/up.png"></img></i></a>
+    <a href="#"><i class="fa fa-angle-up"><img class="up-btn" src="{% static 'img/up.png' %}"></img></i></a>
 </div>
 
 <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -237,7 +228,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h2 class="text-center"><img src="img/LNNCHS_logo.png" class="img-circle"><br>Admin Login</h2>
+                <h2 class="text-center"><img src="{% static 'img/LNNCHS_logo.png' %}" class="img-circle"><br>Admin Login</h2>
             </div>
             <div class="modal-body row">
                 <form class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
@@ -263,7 +254,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h2 class="text-center"><img src="img/LNNCHS_logo.png" class="img-circle"><br>Student Login</h2>
+                <h2 class="text-center"><img src="{% static 'img/LNNCHS_logo.png' %}" class="img-circle"><br>Student Login</h2>
             </div>
             <div class="modal-body row">
                 <form class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
@@ -283,8 +274,4 @@
         </div>
     </div>
 </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/homepage.js"></script>
-</body>
-</html>
+{% endblock %}
