@@ -15,10 +15,20 @@
 	<form id="getstudent_form" method="get" action="/accounts/editstudent/" role ="form">
         {% csrf_token %}
          <div class="form-group">
+         <h1>EDIT</h1>
          <p>Enter a student ID</p>
           <input type="text" name="input">
          </div>
-
         <input type="submit" name="submit" value="Go"/>
     </form>
+
+  <!--   <form id="getstudentinfo_form" method="get" action="/accounts/viewstudentinfo/" role ="form">
+        {% csrf_token %}
+         <div class="form-group">
+         <h1>VIEW INFO</h1>
+         <p>Enter a student ID</p>
+          <input type="text" name="input">
+         </div>
+        <input type="submit" name="submit" value="Go"/>
+    </form> -->
 {% endblock %}

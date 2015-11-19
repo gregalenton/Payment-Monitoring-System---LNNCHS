@@ -69,20 +69,31 @@ class AddStudentView(LoginRequiredMixin, generic.CreateView):
         return super(AddStudentView, self).form_valid(form)
 
     def get_success_url(self):
+ 
         return reverse('accounts:index')
 
 
-# class EditStudentView(LoginRequiredMixin, generic.UpdateView):
-    
-#     template_name = 'accounts/edit_student.html'
-#     form_class = forms.EditStudentForm
+# class EditStudentView(LoginRequiredMixin, generic.View):
+#     def get(self, request):
+#         student = request.GET['input']
+#         form = forms.EditStudentForm(instance=student)
+#         return render(request, 'accounts/edit_student.html', {'form': form})
 
-
+#     def post(self, request):
+#         form = forms.EditStudentForm(instance=student)
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponseRedirect(reverse('accounts:index'))
+#         else:
+#             return render(request, 'accounts/edit_student.html', {
+#                 'form': form
+#             })
+ 
 def EditStudentView(request):
     if 'input' in request.GET and request.GET['input']:
         inp = request.GET['input']
         student = models.StudentInfo.objects.get(pk=inp)
-        form = forms.EditStudentForm(instance=student, data=request.POST)
+        form = forms.EditStudentForm(request.POST, instance=student)
         if form.is_valid():
             form.save()
             student.save()
@@ -96,6 +107,16 @@ def EditStudentView(request):
 class SearchStudentView(LoginRequiredMixin, generic.View):
     def get(self, request):
             return render_to_response('accounts/search_student.html') 
+
+
+def StudentInfoView(request):
+    if 'input' in request.GET and request.GET['input']:
+        inp = request.GET['input']
+        student = models.StudentInfo.objects.get(student_lastname=inp)
+        return render(request, 'accounts/view_studentinfo.html',
+            {'student': student, 'query': inp})
+    else:
+        return HttpResponseRedirect('/accounts/displaysearchresults/')   
 
 
 def DisplaySearchResults(request):

@@ -1,0 +1,9 @@
+{% if student %}
+	    <ul>
+	        {% for student in student %}
+	        <li>Student number: {{ student.student_id }} || {{ student.student_lastname }}, {{ student.student_firstname }},  {{ student.student_middlename }}</li>
+	        {% endfor %}
+	    </ul>
+{% else %}
+    <p>No student ID matched the query.</p>
+{% endif %}

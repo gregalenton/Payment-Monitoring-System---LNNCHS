@@ -10,6 +10,7 @@ urlpatterns = patterns('',
         url(r'^accounts/editstudent/$', views.EditStudentView, name='editstudent'),
         #url(r'^accounts/editstudent/$', views.EditStudentView.as_view(), name='editstudent'),
         url(r'^accounts/searchstudent/$', views.SearchStudentView.as_view(), name='searchstudent'),
+        #url(r'^accounts/viewstudentinfo/$', views.StudentInfoView, name='viewstudentinfo'),
         #url(r'^accounts/displaysearchresults/$', views.DisplaySearchResults.as_view(), name='displaysearchresults'),
         url(r'^accounts/displaysearchresults/$', views.DisplaySearchResults, name='displaysearchresults'),  
         )
