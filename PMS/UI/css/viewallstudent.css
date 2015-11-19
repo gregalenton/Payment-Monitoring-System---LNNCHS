@@ -1,0 +1,75 @@
+body {
+    margin-top: 2%
+}
+
+.container{
+  padding-top: 100px;
+}
+
+.button.primary {
+  background: #2086bf;
+  color: #ffffff;
+  border-color: #2086bf;
+}
+.button.primary:active {
+  background: #1b6eae;
+  color: #ffffff;
+}
+
+.button.danger,
+.button.alert {
+  background: #ce352c;
+  color: #ffffff;
+  border-color: #ce352c;
+}
+.button.danger:active,
+.button.alert:active {
+  background: #9a1616;
+  color: #ffffff;
+}
+
+.button {
+  padding: 0 1rem;
+  height: 3.125rem;
+  width: 5.125rem;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #ffffff;
+  border: 1px #d9d9d9 solid;
+  color: #262626;
+  cursor: pointer;
+  display: inline-block;
+  outline: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  margin: .15625rem 0;
+  position: relative;
+}
+.button.default {
+  background-color: #008287;
+  color: #fff;
+}
+.button:hover {
+  border-color: #787878;
+}
+.button:active {
+  background: #eeeeee;
+  color: #262626;
+  box-shadow: none;
+}
+.button:focus {
+  outline: 0;
+}
+.button:disabled,
+.button.disabled {
+  background-color: #eaeaea;
+  color: #bebebe;
+  cursor: default;
+  border-color: transparent;
+}
+.button * {
+  color: inherit;
+}
+.button *:hover {
+  color: inherit;
+}

@@ -12,13 +12,13 @@
                 {% endif %}
             </div>
         </div>
-        <form id="add_student" method="post" action="" role ="form">
+        <form id="editstudent_form" method="post" action="" role ="form">
             {% csrf_token %}
              <div class="form-group">
              {{ form.as_p }}
              </div>
 
-            <input type="submit" name="submit" value="Add student"/>
+            <input type="submit" name="submit" value="Save changes"/>
         </form>
 
     </body>

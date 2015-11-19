@@ -10,6 +10,7 @@ class AddStudentForm(forms.ModelForm):
         fields = ['student_lastname', 'student_firstname', 'student_middlename', 
                  'student_birthday', 'student_year', 'student_section',
                  'student_gender', 'student_address']
+
         # attribute = {
         #     'placeholder': 'placeholder'
         # }
@@ -52,6 +53,53 @@ class AddStudentForm(forms.ModelForm):
         #     )
         # )
 
+class EditStudentForm(forms.ModelForm):
+    class Meta:
+        model = StudentInfo
+        fields = ['student_lastname', 'student_firstname', 'student_middlename', 
+                 'student_birthday', 'student_year', 'student_section',
+                 'student_gender', 'student_address']
+
+    attribute = {
+        'class': 'form-control',
+    }             
+
+    student_lastname = forms.CharField(required=False)
+    student_firstname = forms.CharField(required=False)
+    student_middlename = forms.CharField(required=False)
+    student_birthday = forms.DateField(required=False)
+
+    attribute['placeholder'] = 'YEAR_LEVEL'
+    student_year = forms.CharField(
+        required=False,
+        widget=forms.Select(
+            attrs=attribute,
+            choices=StudentInfo.YEAR_LEVEL
+        )
+    )
+    attribute['placeholder'] = 'SECTION'
+    student_section = forms.CharField(
+        required=False,
+        widget=forms.Select(
+            attrs=attribute,
+            choices=StudentInfo.SECTION
+        )
+    )
+    attribute['placeholder'] = 'GENDER'
+    student_gender = forms.CharField(
+        required=False,
+        widget=forms.Select(
+            attrs=attribute,
+            choices=StudentInfo.GENDER
+        )
+    )
+    student_address = forms.CharField(required=False)
+
+
+class SearchStudentForm(forms.ModelForm):
+    class Meta:
+        model = StudentInfo
+        fields = ['student_lastname']
 
 
 class StudentForm(UserCreationForm):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import migrations, models
+from django.db import models, migrations
 from django.conf import settings
 
 
@@ -71,7 +71,8 @@ class Migration(migrations.Migration):
                 ('student_payed', models.FloatField(default=0.0)),
                 ('student_toPay', models.FloatField(default=0.0)),
                 ('student_guardian', models.ForeignKey(to='database.Guardian')),
-                ('student_sibling', models.ManyToManyField(related_name='_student_sibling_+', to='database.Student')),
+                ('student_scholarship', models.ForeignKey(blank=True, to='database.Scholarship', null=True)),
+                ('student_sibling', models.ManyToManyField(related_name='student_sibling_rel_+', to='database.Student')),
                 ('student_user', models.OneToOneField(related_name='student', to=settings.AUTH_USER_MODEL)),
             ],
         ),
