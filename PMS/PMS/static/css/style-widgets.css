@@ -1,0 +1,553 @@
+
+body{
+    font-family: quicksand;
+    background:#c7b299;
+}
+
+.widget{
+    float: none !important;
+    font-family: Arial;
+    text-align: center;
+    margin: auto !important;
+}
+
+/* upper part before body widget*/
+.upper {
+    margin-top: 100px !important;
+    padding: auto;
+    text-align: center;
+}
+
+.user {     
+    font-family: quicksand;
+    text-align: left;
+}
+
+.avatar-tunefeed{
+    position: absolute;
+    margin-top: 0px !important;
+    margin-bottom: 4px !important;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.name-follow{
+    margin-top: 43px;
+    float: left;    
+    color: #000;
+}
+
+.follow-button{
+    position: absolute;
+    padding-top: 1px;
+    padding-left: 11px;
+    height: 20px;
+    width: 75px;
+    margin-left: 45px;
+    font-size: 10px;
+    background-color: #00afec;
+}
+
+.follow-button:hover{
+    background-color: #03b9f8;
+    border-color: #03b9f8;
+}
+
+.follow-button:active, 
+.follow-button:focus{
+    background-color: #FFF;
+    border-color: #FFF;
+    color: #000;
+}
+
+.user-name{
+    font-style: bold;
+    margin-top: -45px;
+    padding-left: 44px;
+}
+
+
+.widget-icon{
+    margin: auto;
+    width: 93px;
+    height: 50px;
+    border-radius: 90px 90px 0 0;
+    background: #333333;
+}
+
+.vid-icon{
+    margin-top: 20px;
+    width: 40%;
+    height: 40%;
+}
+
+
+.open-icon{
+    margin-top: 10px;
+    width: 35px;
+    height: 35px;
+}
+
+.shop .clam-icon{
+    width: 30px;
+    height: 30px;
+}
+
+.widget-genre{
+    font-size: 12px;
+    margin-top: -30px;
+    float:right;
+    opacity: .9px !important;
+    padding-top: 2px;
+    width: 45px;
+    height: 20px;
+    color: #FFF; 
+    background-color: #333333;
+}
+
+/*widget body*/
+
+.widget-body{
+    position:relative;
+    margin-top: -7px !important;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;  
+    background: #333333;
+
+}
+
+.video-title{
+    float:center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-family: quicksand;
+    font-weight: bold;
+    color: #FFFFFF;
+    position: relative;
+    width: 100%;
+    background:rgba(0,0,0,0.5);
+
+    /*position:absolute; /* absolute position (so we can position it where we want)  
+    left:24px;  
+    width:93.5%;  
+     styling bellow 
+    background-color:black;  
+    font-size:15px;  
+    color:white;  
+    opacity:0.6;  transparency 
+    filter:alpha(opacity=60);  IE transparency  */
+}
+.title-tournament,
+.video-title-tournament{
+    float:center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    font-family: quicksand;
+    font-weight: bold;
+    color: #FFFFFF;
+    position: relative;
+    margin-top: -48px;
+    width: 100%;
+    background:rgba(0,0,0,0.5);
+}
+
+.video{
+    
+}
+
+.views-overlay{
+    font-size: 10px;
+    font-family: quicksand;
+    float: right;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    margin-top: -30px;
+    color:#FFF;
+    background:rgba(0,0,0,0.5);
+}
+
+.views-overlay-tournament{
+    font-size: 10px;
+    font-family: quicksand;
+    float: right;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    position: absolute;
+    top:10px;
+    right: 10px;
+    color:#FFF;
+    background:rgba(0,0,0,0.5);
+}
+
+.views-announcement{
+    font-size: 10px;
+    font-family: quicksand;
+    float: right;
+    margin-top: -40px;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    position: relative;
+    color:#FFF;
+    background-color: #1f1e1e;
+}
+
+.views-icon{
+    width: 20px;
+    height: 20px;
+}
+
+/* announcement widget*/
+.announcement .container-fluid{
+    margin-left: -10px !important;
+}
+
+.details-announcement{
+    position: relative;
+    margin-top: 40px;
+    padding-top: 5px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-bottom: 5px !important;
+    /*margin-left: 10px;
+    margin-right: 20px;*/
+    font-family: quicksand;
+    color:#FFF;
+    background-color: #1f1e1e;
+}
+
+
+/*lower part outside widget*/
+.outer{
+    display: inline;
+    float:right;
+}
+
+.outer-icon{
+    display: inline;
+    width:20px;
+    height:20px;
+}
+
+
+.link{
+    margin-left: -4px;
+    display: inline;
+    font-family: quicksand;
+    font-weight: bold;
+    font-size: 11px;
+    color: #000;
+}
+
+.outer a{
+    color: #000;
+}
+
+.like{
+    margin-left: -105px;
+}
+
+.share{
+    margin-top: -21px;
+}
+
+/*tournament buttons*/
+.widget-button .btn{
+    font-family: quicksand;
+    font-weight: bold;
+    font-size: 23px;
+    margin-top: 10px;
+}
+
+.open-tournament .btn-primary, 
+.open-tournament .btn-primary:focus, 
+.open-tournament .btn-primary:active{
+    background-color: #369c30;
+    border-color: #369c30;
+    height:49px;
+}
+
+.open-tournament
+.btn-primary:hover{
+    background-color: #3bb234;
+    border-color: #3bb234;
+}
+
+.sorting-tournament .btn-primary, 
+.sorting-tournament .btn-primary:focus, 
+.sorting-tournament .btn-primary:active{
+    background-color: #e56a45;
+    border-color: #e56a45;
+    height:49px;
+}
+
+.sorting-tournament
+.btn-primary:hover{
+    background-color: #fa764e;
+    border-color: #fa764e;
+}
+
+.battling-tournament .btn-primary, 
+.battling-tournament .btn-primary:focus, 
+.battling-tournament .btn-primary:active{
+    background-color: #ed1c24;
+    border-color: #ed1c24;
+    height:49px;
+}
+
+.battling-tournament
+.btn-primary:hover{
+    background-color: #ff2029;
+    border-color: #ff2029;
+}
+.shop .btn-primary, 
+.shop .btn-primary:focus, 
+.shop.btn-primary:active,
+.championship-tournament .btn-primary, 
+.championship-tournament .btn-primary:focus, 
+.championship-tournament .btn-primary:active{
+    background-color: #00afec;
+    border-color: #00afec;
+    height:49px;
+}
+.shop .btn-primary:hover,
+.championship-tournament
+.btn-primary:hover{
+    background-color: #03b9f8;
+    border-color: #03b9f8;
+}
+
+.finished-tournament .btn-primary, 
+.finished-tournament .btn-primary:focus, 
+.finished-tournament .btn-primary:active{
+    background-color: #edcc0c;
+    border-color: #edcc0c;
+    height:49px;
+}
+
+.finished-tournament
+.btn-primary:hover{
+    background-color: #fcd90d;
+    border-color: #fcd90d;
+}
+
+.divider{
+    margin-top: 5px;
+    background-color: #FFF;
+    height:1px;
+}
+
+/* widget boxes */
+
+
+.championship-tournament .prize,
+.finished-tournament .prize{
+    margin-top: 5px;
+    margin-right: 5px;
+
+    height: 65px;
+    border-radius: 3px;
+    background-color: #1f1e1e;
+}
+.seeds,
+.entries,
+.cost{
+    margin-top: 5px;
+    margin-right: 5px;
+    height: 65px;
+    border-radius: 3px;
+    background-color: #1f1e1e;
+}
+
+.merchandise{
+    margin-top: 5px;
+    margin-right: 5px;
+    /*width: 65px;*/
+    height: 65px;
+    border-radius: 3px;
+    background-color: #1f1e1e;
+}
+
+ .merchandise.col-xs-12{
+    margin-top: 5px;
+    margin-right: 5px;
+    /*width: 65px;*/
+    height: 100px;
+    border-radius: 3px;
+    background-color: #1f1e1e;
+}
+
+ .merchandise.col-sm-10{
+    margin-top: 5px;
+    margin-right: 5px;
+    /*width: 65px;*/
+    height: 65px;
+    border-radius: 3px;
+    background-color: #1f1e1e;
+}
+
+
+.open-tournament .prize,
+.sorting-tournament .prize,
+.battling-tournament .prize{
+    margin-top: 5px;
+    margin-right: 5px;
+    /*width: 65px;*/
+    height: 65px;
+    border-radius: 3px;
+    background-color: #1f1e1e;
+}
+
+.finished-tournament .grand-prize{
+    /*float: right;
+    margin-top: -65px;
+    width: 215px;*/
+    float:right;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 11px;
+    height: 65px;
+    border-radius: 3px;
+    background-color: #1f1e1e;
+
+}
+
+.grand-prize{
+    /*margin-top: -65px;
+    margin-left: 140px;
+    width: 215px;*/
+    padding-right: 15px !important;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 11px;
+    height: 65px;
+    border-radius: 3px;
+    background-color: #1f1e1e;
+}
+
+
+.timer{
+    /*float: right;
+    margin-top: -65px;
+    margin-left: 360px;*/
+    margin-top: 5px;
+    height: 65px;
+    border-radius: 3px;
+    background-color: #1f1e1e;
+}
+
+.boxes{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+/*widget boxes details*/
+.cost .title, 
+.prize .title,
+.entries .title,
+.seeds .title{
+    text-align: center;
+    margin-left: -5px !important;
+    padding-top: 5px;
+    color: #01a8e2;
+    font-family: quicksand;
+    font-size: 11.5px;
+    font-weight: bold;
+}
+
+.merchandise .title{
+    text-align: center;
+    margin-left: -5px !important;
+    padding-top: 5px;
+    color: #FFFFFF;
+    font-family: quicksand;
+    font-size: 11.5px;
+    font-weight: bold;
+}
+
+.entries .title{
+    text-align: center;
+    margin-left: -10px !important;
+    padding-top: 5px;
+    color: #01a8e2;
+    font-family: quicksand;
+    font-size: 11.5px;
+    font-weight: bold;
+}
+
+.cost .details,
+.prize .details,
+.seeds .details,
+.entries .details{
+    text-align: center;
+    float:center;
+    padding-top: 5px;
+    color: #FFFFFF;
+    font-family: quicksand;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.merchandise .details{
+    text-align: center;
+    margin-left: -5px !important;
+    padding-top: 5px;
+    color: #FFFFFF;
+    font-family: quicksand;
+    font-size: 11.5px;
+}
+
+.grand-prize .title{
+    float:left;
+    padding-left: 5px;
+    padding-top: 5px;
+    font-family: quicksand;
+    font-size: 12px;
+    font-weight: bold;
+    color:#edcc0c;
+}
+
+.grand-prize .details{
+    /*float: left;*/
+    color: #FFFFFF;
+    width: 120px;
+    padding-top: 5px;
+    font-family: quicksand;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.grand-prize .icon{
+    width:20px;
+    height:20px;
+}
+
+.grand-prize .grandprize-preview{
+    float: right;
+    padding-top: 5px;
+    padding-left: 10px;
+    width: 85px; 
+    height:60px;
+    /*margin-left: 120px;*/
+    margin-top: -53px !important;
+}
+
+.shop .clam-icon,
+.open-tournament .clam-icon{
+    margin-left: -15px !important;
+    width: 15px;
+    height: 15px;
+}
+
+    

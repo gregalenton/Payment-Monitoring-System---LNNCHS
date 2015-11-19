@@ -9,7 +9,7 @@ from forms import AddStudentForm
 
 
 def index(request):
-    return render_to_response('accounts/index.html', {}, {})
+    return render_to_response('accounts/homepage.html', {}, {})
 
 
 def admin_home(request):
