@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/carousel.css' %}"> -->
+<title> LNNCHS Payment Monitoring System </title>
+</head>
+<body>
+
+<nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand text-danger" href="#">LNNCHS</a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-collapsible">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="#section1">Home</a></li>
+                <li><a href="#section2">How to use</a></li>
+                <li><a href="#section3">FAQs</a></li>
+                <li><a href="#section4">Contact Admin</a></li>
+                <li>&nbsp;</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" data-toggle="modal" data-target="#myModal">Admin</i></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1">Student</i></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="container-fluid" id="section1">
+    <div class="v-center">
+        <h1 class="text-center">LNNCHS Payment Monitoring System.</h1>
+        <h2 class="text-center lato animate slideInDown"><b>More efficient</b> than ever</h2>
+        <p class="text-center">
+            <br>
+            
+        </p>
+    </div>
+    <a href="#section2">
+        <div class="scroll-down bounceInDown animated">
+            <span>
+                <i class="fa fa-angle-down fa-2x"><img class="down-btn" src="{% static 'img/down.png' %}"></img></i>
+            </span>
+        </div>
+        </a>
+</section>
+
+<section class="container-fluid" id="section2">
+    <div class="container v-center">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <div class="panel panel-default slideInLeft animate">
+                            <div class="panel-heading">
+                            <h3>Robust</h3></div>
+                            <div class="panel-body">
+                                <p>There is other content and snippets of details or features that can be placed here..</p>
+                                <hr>GO
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 text-center">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <div class="panel panel-default slideInUp animate">
+                            <div class="panel-heading">
+                            <h3>Simple</h3></div>
+                            <div class="panel-body">
+                                <p>There is other content and snippets of details or features that can be placed here..</p>
+                                <hr>GO
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 text-center">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <div class="panel panel-default slideInRight animate">
+                            <div class="panel-heading">
+                            <h3>Clean</h3></div>
+                            <div class="panel-body">
+                                <p>There is other content and snippets of details or features that can be placed here..</p>
+                                <hr>GO
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/row-->
+        <div class="row">
+            <br>
+        </div>
+    </div>
+    <!--/container-->
+</section>
+
+
+<section class="container-fluid" id="section3">
+    <h1 class="text-center">Frequently Asked Questions</h1>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <h3 class="text-center lato slideInUp animate">That <strong>Doesn't</strong> Have to Look Like Bootstrap.</h3>
+            <br>
+            <div class="row">
+                <div class="col-xs-4 col-xs-offset-1">Some brand-tacular designs even have home page content that is taller that 12,000 pixels. That's a lotta content.</div>
+                <div class="col-xs-2"></div>
+                <div class="col-xs-4 text-right">Anyhoo, this is just some random blurb of text, and Bootply.com is a playground and code editor for Bootstrap.</div>
+            </div>
+            <br>
+            <p class="text-center">
+                <img src="//placehold.it/444x222/444/FFF" class="img-responsive thumbnail center-block ">
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="section4">
+    <div class="container v-center">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">Contact Admin for Inquiries</h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="row form-group">
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" required="">
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="middleName" name="firstName" placeholder="Middle Name" required="">
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required="">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-5">
+                        <input type="email" class="form-control" name="email" placeholder="Email" required="">
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="email" class="form-control" name="phone" placeholder="Phone" required="">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-10">
+                        <button class="btn btn-default btn-lg pull-right">Contact Us</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 pull-right">
+                <address>
+              <strong>Some LLC</strong><br>
+              795 Folsom Ave, Suite 600<br>
+              Newport, RI 94107<br>
+              P: (123) 456-7890
+            </address>
+                <address>
+              <strong>Email Us</strong><br>
+              <a href="mailto:#">first.last@example.com</a>
+            </address>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-3 column">
+                <h4>Information</h4>
+                <ul class="nav">
+                    <li><a href="about-us.html">Products</a></li>
+                    <li><a href="about-us.html">Services</a></li>
+                    <li><a href="about-us.html">Benefits</a></li>
+                    <li><a href="elements.html">Developers</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-md-3 column">
+                <h4>Follow Us</h4>
+                <ul class="nav">
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Google+</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-md-3 column">
+                <h4>Contact Us</h4>
+                <ul class="nav">
+                    <li><a href="#">Email</a></li>
+                    <li><a href="#">Headquarters</a></li>
+                    <li><a href="#">Management</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-md-3 column">
+                <h4>Customer Service</h4>
+                <ul class="nav">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Delivery Information</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--/row-->
+        <p class="text-right">©2015</p>
+    </div>
+</footer>
+
+<div class="scroll-up">
+    <a href="#"><i class="fa fa-angle-up"><img class="up-btn" src="{% static 'img/up.png' %}"></img></i></a>
+</div>
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h2 class="text-center"><img src="{% static 'img/LNNCHS_logo.png' %}" class="img-circle"><br>Admin Login</h2>
+            </div>
+            <div class="modal-body row">
+                <form class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg" placeholder="Admin ID">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control input-lg" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-danger btn-lg btn-block">Sign In</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h2 class="text-center"><img src="{% static 'img/LNNCHS_logo.png' %}" class="img-circle"><br>Student Login</h2>
+            </div>
+            <div class="modal-body row">
+                <form class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0" action="{% url 'accounts:login' %}" method="POST">
+                {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg" name="username" placeholder="Student ID">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control input-lg" name="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-danger btn-lg btn-block">Sign In</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/homepage.js' %}"></script>
+</body>
+</html>

@@ -1,9 +1,9 @@
 from django import forms
-from models import StudentInfo
+from models import *
 from django.contrib.auth.models import User
 
 
-class AddStudentForm(forms.ModelForm):
+class AddUserForm(forms.ModelForm):
     attribute = {
         'placeholder': 'placeholder'
     }
@@ -42,7 +42,7 @@ class AddStudentForm(forms.ModelForm):
         required=True,
         widget=forms.Select(
             attrs=attribute,
-            choices=StudentInfo.GENDER
+            choices=GENDER
         )
     )
 
@@ -56,5 +56,5 @@ class AddStudentForm(forms.ModelForm):
         student.save()
 
     class Meta:
-        model = User
-        fields = ('email', 'first_name', 'last_name')
+        model = StudentInfo
+        fields = ('first_name', 'last_name', 'middlename', 'birthday', 'gender')

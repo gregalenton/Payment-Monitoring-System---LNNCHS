@@ -5,16 +5,28 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
-from forms import AddStudentForm
+from forms import AddUserForm
+from django.core.urlresolvers import reverse
 
 
 def index(request):
-    return render_to_response('accounts/homepage.html', {}, {})
+    context = RequestContext(request)
+    return render_to_response('accounts/index.html', context, {})
 
+def accountsuccess(request):
+    messages.add_message(
+        request, messages.INFO, 'You\'ve Successfully Setup your account!')
+    return HttpResponseRedirect(reverse('home'))
 
 def admin_home(request):
     if request.user.is_authenticated():
         return render_to_response('accounts/homepage-admin.html')
+    else:
+        return HttpResponseRedirect('/')
+
+def student_home(request):
+    if request.user.is_authenticated():
+        return render_to_response('accounts/')
     else:
         return HttpResponseRedirect('/')
 
@@ -29,7 +41,8 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return render_to_response('accounts/homepage-admin.html', {}, context)
+                print reverse('accounts:index')
+                return HttpResponseRedirect(reverse('accounts:index'))
             else:
                 return HttpResponse("Account disabled.")
         else:
@@ -38,7 +51,7 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied.")
     else:
 
-        return render_to_response('accounts/login.html', {}, context)
+        return HttpResponseRedirect(reverse('accounts:homepage'))
 
 
 def user_logout(request):
@@ -60,4 +73,3 @@ def add_student(request):
             return render(request, 'accounts/add_student.html', context)
     else:
         return HttpResponse("log in please")
-

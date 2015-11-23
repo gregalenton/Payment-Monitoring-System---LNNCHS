@@ -19,8 +19,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import patterns, include, url
 from accounts.views import *
+from views import *
 
 urlpatterns = patterns('',
+  url(r'^$',HomeView.as_view(),name='home'),
   url(r'^admin/', include(admin.site.urls)),
   url(r'^', include('accounts.urls',namespace="accounts")),
+  url('',include('django.contrib.auth.urls',namespace='auth')),
 )

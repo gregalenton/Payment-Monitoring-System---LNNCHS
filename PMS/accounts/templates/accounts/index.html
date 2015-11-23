@@ -31,8 +31,8 @@
 				<li><a href="#0">Support</a></li>
 				<li class="has-children account">
 					<a href="#0">
-						<img src="{% static 'img/cd-avatar.png' %}" alt="avatar">
-						Account
+						<img src="{% static 'img/default.png' %}" alt="avatar">
+						{{ request.user.studentinfo.lastname }}
 					</a>
 
 					<ul>
