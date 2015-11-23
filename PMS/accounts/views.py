@@ -2,16 +2,13 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.template import RequestContext
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from forms import AddUserForm
 from django.core.urlresolvers import reverse
 
 
-def index(request):
-    context = RequestContext(request)
-    return render_to_response('accounts/index.html', context, {})
 
 def accountsuccess(request):
     messages.add_message(
@@ -30,9 +27,17 @@ def student_home(request):
     else:
         return HttpResponseRedirect('/')
 
+def index(request):
+    context = RequestContext(request)
+    return render_to_response('accounts/index.html', context, {})
+
 def user_login(request):
     context = RequestContext(request)
 
+    if request.user.is_authenticated():
+        print "insides"
+        return redirect('accounts:index')
+        
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -50,14 +55,14 @@ def user_login(request):
             print "Invalid login details: {0}, {1}".format(username, password)
             return HttpResponse("Invalid login details supplied.")
     else:
-
         return HttpResponseRedirect(reverse('accounts:homepage'))
+
 
 
 def user_logout(request):
     if request.user.is_authenticated():
         logout(request)
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect(reverse('account:homepage'))
 
 
 def add_student(request):

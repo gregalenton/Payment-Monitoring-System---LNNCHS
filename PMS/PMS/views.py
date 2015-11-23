@@ -1,6 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 
 
@@ -12,6 +12,11 @@ class HomeView(generic.TemplateView):
     template_name = 'homepage.html'
 
     def get(self, request, *args, **kwargs):
+        
+        if request.user.is_authenticated():
+            print "insides"
+            return redirect('accounts:index')
+        
         context = {
             'user': request.user,
             'page_title': 'Welcome To Vinna!',
