@@ -34,10 +34,6 @@ def index(request):
 def user_login(request):
     context = RequestContext(request)
 
-    if request.user.is_authenticated():
-        print "insides"
-        return redirect('accounts:index')
-        
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']

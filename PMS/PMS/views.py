@@ -14,7 +14,6 @@ class HomeView(generic.TemplateView):
     def get(self, request, *args, **kwargs):
         
         if request.user.is_authenticated():
-            print "insides"
             return redirect('accounts:index')
         
         context = {
