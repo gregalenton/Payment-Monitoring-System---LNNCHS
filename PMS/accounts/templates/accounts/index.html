@@ -33,13 +33,13 @@
 					<a href="#0">
 						<img src="{% static 'img/default.png' %}" alt="avatar">
 						{{ request.user.studentinfo.firstname }}
+						{{ request.user.studentinfo.lastname }}
 					</a>
 
 					<ul>
-
 						<li><a href="#0">My Account</a></li>
 						<li><a href="#0">Edit Account</a></li>
-						<li><a href="#0">Logout</a></li>
+						<li><a href="{% url 'auth:logout' %}?next={% url 'home' %}">Logout</a></li>
 					</ul>
 				</li>
 			</ul>

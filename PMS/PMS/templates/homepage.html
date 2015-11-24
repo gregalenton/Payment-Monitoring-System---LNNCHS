@@ -267,7 +267,7 @@
                 <h2 class="text-center"><img src="{% static 'img/LNNCHS_logo.png' %}" class="img-circle"><br>Student Login</h2>
             </div>
             <div class="modal-body row">
-                <form class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0" action="{% url 'accounts:login' %}" method="POST">
+                <form class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0" action="{% url 'accounts:login' %}" method="POST" autocomplete="off">
                 {% csrf_token %}
                     <div class="form-group">
                         <input type="text" class="form-control input-lg" name="username" placeholder="Student ID">
