@@ -59,6 +59,15 @@ class StudentInfo(models.Model):
     )
 
     student_address = models.CharField(max_length=100)
+    student_guardian = models.CharField(max_length=100)
+    student_guardian_contact = models.CharField(max_length=100)
+    student_guardian_address = models.CharField(max_length=100)
+    student_scholarship = models.CharField(max_length=100, null=True)
+    student_sibling = models.BooleanField(default=False)
+    student_bandMem = models.BooleanField(default=False)
+    student_paid = models.FloatField(default=0.0)
+    student_toPay = models.FloatField(default=0.0)
 
     def __unicode__(self):
         return unicode(self.student_id)
+

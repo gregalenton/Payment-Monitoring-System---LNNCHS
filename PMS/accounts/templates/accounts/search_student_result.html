@@ -5,24 +5,19 @@
 	    <p>Found {{ students|length }} student{{ students|pluralize }}.</p>
 	    <ul>
 	        {% for student in students %}
-	        <li>Student number: {{ student.student_id }} || {{ student.student_lastname }}, {{ student.student_firstname }},  {{ student.student_middlename }}</li>
+
+            <li class="student">{{student }}
+                (<a href="{% url 'accounts:editstudent' student.student_id %}">edit</a>)
+            </li>
+<!-- 	        <li>Student number: {{ student.student_id }} || {{ student.student_lastname }}, {{ student.student_firstname }},  {{ student.student_middlename }}</li> -->
 	        {% endfor %}
 	    </ul>
 	{% else %}
 	    <p>No student surname matched the query.</p>
 	{% endif %}
 
-	<form id="getstudent_form" method="get" action="/accounts/editstudent/" role ="form">
-        {% csrf_token %}
-         <div class="form-group">
-         <h1>EDIT</h1>
-         <p>Enter a student ID</p>
-          <input type="text" name="input">
-         </div>
-        <input type="submit" name="submit" value="Go"/>
-    </form>
 
-  <!--   <form id="getstudentinfo_form" method="get" action="/accounts/viewstudentinfo/" role ="form">
+  <!--   <form id="getstudentinfo_form" method="get" action="/accounts/viewstudentinfo/" role '"form">
         {% csrf_token %}
          <div class="form-group">
          <h1>VIEW INFO</h1>

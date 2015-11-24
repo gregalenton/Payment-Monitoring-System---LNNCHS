@@ -70,38 +70,47 @@ class AddStudentView(LoginRequiredMixin, generic.CreateView):
 
     def get_success_url(self):
  
-        return reverse('accounts:index')
+        return reverse('accounts:home')
 
 
-# class EditStudentView(LoginRequiredMixin, generic.View):
-#     def get(self, request):
-#         student = request.GET['input']
-#         form = forms.EditStudentForm(instance=student)
-#         return render(request, 'accounts/edit_student.html', {'form': form})
+class EditStudentView(LoginRequiredMixin, generic.UpdateView):
+    model = models.StudentInfo
+    template_name = 'accounts/edit_student.html'
+    fields = ['student_lastname', 'student_firstname', 'student_middlename',
+              'student_birthday', 'student_year', 'student_section',
+              'student_gender', 'student_address', 'student_guardian',
+              'student_guardian_contact', 'student_guardian_address', 'student_scholarship',
+              'student_sibling', 'student_bandMem', 'student_paid', 'student_toPay']
 
-#     def post(self, request):
-#         form = forms.EditStudentForm(instance=student)
+
+    def get_success_url(self):
+        return reverse('accounts:home')
+
+    def get_context_data(self, **kwargs):
+
+        context = super(EditStudentView, self).get_context_data(**kwargs)
+        context['action'] = reverse('accounts:editstudent',
+                                    kwargs={'pk': self.get_object().student_id})
+
+        return context
+
+
+
+# def EditStudentView(request):
+#     if 'input' in request.GET and request.GET['input']:
+#         inp = request.GET['input']
+#         student = models.StudentInfo.objects.get(pk=inp)
+#         form = forms.EditStudentForm(request.POST, instance=student)
 #         if form.is_valid():
 #             form.save()
-#             return HttpResponseRedirect(reverse('accounts:index'))
-#         else:
-#             return render(request, 'accounts/edit_student.html', {
-#                 'form': form
-#             })
- 
-def EditStudentView(request):
-    if 'input' in request.GET and request.GET['input']:
-        inp = request.GET['input']
-        student = models.StudentInfo.objects.get(pk=inp)
-        form = forms.EditStudentForm(request.POST, instance=student)
-        if form.is_valid():
-            form.save()
-            student.save()
-            return render_to_response('accounts/successful_edit.html')
-        else:   
-            return render(request, 'accounts/edit_student.html', {'form': form})
-    else:
-        return HttpResponseRedirect('/accounts/displaysearchresults/')
+#             # student.save()
+#             return HttpResponseRedirect('/accounts/home/')
+#         else:   
+#             return render(request, 'accounts/edit_student.html', {'form': form})
+#             #return HttpResponse("hoy")
+#     else:
+#         return HttpResponseRedirect('/accounts/displaysearchresults/')
+
 
 
 class SearchStudentView(LoginRequiredMixin, generic.View):
@@ -109,14 +118,15 @@ class SearchStudentView(LoginRequiredMixin, generic.View):
             return render_to_response('accounts/search_student.html') 
 
 
-def StudentInfoView(request):
-    if 'input' in request.GET and request.GET['input']:
-        inp = request.GET['input']
-        student = models.StudentInfo.objects.get(student_lastname=inp)
-        return render(request, 'accounts/view_studentinfo.html',
-            {'student': student, 'query': inp})
-    else:
-        return HttpResponseRedirect('/accounts/displaysearchresults/')   
+    def StudentInfoView(request):
+        if 'input' in request.GET and request.GET['input']:
+            inp = request.GET['input']
+            student = models.StudentInfo.objects.get(student_lastname=inp)
+            return render(request, 'accounts/view_studentinfo.html',
+                {'student': student, 'query': inp})
+        else:
+            return HttpResponseRedirect('/accounts/displaysearchresults/')   
+
 
 
 def DisplaySearchResults(request):
