@@ -23,4 +23,5 @@ from accounts.views import *
 urlpatterns = patterns('',
   url(r'^admin/', include(admin.site.urls)),
   url(r'^', include('accounts.urls',namespace="accounts")),
+  url(r'^', include('funds.urls',namespace="funds")),
 )

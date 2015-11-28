@@ -70,7 +70,7 @@ class AddStudentView(LoginRequiredMixin, generic.CreateView):
 
     def get_success_url(self):
  
-        return reverse('accounts:home')
+        return reverse('funds:changessaved')
 
 
 class EditStudentView(LoginRequiredMixin, generic.UpdateView):
@@ -84,7 +84,7 @@ class EditStudentView(LoginRequiredMixin, generic.UpdateView):
 
 
     def get_success_url(self):
-        return reverse('accounts:home')
+        return reverse('funds:changessaved')
 
     def get_context_data(self, **kwargs):
 

@@ -34,10 +34,11 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="{% url 'accounts:addstudent' %}">Add student</a></li>
                     <li class="active"><a href="{% url 'accounts:searchstudent' %}">Search Student</a></li>
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funds <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Add Funds</a></li>
+                            <li class="active"><a href="{% url 'funds:addfunds' %}">Add Funds</a></li>
                             <li><a href="#">Edit Funds</a></li>
                             <li><a href="#">View Funds</a></li>
                             <li class="divider"></li>
