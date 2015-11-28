@@ -62,7 +62,7 @@ class StudentInfo(models.Model):
     student_guardian = models.CharField(max_length=100)
     student_guardian_contact = models.CharField(max_length=100)
     student_guardian_address = models.CharField(max_length=100)
-    student_scholarship = models.CharField(max_length=100, null=True)
+    student_scholarship = models.CharField(max_length=100, null=True, blank=True)
     student_sibling = models.BooleanField(default=False)
     student_bandMem = models.BooleanField(default=False)
     student_paid = models.FloatField(default=0.0)
