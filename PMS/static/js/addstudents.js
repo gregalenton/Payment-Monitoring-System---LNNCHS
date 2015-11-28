@@ -95,15 +95,23 @@ $(".submit").click(function(){
 
  $(document).ready(function(){
 
-        $("#warning").click(function(e) {
-            $("#scholarship").show();
+        $("#yes").click(function(e) {
+            $("#sfirstname").show();
+              e.preventDefault();
+            $("#smidname").show();
+              e.preventDefault();
+             $("#slastname").show();
               e.preventDefault();
         });
     });
  $(document).ready(function(){
 
-        $("#warning-no").click(function(e) {
-            $("#scholarship").hide();
+        $("#no").click(function(e) {
+            $("#sfirstname").hide();
+              e.preventDefault();
+            $("#smidname").hide();
+              e.preventDefault();
+              $("#slastname").hide();
               e.preventDefault();
         });
     });

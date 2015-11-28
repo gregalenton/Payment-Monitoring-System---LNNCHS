@@ -7,12 +7,12 @@ body {
 }
 
 .button.primary {
-  background: #2086bf;
+  background: #742928;
   color: #ffffff;
-  border-color: #2086bf;
+  border-color: #742928;
 }
 .button.primary:active {
-  background: #1b6eae;
+  background: #742928;
   color: #ffffff;
 }
 

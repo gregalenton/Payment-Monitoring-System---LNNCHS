@@ -1,42 +1,33 @@
-<!doctype html>
-<html lang="en" class="no-js">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{%load staticfiles %}
 
+{% block css %}
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}"> <!-- CSS reset -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Resource style -->
+    <script src="{% static 'js/modernizr.js' %}"></script> <!-- Modernizr -->
+{% endblock css%}
 
-    <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
-    <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
-    <script src="js/modernizr.js"></script> <!-- Modernizr -->
-    
+{% block title %}
     <title>Responsive Sidebar Navigation | CodyHouse</title>
-</head>
-<body>
-    <header class="cd-main-header">
-        <a href="#0" class="cd-logo"><img src="img/cd-logo.svg" alt="Logo"></a>
-        
-        <div class="cd-search is-hidden">
-            <form action="#0">
-                <input type="search" placeholder="Search...">
-            </form>
-        </div> <!-- cd-search -->
+{% endblock title %}
 
+{% block body%}
+    <header class="cd-main-header">
+        <a href="#0" class="cd-logo"><img src="{% static 'img/cd-logo.svg' %}" alt="Logo"></a>
         <a href="#0" class="cd-nav-trigger">Menu<span></span></a>
 
         <nav class="cd-nav">
             <ul class="cd-top-nav">
                 <li class="has-children account">
                     <a href="#0">
-                        <img src="img/cd-avatar.png" alt="avatar">
+                        <img src="{% static 'img/cd-avatar.png' %}" alt="avatar">
                         Account
                     </a>
 
                     <ul>
-
                         <li><a href="#0">My Account</a></li>
                         <li><a href="#0">Edit Account</a></li>
-                        <li><a href="#0">Logout</a></li>
+                        <li><a href="#">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -48,10 +39,10 @@
             <ul>
                 <li class="cd-label">Main</li>
                 <li class="has-children overview  active">
-                    <a href="homepageadmin.html">Homepage</a>
+                    <a href="{% url 'accounts:Admin' %}">Homepage</a>
                 </li>
                 <li class="has-children notifications">
-                    <a href="students.html">Students</a>
+                    <a href="{% url 'accounts:Students' %}">Students</a>
                 </li>
                 <li class="has-children comments">
                     <a href="funds.html">Funds</a>
@@ -67,8 +58,10 @@
         </div> <!-- .content-wrapper -->
         
     </main> <!-- .cd-main-content -->
-<script src="js/jquery-2.1.4.js"></script>
-<script src="js/jquery.menu-aim.js"></script>
-<script src="js/main.js"></script> <!-- Resource jQuery -->
-</body>
-</html>
+{% endblock body %}
+
+{% block js %}
+    <script src="{% static 'js/jquery-2.1.4.js' %}"></script>
+    <script src="{% static 'js/jquery.menu-aim.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script> <!-- Resource jQuery -->
+{% endblock js %}

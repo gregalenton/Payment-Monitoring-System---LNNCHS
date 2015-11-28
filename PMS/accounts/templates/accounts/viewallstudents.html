@@ -1,30 +1,25 @@
-<!doctype html>
-<html lang="en" class="no-js">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% load staticfiles %}
 
+{% block css %]
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}"> <!-- CSS reset -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Resource style -->
+    <link rel="stylesheet" href="{% static 'css/metrobuttons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/students.css' %}">
+    <link rel="stylesheet" href="{% static 'css/viewallstudent.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/metro-bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static ' css/docs.css' %}">
+    <script src="{% static 'js/modernizr.js' %}"></script> <!-- Modernizr -->
+{% endblock css %}
 
-    <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
-    <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
-    <link rel="stylesheet" href="css/metrobuttons.css">
-    <link rel="stylesheet" href="css/students.css"> 
-    <link rel="stylesheet" href="css/viewallstudent.css"> 
-    <link rel="stylesheet" type="text/css" href="css/metro-bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/docs.css">
-    
-    <script src="js/modernizr.js"></script> <!-- Modernizr -->
-    
-    <title>Responsive Sidebar Navigation | CodyHouse</title>
-</head>
-<body>
+{% block title %}
+    <title>View Students</title>
+{% endblock title %}
+
+{% block body %}
     <header class="cd-main-header">
-        <a href="#0" class="cd-logo"><img src="img/cd-logo.svg" alt="Logo"></a>
-        
-        
-
+        <a href="#0" class="cd-logo"><img src="{% static 'img/cd-logo.svg' %}" alt="Logo"></a>
         <a href="#0" class="cd-nav-trigger">Menu<span></span></a>
 
         <nav class="cd-nav">
@@ -34,9 +29,7 @@
                         <img src="img/cd-avatar.png" alt="avatar">
                         Account
                     </a>
-
                     <ul>
-
                         <li><a href="#0">My Account</a></li>
                         <li><a href="#0">Edit Account</a></li>
                         <li><a href="#0">Logout</a></li>
@@ -51,10 +44,10 @@
             <ul>
                 <li class="cd-label">Main</li>
                 <li class="has-children overview">
-                    <a href="homepageadmin.html">Homepage</a>
+                    <a href="{% url 'accounts:Admin' %}">Homepage</a>
                 </li>
                 <li class="has-children notifications   active">
-                    <a href="students.html">Students</a>
+                    <a href="{% url 'accounts:Students' %}">Students</a>
                 </li>
                 <li class="has-children comments">
                     <a href="funds.html">Funds</a>
@@ -94,61 +87,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Juan Miguel Dela Cruz</td>
-                            <td>12</td>
-                            <td>A</td>
-                            <td>Cleared</td>
-                            <td>123.00</td>
-                            <td>0.00</td>
-                            <td>
-                                <button class="button primary">Edit</button></th>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Corazon Alcantara</td>
-                            <td>11</td>
-                            <td>N</td>
-                            <td>Pending</td>
-                            <td>50.00</td>
-                            <td>76.00</td>
-                            <td>
-                                <button class="button primary">Edit</button></th>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Corazon Alcantara</td>
-                            <td>11</td>
-                            <td>N</td>
-                            <td>Pending</td>
-                            <td>50.00</td>
-                            <td>76.00</td>
-                            <td>
-                                <button class="button primary">Edit</button></th>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Corazon Alcantara</td>
-                            <td>11</td>
-                            <td>N</td>
-                            <td>Pending</td>
-                            <td>50.00</td>
-                            <td>76.00</td>
-                            <td>
-                                <button class="button primary">Edit</button></th>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Corazon Alcantara</td>
-                            <td>11</td>
-                            <td>N</td>
-                            <td>Pending</td>
-                            <td>50.00</td>
-                            <td>76.00</td>
-                            <td>
-                                <button class="button primary">Edit</button></th>
-                            </td>
-                        </tr>
+
                     </tbody>
                 </table>   
                 <div class="bs-example">
@@ -176,14 +115,14 @@
         </div>
     </div>
 </div>
-<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-</div>
-<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-</div>
-<script src="js/jquery-2.1.4.js"></script>
-<script src="js/jquery.menu-aim.js"></script>
-<script src="js/main.js"></script> <!-- Resource jQuery -->
-<script src="js/viewallstudents.js"></script> <!-- Resource jQuery -->
-<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-</body>
-</html>
+{% endblock body %}
+
+{% block js %}
+    <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="{% static 'js/jquery-2.1.4.js' %}"></script>
+    <script src="{% static 'js/jquery.menu-aim.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script> <!-- Resource jQuery -->
+    <script src="{% static 'js/viewallstudents.js' %}"></script> <!-- Resource jQuery -->
+    <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+{% endblock js %}

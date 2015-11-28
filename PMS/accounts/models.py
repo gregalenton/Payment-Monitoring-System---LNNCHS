@@ -7,16 +7,6 @@ class Admin(models.Model):
     admin_num = models.IntegerField(default=0)
 
 
-class Guardian(models.Model):
-    guardian_name = models.CharField(max_length=100, blank=False)
-    guardian_address = models.CharField(max_length=100, blank=False)
-    guardian_contact = models.CharField(max_length=20, blank=False)
-
-
-class Scholarship(models.Model):
-    scholarship_name = models.CharField(max_length=50, blank=False)
-
-
 class Student(models.Model):
     G7 = "7"
     G8 = "8"
@@ -50,13 +40,21 @@ class Student(models.Model):
         ('SA', 'Ssection A'),
         ('SB', 'Ssection B'),
     )
+    scholarship = (
+        ('Academic', 'Academic Scholar'),
+        ('Athletic', 'Athletic Scholar')
+    )
+
     student_user = models.OneToOneField(User, related_name='student')
     student_year = models.IntegerField(choices=year_level, blank=False)
     student_section = models.CharField(max_length=2, choices=section, blank=False)
     student_address = models.CharField(max_length=100, blank=False)
-    student_guardian = models.ForeignKey(Guardian, null=False, blank=False)
-    student_scholarship = models.ForeignKey(Scholarship, null=True, blank=True)
+    student_guardian_firstname = models.CharField(max_length=50)
+    student_guardian_lastname = models.CharField(max_length=50)
+    student_guardian_contact = models.CharField(max_length=100)
+    student_guardian_address = models.CharField(max_length=100)
+    student_scholarship = models.CharField(max_length=100, choices=scholarship, null=True)
     student_sibling = models.ManyToManyField("self")
     student_bandMem = models.BooleanField(default=False)
-    student_payed = models.FloatField(default=0.0)
+    student_paid = models.FloatField(default=0.0)
     student_toPay = models.FloatField(default=0.0)

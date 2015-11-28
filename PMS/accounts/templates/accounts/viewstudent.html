@@ -1,0 +1,175 @@
+{% load staticfiles %}
+
+{% block css %}
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/gsdk-base.css' %}" rel="stylesheet" />
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}"> <!-- CSS reset -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Resource style -->
+    <link rel="stylesheet" href="{% static 'css/viewstudent.css' %}"> <!-- Resource style -->
+    <script src="{% static 'js/modernizr.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/metro-bootstrap.css' %}">
+{% endblock css %}
+    
+{% block title %}
+    <title>View Student</title>
+{% endblock title %}
+   
+{% block body %}
+    <header class="cd-main-header">
+        <a href="#0" class="cd-logo"><img src="{% static 'img/cd-logo.svg' %}" alt="Logo"></a>
+        <a href="#0" class="cd-nav-trigger">Menu<span></span></a>
+
+        <nav class="cd-nav">
+            <ul class="cd-top-nav">
+                <li class="has-children account">
+                    <a href="#0">
+                        <img src="{% static 'img/cd-avatar.png' %}" alt="avatar">
+                        Account
+                    </a>
+                    <ul>
+                        <li><a href="#0">My Account</a></li>
+                        <li><a href="#0">Edit Account</a></li>
+                        <li><a href="#0">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header> <!-- .cd-main-header -->
+
+    <main class="cd-main-content">
+        <nav class="cd-side-nav">
+            <ul>
+                <li class="cd-label">Main</li>
+                <li class="has-children overview">
+                    <a href="{% url 'accounts:Admin' %}">Homepage</a>
+                </li>
+                <li class="has-children notifications   active">
+                    <a href="{% url 'accounts:Students' %}">Students</a>
+                </li>
+                <li class="has-children comments">
+                    <a href="funds.html">Funds</a>
+                </li>
+                <li class="has-children comments">
+                    <a href="#0"m>Projects</a>
+                </li>
+            </ul>
+        </nav>
+</main>
+
+<div class="container">
+      <div class="row">
+      
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+          <br><br><br><br><br>
+   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title"> First name, Middle name, Family name</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="{% static 'img/default-avatar.png' %}" class="img-circle img-responsive"> </div>
+
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Username:</td>
+                        <td>username</td>
+                      </tr>
+                      <tr>
+                        <td>Password:</td>
+                        <td>password</td>
+                      </tr>
+                      <tr>
+                        <td>Year</td>
+                        <td>12</td>
+                      </tr>
+                   
+                         <tr>
+                             <tr>
+                        <td>Section</td>
+                        <td>A</td>
+                      </tr>
+                        <tr>
+                        <td>Home Address</td>
+                        <td>Metro Manila,Philippines</td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td><a href="mailto:info@support.com">info@support.com</a></td>
+                      </tr>
+                        <td>Phone Number</td>
+                        <td>123-4567-890
+                        </td>
+                           
+                      </tr>
+                      <tr>
+                        <td>Guardian</td>
+                        <td>
+                          First name, middle name, family name
+                          <br>Address
+                          <br>Contact Number
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Sibling Enrolled</td>
+                        <td>
+                          First name, middle name, family name
+                          <br>Year
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Scholarship</td>
+                        <td>
+                          Foundation
+                          <br>Contact number
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Member of an organization</td>
+                        <td>
+                          Foundation
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
+                  <div class="current">Current Amount Paid: PHP 1,000.00</div>
+                  <div class="liabilities">Liabilities: PHP 0.00</div>
+                </div>
+              </div>
+            </div>
+                 <div class="panel-footer">
+                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                        <span class="pull-right">
+                            <a href="editstudent.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a data-original-title="Edit user payment" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-edit"></i></a>
+                        </span>
+                    </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock body %}
+
+{% block js %}
+    <!-- jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!-- jQuery easing plugin -->
+    <script src="{% static 'js/jquery.easing.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/jquery-1.10.2.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
+    <!--   plugins   -->
+    <script src="{% static 'js/jquery.bootstrap.wizard.js' %}" type="text/javascript"></script>
+    <!--  More information about jquery.validate here: http://jqueryvalidation.org/  -->
+    <script src="{% static 'js/jquery.validate.min.js' %}"></script>
+    <!--  methods for manipulating the wizard and the validation -->
+    <script src="{% static 'js/wizard.js' %}"></script>
+    <script src="{% static 'js/passwordGenerator.js' %}"></script>
+{% endblock js %}

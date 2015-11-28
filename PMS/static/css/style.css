@@ -24,8 +24,11 @@ body::after {
 }
 
 a {
-  color: #1784c7;
-  text-decoration: none;
+  color: #FFF !important;
+  text-decoration: none !important;
+}
+a:hover{
+  background-color: #742928;
 }
 
 input {
