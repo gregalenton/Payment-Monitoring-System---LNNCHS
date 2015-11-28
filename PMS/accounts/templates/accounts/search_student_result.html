@@ -7,7 +7,7 @@
 	        {% for student in students %}
 
             <li class="student">{{student }}
-                (<a href="{% url 'accounts:editstudent' student.student_id %}">edit</a>)
+                (<a href="{% url 'accounts:editstudent' student.student_id %}">edit</a> <a href="{% url 'accounts:viewstudentinfo' student.student_id %}">view</a>)
             </li>
 <!-- 	        <li>Student number: {{ student.student_id }} || {{ student.student_lastname }}, {{ student.student_firstname }},  {{ student.student_middlename }}</li> -->
 	        {% endfor %}

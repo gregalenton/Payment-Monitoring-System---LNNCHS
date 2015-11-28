@@ -9,7 +9,7 @@ urlpatterns = patterns('',
         url(r'^accounts/addstudent/$', views.AddStudentView.as_view(), name='addstudent'),
         url(r'^accounts/editstudent/(?P<pk>\d+)/$', views.EditStudentView.as_view(), name='editstudent'),
         url(r'^accounts/searchstudent/$', views.SearchStudentView.as_view(), name='searchstudent'),
-        #url(r'^accounts/viewstudentinfo/$', views.StudentInfoView, name='viewstudentinfo'),
+        url(r'^accounts/viewstudentinfo/(?P<pk>\d+)/$', views.ViewStudentInfoView.as_view(), name='viewstudentinfo'),
         #url(r'^accounts/displaysearchresults/$', views.DisplaySearchResults.as_view(), name='displaysearchresults'),
         url(r'^accounts/displaysearchresults/$', views.DisplaySearchResults, name='displaysearchresults'),  
         )

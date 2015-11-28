@@ -22,7 +22,16 @@ class AddFundsView(LoginRequiredMixin, generic.CreateView):
     def get_success_url(self):
         return reverse('funds:changessaved')
 
+class ViewFundsView(LoginRequiredMixin, generic.View):
+    pass
 
+
+class SearchFundsView(LoginRequiredMixin, generic.View):
+    pass
+
+class EditFundsView(LoginRequiredMixin, generic.View):
+    pass
+    
 class ChangesSaved(LoginRequiredMixin, generic.View):
     def get(self, request):
         return render_to_response('funds/changessaved.html')
