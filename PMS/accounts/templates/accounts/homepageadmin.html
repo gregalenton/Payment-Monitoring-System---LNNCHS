@@ -1,3 +1,5 @@
+{% extends 'accounts/base.html' %}
+
 {%load staticfiles %}
 
 {% block css %}
@@ -11,54 +13,11 @@
     <title>Responsive Sidebar Navigation | CodyHouse</title>
 {% endblock title %}
 
-{% block body%}
-    <header class="cd-main-header">
-        <a href="#0" class="cd-logo"><img src="{% static 'img/cd-logo.svg' %}" alt="Logo"></a>
-        <a href="#0" class="cd-nav-trigger">Menu<span></span></a>
-
-        <nav class="cd-nav">
-            <ul class="cd-top-nav">
-                <li class="has-children account">
-                    <a href="#0">
-                        <img src="{% static 'img/cd-avatar.png' %}" alt="avatar">
-                        Account
-                    </a>
-
-                    <ul>
-                        <li><a href="#0">My Account</a></li>
-                        <li><a href="#0">Edit Account</a></li>
-                        <li><a href="#">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </header> <!-- .cd-main-header -->
-
-    <main class="cd-main-content">
-        <nav class="cd-side-nav">
-            <ul>
-                <li class="cd-label">Main</li>
-                <li class="has-children overview  active">
-                    <a href="{% url 'accounts:Admin' %}">Homepage</a>
-                </li>
-                <li class="has-children notifications">
-                    <a href="{% url 'accounts:Students' %}">Students</a>
-                </li>
-                <li class="has-children comments">
-                    <a href="funds.html">Funds</a>
-                </li>
-                <li class="has-children comments">
-                    <a href="#0"m>Projects</a>
-                </li>
-            </ul>
-        </nav>
-
+        {% block body%}
         <div class="content-wrapper">
             <h1>DASHBOARD</h1>
         </div> <!-- .content-wrapper -->
-        
-    </main> <!-- .cd-main-content -->
-{% endblock body %}
+        {% endblock body %}
 
 {% block js %}
     <script src="{% static 'js/jquery-2.1.4.js' %}"></script>

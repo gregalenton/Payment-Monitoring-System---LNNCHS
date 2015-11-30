@@ -51,11 +51,11 @@ class StudentLoginView(generic.FormView):
         return HttpResponseRedirect('accounts:Index')
 
 
-class AddStudentView(generic.View):
+class AddStudentView(generic.CreateView):
     template_name = 'accounts/addstudents.html'
     form_class = forms.AddStudentForm
 
-
+    
 
 #class AllStudents():
 
