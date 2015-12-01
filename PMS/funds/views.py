@@ -49,6 +49,7 @@ class SearchFundsView(LoginRequiredMixin, generic.View):
         else:
             return HttpResponseRedirect('/funds/displayfundsearchresults/')  
 
+
 class EditFundsView(LoginRequiredMixin, generic.UpdateView):
     model = models.Project
     template_name = 'funds/edit_fund.html'
@@ -59,14 +60,13 @@ class EditFundsView(LoginRequiredMixin, generic.UpdateView):
 
     def get_context_data(self, **kwargs):
 
-        context = super(EditStudentView, self).get_context_data(**kwargs)
+        context = super(EditFundsView, self).get_context_data(**kwargs)
         context['action'] = reverse('funds:editfunds',
-                                    kwargs={'pk': self.get_object().student_id})
+                                    kwargs={'pk': self.get_object().project_id})
 
         return context
 
 
-    
 class ChangesSaved(LoginRequiredMixin, generic.View):
     def get(self, request):
         return render_to_response('funds/changessaved.html')
