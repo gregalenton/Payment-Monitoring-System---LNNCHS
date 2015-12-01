@@ -122,7 +122,6 @@ class ViewStudentInfoView(LoginRequiredMixin, generic.DetailView):
 
 
 
-
 def DisplaySearchResults(request):
     if 'input' in request.GET and request.GET['input']:
         inp = request.GET['input']

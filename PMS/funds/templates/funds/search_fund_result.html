@@ -1,0 +1,29 @@
+{% block body %}
+	<p>You searched for: <strong>{{ query }}</strong></p>
+
+	{% if funds %}
+	    <p>Found {{ funds|length }} funds {{ funds|pluralize }}.</p>
+	    <ul>
+	        {% for fund in funds %}
+
+            <li class="fund">{{fund }}
+                (<a href="{% url 'funds:editfunds' fund.project_id %}">edit</a> <a href="{% url 'funds:viewfunds' fund.project_id %}">view</a>)
+            </li>
+<!-- 	        <li>Student number: {{ student.student_id }} || {{ student.student_lastname }}, {{ student.student_firstname }},  {{ student.student_middlename }}</li> -->
+	        {% endfor %}
+	    </ul>
+	{% else %}
+	    <p>Nothing matched the query.</p>
+	{% endif %}
+
+
+  <!--   <form id="getstudentinfo_form" method="get" action="/accounts/viewstudentinfo/" role '"form">
+        {% csrf_token %}
+         <div class="form-group">
+         <h1>VIEW INFO</h1>
+         <p>Enter a student ID</p>
+          <input type="text" name="input">
+         </div>
+        <input type="submit" name="submit" value="Go"/>
+    </form> -->
+{% endblock %}

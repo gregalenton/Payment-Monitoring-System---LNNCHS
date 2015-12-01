@@ -1,0 +1,17 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+    <body>
+        <form id="searchstudent_form" method="get" action="/funds/displayfundsearchresults/" role ="form">
+            {% csrf_token %}
+             <div class="form-group">
+             <p>Enter name of funds.</p>
+              <input type="text" name="input">
+             </div>
+
+            <input type="submit" name="submit" value="Search"/>
+        </form>
+
+    </body>
+</html>
