@@ -4,6 +4,7 @@ from . import forms
 from . import models
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import (reverse_lazy, reverse)
+from django.http import HttpResponseRedirect, HttpResponse
 # Create your views here.
 
 class LoginRequiredMixin(object):
@@ -75,10 +76,13 @@ class ChangesSaved(LoginRequiredMixin, generic.View):
 
 
 def DisplayFundSearchResults(request):
-    if 'input' in request.GET and request.GET['input']:
-        inp = request.GET['input']
-        funds = models.Project.objects.filter(project_name=inp)
-        return render(request, 'funds/search_fund_result.html',
-            {'funds': funds, 'query': inp})
+    if request.user.is_authenticated():
+        if 'input' in request.GET and request.GET['input']:
+            inp = request.GET['input']
+            funds = models.Project.objects.filter(project_name=inp)
+            return render(request, 'funds/search_fund_result.html',
+                {'funds': funds, 'query': inp})
+        else:
+            return HttpResponseRedirect('/funds/searchfunds/')
     else:
-        return HttpResponseRedirect('/funds/searchfunds/')
+        return HttpResponseRedirect('/accounts/login')

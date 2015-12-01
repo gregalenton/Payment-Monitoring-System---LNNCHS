@@ -121,15 +121,21 @@ class ViewStudentInfoView(LoginRequiredMixin, generic.DetailView):
         return context
 
 
+class ViewAllStudentsView(LoginRequiredMixin, generic.DetailView):
+    pass
+
 
 def DisplaySearchResults(request):
-    if 'input' in request.GET and request.GET['input']:
-        inp = request.GET['input']
-        students = models.StudentInfo.objects.filter(student_lastname=inp)
-        return render(request, 'accounts/search_student_result.html',
-            {'students': students, 'query': inp})
+    if request.user.is_authenticated():
+        if 'input' in request.GET and request.GET['input']:
+            inp = request.GET['input']
+            students = models.StudentInfo.objects.filter(student_lastname=inp)
+            return render(request, 'accounts/search_student_result.html',
+                {'students': students, 'query': inp})
+        else:
+            return HttpResponseRedirect('/accounts/searchstudent/')
     else:
-        return HttpResponseRedirect('/accounts/searchstudent/')
+        return HttpResponseRedirect('/accounts/login')
 
 # class DisplaySearchResults(LoginRequiredMixin, generic.View):
 #     def get(self, request):
