@@ -112,6 +112,7 @@ class SearchStudentView(LoginRequiredMixin, generic.View):
 class ViewStudentInfoView(LoginRequiredMixin, generic.DetailView):
     model = models.StudentInfo
     template_name = 'accounts/studentinfo_detail.html'
+    context_object_name = 'student'
 
     def get_context_data(self, **kwargs):
         context = super(ViewStudentInfoView, self).get_context_data(**kwargs)
@@ -121,8 +122,9 @@ class ViewStudentInfoView(LoginRequiredMixin, generic.DetailView):
         return context
 
 
-class ViewAllStudentsView(LoginRequiredMixin, generic.DetailView):
-    pass
+class ViewAllStudentsView(LoginRequiredMixin, generic.ListView):
+    model = models.StudentInfo
+    template_name = 'accounts/viewallstudents.html'
 
 
 def DisplaySearchResults(request):

@@ -28,6 +28,7 @@ class AddFundsView(LoginRequiredMixin, generic.CreateView):
 class ViewFundsView(LoginRequiredMixin, generic.DetailView):
     model = models.Project
     template_name = 'funds/fundinfo_detail.html'
+    context_object_name = 'fund'
 
     def get_context_data(self, **kwargs):
         context = super(ViewFundsView, self).get_context_data(**kwargs)
@@ -68,11 +69,28 @@ class EditFundsView(LoginRequiredMixin, generic.UpdateView):
         return context
 
 
+class ViewAllFundsView(LoginRequiredMixin, generic.ListView):
+    model = models.Project
+    template_name = 'funds/viewallfunds.html'
+
+    def get_context_data(self, **kwargs):
+
+        context = super(ViewAllFundsView, self).get_context_data(**kwargs)        
+        projects = models.Project.objects.all()
+
+        total = 0
+
+        for p in projects:
+            total = p.project_cost+total
+
+        context['total'] = total
+
+        return context
+
+
 class ChangesSaved(LoginRequiredMixin, generic.View):
     def get(self, request):
         return render_to_response('funds/changessaved.html')
-
-
 
 
 def DisplayFundSearchResults(request):
