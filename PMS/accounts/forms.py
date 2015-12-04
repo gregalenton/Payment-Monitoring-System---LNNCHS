@@ -14,32 +14,29 @@ class StudentLoginForm(forms.Form):
     password = forms.CharField(min_length=5)
 
 
-class AddStudentForm(UserCreationForm):
+class AddStudentForm(forms.ModelForm):
     attributes = {
         'name': 'firstname',
         'class': 'form-control',
-        'placeholder': 'First Name'
     }
 
-    first_name = forms.CharField(required=True, max_length=50, widget=forms.TextInput(attrs=attributes))
+    firstname = forms.CharField(required=True, max_length=50, widget=forms.TextInput(attrs=attributes))
 
     attributes = {
         'name': 'lastname',
         'class': 'form-control',
-        'placeholder': 'Last Name'
     }
 
-    last_name = forms.CharField(required=True, max_length=50, widget=forms.TextInput(attrs=attributes))
+    lastname = forms.CharField(required=True, max_length=50, widget=forms.TextInput(attrs=attributes))
 
     attributes = {
         'name': 'username',
         'class': 'form-control',
         'placeholder': '20XX12345',
-        'rel': 'gp',
+        'rel':'gp',
         'data-size': '5',
         'data-character-set': '0-9,u'
     }
-
     username = forms.CharField(required=True, min_length=5, widget=forms.TextInput(attrs=attributes))
 
     attributes = {
@@ -50,16 +47,14 @@ class AddStudentForm(UserCreationForm):
         'data-size': '8',
         'data-character-set': 'a-z,A-Z,0-9'
     }
-
-    password1 = forms.CharField(required=True, min_length=5, widget=forms.TextInput(attrs=attributes))
-    password2 = password1
+    password = forms.CharField(required=True, min_length=5, widget=forms.TextInput(attrs=attributes))
 
     attributes = {
         'name': 'year',
         'class': 'form-control'
     }
 
-    year_level = forms.IntegerField(widget=forms.Select(attrs=attributes, choices=Student.year_level))
+    year = forms.IntegerField(widget=forms.Select(attrs=attributes, choices=Student.year_level))
 
     attributes = {
         'name': 'section',
@@ -73,24 +68,21 @@ class AddStudentForm(UserCreationForm):
         'class': 'form-control',
         'placeholder': '6866 Williams Street Fayetteville, NC 28303'
     }
-
     address = forms.CharField(max_length=100, widget=forms.TextInput(attrs=attributes))
 
     attributes = {
         'name': 'gfirstname',
-        'class': 'form-control',
-        'placeholder': 'Andrew...'
+        'class': 'form-control'
     }
 
-    guardian_fn = forms.CharField(max_length=50, widget=forms.TextInput(attrs=attributes))
+    gfirstname = forms.CharField(max_length=50, widget=forms.TextInput(attrs=attributes))
 
     attributes = {
         'name': 'glastname',
-        'class': 'form-control',
-        'placeholder': 'Smith...'
+        'class': 'form-control'
     }
 
-    guardian_ln = forms.CharField(max_length=50, widget=forms.TextInput(attrs=attributes))
+    glastname = forms.CharField(max_length=50, widget=forms.TextInput(attrs=attributes))
 
     attributes = {
         'name': 'gaddress',
@@ -98,7 +90,7 @@ class AddStudentForm(UserCreationForm):
         'placeholder': '6866 Williams Street Fayetteville, NC 28303'
     }
 
-    guardian_address = forms.CharField(max_length=100, widget=forms.TextInput(attrs=attributes))
+    gaddress = forms.CharField(max_length=100, widget=forms.TextInput(attrs=attributes))
 
     attributes = {
         'name': 'gcontact',
@@ -106,29 +98,28 @@ class AddStudentForm(UserCreationForm):
         'placeholder': '441-5656'
     }
 
-    guardian_contact = forms.CharField(max_length=100, widget=forms.TextInput(attrs=attributes))
+    gcontact = forms.CharField(max_length=100, widget=forms.TextInput(attrs=attributes))
 
     attributes = {
-
+        'name': 'sibling',
+        'id': 'yes',
+        'value': 'Yes'
     }
-    scholarship = forms.ChoiceField(choices=Student.scholarship)
-    band_member = forms.BooleanField()
 
-    def save(self, commit=True):
-        user = super(AddStudentForm, self).save(commit=commit)
-        user.first_name = self.cleaned_data['first_name']
-        user.last_name = self.cleaned_data['last_name']
-        user.save()
+    sibling = forms.BooleanField(widget=forms.CheckboxInput(attrs=attributes))
 
-        student = Student()
-        student.student_year = self.cleaned_data['year_level']
-        student.student_section = self.cleaned_data['section']
-        student.student_address = self.cleaned_data['address']
-        student.student_guardian_firstname = self.cleaned_data['guardian_fn']
-        student.student_guardian_lastname = self.cleaned_data['guardian_ln']
-        student.student_guardian_contact = self.cleaned_data['guardian_contact']
-        student.student_guardian_address = self.cleaned_data['guardian_address']
-        student.student_scholarship = self.cleaned_data['scholarship']
-        student.student_bandMem = self.cleande_data['band_member']
-        student.student_user = user
-        student.save()
+    attributes = {
+        'class': 'form-control',
+        'name': 'scholarship'
+    }
+
+    scholarship = forms.CharField(widget=forms.Select(attrs=attributes, choices=Student.scholarship))
+
+    attributes = {
+        'name': 'member',
+        'id': 'yes-mem',
+        'value': 'Yes'
+    }
+
+    band_member = forms.BooleanField(widget=forms.CheckboxInput(attrs=attributes))
+

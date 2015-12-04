@@ -55,7 +55,12 @@ class AddStudentView(generic.CreateView):
     template_name = 'accounts/addstudents.html'
     form_class = forms.AddStudentForm
 
-    
+    def form_valid(self, form):
+        return super(AddStudentView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('accounts:Admin')
+
 
 #class AllStudents():
 

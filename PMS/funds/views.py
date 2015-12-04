@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.views import generic
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
-# Create your views here.
+
+class FundsView(generic.TemplateView):
+    template_name = 'funds/funds.html'
+
+
+

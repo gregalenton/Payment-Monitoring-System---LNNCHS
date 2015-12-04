@@ -91,15 +91,12 @@ function validateFirstStep(){
 		rules: {
 			firstname: "required",
 			lastname: "required",
-            midname: "required",
             address: "required",
             username: "required",
             contact: "required",
             gfirstname: "required",
             glastname: "required",
-            gmidname: "required",
             gaddress: "required",
-            gusername: "required",
             gcontact: "required",
             fundname: "required",
             cost: "required",
@@ -180,9 +177,7 @@ function validateSecondStep(){
 		rules: {
             gfirstname: "required",
             glastname: "required",
-            gmidname: "required",
             gaddress: "required",
-            gusername: "required",
             gcontact: "required",
             fundname: "required",
             cost: "required",
@@ -192,7 +187,6 @@ function validateSecondStep(){
         messages: {
             gfirstname: "Please enter your HGFirst Name",
             glastname: "Please enter your GLast Name",
-            gmidname: "Please enter your GMiddle Name",
             gcontact: "Please enter a valid email address",
 
         }

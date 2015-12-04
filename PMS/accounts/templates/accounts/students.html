@@ -39,9 +39,6 @@
                     </a>
 
                     <ul>
-
-                        <li><a href="#0">My Account</a></li>
-                        <li><a href="#0">Edit Account</a></li>
                         <li><a href="#0">Logout</a></li>
                     </ul>
                 </li>
@@ -60,7 +57,7 @@
                     <a href="{% url 'accounts:Students' %}">Students</a>
                 </li>
                 <li class="has-children comments">
-                    <a href="funds.html">Funds</a>
+                    <a href="{% url 'funds:Funds' %}">Funds</a>
                 </li>
                 <li class="has-children comments">
                     <a href="#0"m>Projects</a>
@@ -72,7 +69,7 @@
  <h1>Student Panel</h1>
   <div class="main-buttons">
     <div class="thumbnail tile tile-wide tile-red">
-        <a href="addstudents.html" >
+        <a href="{% url 'accounts:AddStudent' %}" >
             <h1 class="ADD STUDENTS">
                 ADD STUDENTS.</h1>
         </a>
@@ -101,6 +98,7 @@
 <script src="{% static 'js/main.js' %}"></script> <!-- Resource jQuery -->
 <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 {% endblock js %}
+
 </body>
 {% endblock body%}
 </html>
