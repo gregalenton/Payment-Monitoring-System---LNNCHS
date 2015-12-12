@@ -2,12 +2,30 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
+from django.shortcuts import render, redirect
 from . import forms
 
 
 class IndexView(generic.TemplateView):
     template_name = 'accounts/homepage.html'
 
+    def get(self, request, *args, **kwargs):
+        
+        if request.user.is_authenticated():
+            print "Inside1"
+            return HttpResponseRedirect(reverse('accounts:Admin'))
+        
+        context = {
+            'user': request.user,
+            'page_title': 'Welcome!',
+        }
+        if request.user and not request.user.is_anonymous():
+            context = {
+                'page_title': 'Welcome ' +
+                str(request.user.get_full_name()),
+            }
+        print "Inside2"
+        return render(request, self.template_name, context)
 
 class AdminView(generic.TemplateView):
     template_name = 'accounts/homepageadmin.html'
@@ -23,12 +41,14 @@ class AdminLoginView(generic.FormView):
     def form_valid(self, form):
         user = authenticate(username=form.cleaned_data['username'],
                             password=form.cleaned_data['password'])
-        if user is not None:
-            login(self.request, user)
-
-            return HttpResponseRedirect(reverse('accounts:Admin'))
+        if user:
+            if user.is_active:
+                login(self.request, user)
+                return HttpResponseRedirect(reverse('accounts:Admin'))
+            else:
+                return HttpResponse("Account disabled.")    
         else:
-            return super(AdminLoginView, self).form_valid(form)
+            return HttpResponseRedirect(reverse('accounts:Index'))
 
     def form_invalid(self, form):
         return HttpResponseRedirect(reverse('accounts:Index'))
@@ -51,8 +71,21 @@ class StudentLoginView(generic.FormView):
         return HttpResponseRedirect('accounts:Index')
 
 
-#class AddStudentView(generic.View):
+def user_logout(request):
+        if request.user.is_authenticated():
+            logout(request)
+            return HttpResponseRedirect(reverse('account:Index'))
 
+
+class AddStudentView(generic.CreateView):
+    template_name = 'accounts/addstudents.html'
+    form_class = forms.AddStudentForm
+
+    def form_valid(self, form):
+        return super(AddStudentView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('accounts:Admin')
 
 
 
