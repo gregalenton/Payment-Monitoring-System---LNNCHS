@@ -15,7 +15,7 @@ class Receipt(models.Model):
     receipt_id = models.AutoField(primary_key=True)
     receipt_timestamp = models.DateTimeField(blank=True, auto_now_add=True)
     student_id = models.ForeignKey(StudentInfo)
-    due_id = models.ForeignKey(Due)
+    amount = models.FloatField(default=0.0)
 
     def __unicode__(self):
         return unicode(self.receipt_id)

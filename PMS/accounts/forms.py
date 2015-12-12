@@ -2,6 +2,7 @@ from django import forms
 from models import StudentInfo
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from funds.models import Receipt
 
 
 class AddStudentForm(forms.ModelForm):
@@ -14,7 +15,16 @@ class AddStudentForm(forms.ModelForm):
                   'student_sibling', 'student_bandMem']
 
 
+class CreatePaymentForm(forms.ModelForm):
+    class Meta:
+        model = Receipt
+        fields = ['student_id', 'amount']
 
+    def save(self, commit=True):
+        receipt = super(CreatePaymentForm, self).save(commit=commit)
+        receipt.student_id = self.cleaned_data['student_id']
+        receipt.amount = self.cleaned_data['amount']
+        receipt.save()
         # attribute = {
         #     'placeholder': 'placeholder'
         # }

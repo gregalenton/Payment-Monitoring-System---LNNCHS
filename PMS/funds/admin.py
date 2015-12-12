@@ -18,3 +18,4 @@ from models import Due, Receipt, Project
 # admin.site.register(Project, FundsAdmin)
 admin.site.register(Due)
 admin.site.register(Project)
+admin.site.register(Receipt)

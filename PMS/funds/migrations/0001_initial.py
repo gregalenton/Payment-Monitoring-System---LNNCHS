@@ -12,13 +12,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Disbursement',
-            fields=[
-                ('disbursement_id', models.AutoField(serialize=False, primary_key=True)),
-                ('disbursement_cost', models.FloatField(default=0.0)),
-            ],
-        ),
-        migrations.CreateModel(
             name='Due',
             fields=[
                 ('due_id', models.AutoField(serialize=False, primary_key=True)),
@@ -40,13 +33,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('receipt_id', models.AutoField(serialize=False, primary_key=True)),
                 ('receipt_timestamp', models.DateTimeField(auto_now_add=True)),
-                ('due_id', models.ForeignKey(to='funds.Due')),
+                ('amount', models.FloatField(default=0.0)),
                 ('student_id', models.ForeignKey(to='accounts.StudentInfo')),
             ],
-        ),
-        migrations.AddField(
-            model_name='disbursement',
-            name='project_id',
-            field=models.ForeignKey(to='funds.Project'),
         ),
     ]

@@ -1,16 +1,51 @@
-{% if student %}
+{% block body %}
+	<p>You searched for: <strong>{{ query }}</strong></p>
+
+	{% if students %}
 	    <ul>
-	    	<form id="createpayment_form" method="post" action="/accounts/displayresults/" role ="form">
-	            {% csrf_token %}
-	            <div class="form-group">
-	             	<p>Enter student number:</p>
-	              	<input type="text" name="input">
-	            </div>
+	        {% for student in students %}
+		        <li>Student number: {{ student.student_id }} ||Lastname: {{ student.student_lastname }} || Firstname: {{ student.student_firstname }} || Paid: {{ student.student_paid }} || Liability: {{ student.student_toPay }}</li>
+	            <!-- <li class="student">
+	                (<a href="{% url 'accounts:enterdiscount' student.student_id %}">Add a discount</a> 
+	                <a href="{% url 'accounts:addpayment' student.student_id %}">Add new payment</a>
+	                )
+	            </li> -->
 
-	            <input type="submit" name="submit" value="Search"/>
-        	</form>
-
+	        {% endfor %}
 	    </ul>
-{% else %}
-    <p>No student ID matched the query.</p>
-{% endif %}
+	    <div>
+		    <form id="add_student" method="get" action="/accounts/enterdiscount/ student.student_id" role ="form">
+	            {% csrf_token %}
+	             <div class="form-group">
+	             	<p>Add a discount.</p>
+		    		<input type="text" name="input">
+	             </div>
+	            <input type="submit" name="submit" value="Add"/>
+        	</form>
+		</div>
+
+		<div>
+		    <form id="add_student" method="get" action="/accounts/addpayment/" role ="form">
+	            {% csrf_token %}
+	             <div class="form-group">
+	             	<p>Add a payment.</p>
+		    		<input type="text" name="input">
+	             </div>
+	            <input type="submit" name="submit" value="Add"/>
+        	</form>
+		</div>
+	{% else %}
+	    <p>No student surname matched the query.</p>
+	{% endif %}
+
+
+  <!--   <form id="getstudentinfo_form" method="get" action="/accounts/viewstudentinfo/" role '"form">
+        {% csrf_token %}
+         <div class="form-group">
+         <h1>VIEW INFO</h1>
+         <p>Enter a student ID</p>
+          <input type="text" name="input">
+         </div>
+        <input type="submit" name="submit" value="Go"/>
+    </form> -->
+{% endblock %}

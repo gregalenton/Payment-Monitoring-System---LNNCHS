@@ -115,14 +115,6 @@ class ViewMoneyOnHandView(LoginRequiredMixin, generic.ListView):
         return context
 
 
-
-
-
-
-        
-
-
-
 class AddProjectView(LoginRequiredMixin, generic.CreateView):
     template_name = 'funds/add_project.html'
     form_class = forms.AddProjectForm

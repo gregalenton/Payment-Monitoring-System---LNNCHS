@@ -11,6 +11,7 @@ from django.core.urlresolvers import (reverse_lazy, reverse)
 from django.contrib.auth.decorators import login_required
 
 
+
 class LoginRequiredMixin(object):
     @classmethod
     def as_view(cls, **kwargs):
@@ -99,14 +100,14 @@ class SearchStudentView(LoginRequiredMixin, generic.View):
     def get(self, request):
             return render_to_response('accounts/search_student.html') 
 
-    def StudentInfoView(request):
-        if 'input' in request.GET and request.GET['input']:
-            inp = request.GET['input']
-            student = models.StudentInfo.objects.get(student_lastname=inp)
-            return render(request, 'accounts/search_studentinfo_result.html',
-                {'student': student, 'query': inp})
-        else:
-            return HttpResponseRedirect('/accounts/displaysearchresults/')   
+    # def StudentInfoView(request):
+    #     if 'input' in request.GET and request.GET['input']:
+    #         inp = request.GET['input']
+    #         student = models.StudentInfo.objects.get(student_lastname=inp)
+    #         return render(request, 'accounts/search_studentinfo_result.html',
+    #             {'student': student, 'query': inp})
+    #     else:
+    #         return HttpResponseRedirect('/accounts/displaysearchresults/')   
 
 
 class ViewStudentInfoView(LoginRequiredMixin, generic.DetailView):
@@ -148,20 +149,43 @@ class StudentsWithLiabilitiesView(LoginRequiredMixin, generic.ListView):
         return context
 
 
-class CreatePaymentView(LoginRequiredMixin, generic.View):
-    def get(self, request):
-            return render_to_response('accounts/create_payment.html') 
+class CreatePaymentView(LoginRequiredMixin, generic.CreateView):
+    template_name = 'accounts/create_payment.html'
+    form_class = forms.CreatePaymentForm
 
-    def ResultsView(request):
-        if 'input' in request.GET and request.GET['input']:
-            inp = request.GET['input']
-            student = models.StudentInfo.objects.get(student_id=inp)
-            return render(request, 'accounts/search_studentinfo_result.html',
-                {'student': student, 'query': inp})
-        else:
-            return HttpResponseRedirect('/accounts/displaysearchresults/')   
+    def form_valid(self, form):
+        student_id = form.cleaned_data['student_id']
+        paying = form.cleaned_data['amount']
+        student = models.StudentInfo.objects.get(student_id=student_id.student_id)
+        toPay = student.student_toPay
+        dif = toPay-paying
+        student.student_toPay = dif
+        paid = student.student_paid
+        total = paid+paying
+        student.student_paid = total
+        student.save()
+        return super(CreatePaymentView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('funds:changessaved')
 
 
+class EnterDiscountView(LoginRequiredMixin, generic.CreateView):
+    template_name = 'accounts/create_payment.html'
+    form_class = forms.CreatePaymentForm
+
+    def form_valid(self, form):
+        student_id = form.cleaned_data['student_id']
+        paying = form.cleaned_data['amount']
+        student = models.StudentInfo.objects.get(student_id=student_id.student_id)
+        toPay = student.student_toPay
+        dif = toPay-paying
+        student.student_toPay = dif
+        student.save()
+        return super(EnterDiscountView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('funds:changessaved')
 
 def DisplaySearchResults(request):
     if request.user.is_authenticated():
@@ -176,17 +200,17 @@ def DisplaySearchResults(request):
         return HttpResponseRedirect('/accounts/login')
 
 
-# def DisplayResults(request):
-#     if request.user.is_authenticated():
-#         if 'input' in request.GET and request.GET['input']:
-#             inp = request.GET['input']
-#             students = models.StudentInfo.objects.filter(student_id=inp)
-#             return render(request, 'accounts/create_payment_result.html',
-#                 {'students': students, 'query': inp})
-#         else:
-#             return HttpResponseRedirect('/accounts/createpayment/')
-#     else:
-#         return HttpResponseRedirect('/accounts/login')
+def DisplayResults(request):
+    if request.user.is_authenticated():
+        if 'input' in request.GET and request.GET['input']:
+            inp = request.GET['input']
+            students = models.StudentInfo.objects.filter(student_id=inp)
+            return render(request, 'accounts/create_payment_result.html',
+                {'students': students, 'query': inp})
+        else:
+            return HttpResponseRedirect('/accounts/createpayment/')
+    else:
+        return HttpResponseRedirect('/accounts/login')
 
 # class DisplaySearchResults(LoginRequiredMixin, generic.View):
 #     def get(self, request):
