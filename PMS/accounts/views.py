@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.shortcuts import render, redirect
@@ -12,7 +12,7 @@ class IndexView(generic.TemplateView):
     def get(self, request, *args, **kwargs):
         
         if request.user.is_authenticated():
-            print "Inside1"
+            # print "Inside1"
             return HttpResponseRedirect(reverse('accounts:Admin'))
         
         context = {
@@ -24,7 +24,7 @@ class IndexView(generic.TemplateView):
                 'page_title': 'Welcome ' +
                 str(request.user.get_full_name()),
             }
-        print "Inside2"
+        # print "Inside2"
         return render(request, self.template_name, context)
 
 class AdminView(generic.TemplateView):
@@ -60,15 +60,21 @@ class StudentLoginView(generic.FormView):
     def form_valid(self, form):
         user = authenticate(username=form.cleaned_data['username'],
                             password=form.cleaned_data['password'])
-        if user is not None:
-            login(self.request, user)
-
-            return HttpResponseRedirect(reverse(''))
+        if user:
+            if user.is_active:
+                print "Inside"
+                login(self.request, user)
+                return HttpResponse("This is for the Student's Login View")
+                # return HttpResponseRedirect(reverse('accounts:Students'))
+                
+            else:
+                return HttpResponse("Account disabled.")    
         else:
-            return super(StudentLoginView, self).form_valid(form)
+            return HttpResponseRedirect(reverse('accounts:Index'))
 
     def form_invalid(self, form):
-        return HttpResponseRedirect('accounts:Index')
+        return HttpResponseRedirect(reverse('accounts:Index'))
+        # return HttpResponse("Invalid!")
 
 
 def user_logout(request):

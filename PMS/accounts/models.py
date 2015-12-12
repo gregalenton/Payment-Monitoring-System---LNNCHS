@@ -8,19 +8,13 @@ class Admin(models.Model):
 
 
 class Student(models.Model):
-    G7 = "7"
-    G8 = "8"
-    G9 = "9"
-    G0 = "10"
-    G1 = "11"
-    G2 = "12"
     YEAR_LEVELS = (
-        (G7, 'grade 7'),
-        (G8, 'grade 8'),
-        (G9, 'grade 9'),
-        (G0, 'grade 10'),
-        (G1, 'grade 11'),
-        (G2, 'grade 12'),
+        (7, 'Grade 7'),
+        (8, 'Grade 8'),
+        (9, 'Grade 9'),
+        (0, 'Grade 10'),
+        (1, 'Grade 11'),
+        (2, 'Grade 12'),
     )
     SECTION_CHOICE = (
         ('A', 'section A'),
