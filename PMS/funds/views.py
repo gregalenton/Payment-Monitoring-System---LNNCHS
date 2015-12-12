@@ -5,6 +5,7 @@ from . import models
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import (reverse_lazy, reverse)
 from django.http import HttpResponseRedirect, HttpResponse
+from accounts.models import StudentInfo
 # Create your views here.
 
 class LoginRequiredMixin(object):
@@ -26,14 +27,14 @@ class AddFundsView(LoginRequiredMixin, generic.CreateView):
 
 
 class ViewFundsView(LoginRequiredMixin, generic.DetailView):
-    model = models.Project
+    model = models.Due
     template_name = 'funds/fundinfo_detail.html'
     context_object_name = 'fund'
 
     def get_context_data(self, **kwargs):
         context = super(ViewFundsView, self).get_context_data(**kwargs)
         context['action'] = reverse('funds:viewfunds',
-                                    kwargs={'pk': self.get_object().project_id})
+                                    kwargs={'pk': self.get_object().due_id})
 
         return context
 
@@ -45,17 +46,17 @@ class SearchFundsView(LoginRequiredMixin, generic.View):
     def FundInfoView(request):
         if 'input' in request.GET and request.GET['input']:
             inp = request.GET['input']
-            fund = models.Project.objects.get(project_name=inp)
+            fund = models.Due.objects.get(due_name=inp)
             return render(request, 'funds/search_fundinfo_result.html',
-                {'student': student, 'query': inp})
+                {'fund': fund, 'query': inp})
         else:
             return HttpResponseRedirect('/funds/displayfundsearchresults/')  
 
 
 class EditFundsView(LoginRequiredMixin, generic.UpdateView):
-    model = models.Project
+    model = models.Due
     template_name = 'funds/edit_fund.html'
-    fields = ['project_name', 'project_receiver', 'project_cost']
+    fields = ['due_name', 'due_cost']
 
     def get_success_url(self):
         return reverse('funds:changessaved')
@@ -64,28 +65,48 @@ class EditFundsView(LoginRequiredMixin, generic.UpdateView):
 
         context = super(EditFundsView, self).get_context_data(**kwargs)
         context['action'] = reverse('funds:editfunds',
-                                    kwargs={'pk': self.get_object().project_id})
+                                    kwargs={'pk': self.get_object().due_id})
 
         return context
 
 
 class ViewAllFundsView(LoginRequiredMixin, generic.ListView):
-    model = models.Project
+    model = models.Due
     template_name = 'funds/viewallfunds.html'
 
     def get_context_data(self, **kwargs):
 
         context = super(ViewAllFundsView, self).get_context_data(**kwargs)        
-        projects = models.Project.objects.all()
+        projects = models.Due.objects.all()
 
         total = 0
 
         for p in projects:
-            total = p.project_cost+total
+            total = p.due_cost+total
 
         context['total'] = total
 
         return context
+
+
+class ViewMoneyOnHandView(LoginRequiredMixin, generic.ListView):
+    model = StudentInfo
+    template_name = 'funds/view_money_onhand.html'
+
+    def get_context_data(self, **kwargs):
+
+        context = super(ViewMoneyOnHandView, self).get_context_data(**kwargs)        
+        students = StudentInfo.objects.all()
+
+        total = 0
+
+        for s in students:
+            total = s.student_paid+total
+
+        context['total'] = total
+
+        return context
+
 
 
 class ChangesSaved(LoginRequiredMixin, generic.View):
@@ -97,7 +118,7 @@ def DisplayFundSearchResults(request):
     if request.user.is_authenticated():
         if 'input' in request.GET and request.GET['input']:
             inp = request.GET['input']
-            funds = models.Project.objects.filter(project_name=inp)
+            funds = models.Due.objects.filter(due_name=inp)
             return render(request, 'funds/search_fund_result.html',
                 {'funds': funds, 'query': inp})
         else:

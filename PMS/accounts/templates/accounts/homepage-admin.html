@@ -44,7 +44,9 @@
                             <li class="active"><a href="{% url 'funds:searchfunds' %}">Search Funds</a></li>
                             <li class="active"><a href="{% url 'funds:viewallfunds' %}">View All Funds</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
+                            <li><a href="{% url 'accounts:studentswithliabilities' %}">View Students with liabilities</a></li>
+
+                            <li><a href="{% url 'funds:viewmoneyonhand' %}">View Total Money on Hand</a></li>
                             <li class="divider"></li>
                             <li><a href="#">One more separated link</a></li>
                         </ul>

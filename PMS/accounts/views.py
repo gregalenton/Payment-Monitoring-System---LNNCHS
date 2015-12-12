@@ -127,6 +127,26 @@ class ViewAllStudentsView(LoginRequiredMixin, generic.ListView):
     template_name = 'accounts/viewallstudents.html'
 
 
+class StudentsWithLiabilitiesView(LoginRequiredMixin, generic.ListView):
+    model = models.StudentInfo
+    template_name = 'accounts/students_with_liabilities.html'
+
+    def get_context_data(self, **kwargs):
+
+        context = super(StudentsWithLiabilitiesView, self).get_context_data(**kwargs)        
+        students = models.StudentInfo.objects.all()
+
+        total = 0
+        stud = []
+
+        for s in students:
+            if s.student_toPay != 0:
+                stud.append(s)
+
+        context['stud'] = stud
+
+        return context
+
 def DisplaySearchResults(request):
     if request.user.is_authenticated():
         if 'input' in request.GET and request.GET['input']:

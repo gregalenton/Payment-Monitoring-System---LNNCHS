@@ -4,7 +4,7 @@ from . import models
 
 class AddFundsForm(forms.ModelForm):
     class Meta:
-        model = models.Project
-        fields = ['project_name', 'project_receiver', 'project_cost']
+        model = models.Due
+        fields = ['due_name', 'due_cost']
 
 

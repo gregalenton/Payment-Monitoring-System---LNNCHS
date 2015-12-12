@@ -3,11 +3,11 @@
 <html>
 
     <body>
-        <form id="searchfund_form" method="get" action="/funds/displayfundsearchresults/" role ="form">
+        <form id="searchstudent_form" method="post" action="/funds/changessaved/" role ="form">
             {% csrf_token %}
              <div class="form-group">
-             <p>Enter name of funds.</p>
-              <input type="text" name="input">
+             <p>Enter a student id</p>
+              <input type="integer" name="input">
              </div>
 
             <input type="submit" name="submit" value="Search"/>
