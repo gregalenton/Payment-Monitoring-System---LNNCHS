@@ -6,15 +6,15 @@ from .models import Student
 
 class AdminLoginForm(forms.Form):
     username = forms.CharField(min_length=3)
-    password = forms.CharField(min_length=5)
+    password = forms.CharField(widget=forms.PasswordInput, min_length=5)
 
 
 class StudentLoginForm(forms.Form):
     username = forms.CharField(min_length=5)
-    password = forms.CharField(min_length=5)
+    password = forms.CharField(widget=forms.PasswordInput, min_length=5)
 
 
-class AddStudentForm(forms.ModelForm):
+class AddStudentForm(UserCreationForm):
     attributes = {
         'name': 'firstname',
         'class': 'form-control',
@@ -48,20 +48,19 @@ class AddStudentForm(forms.ModelForm):
         'data-character-set': 'a-z,A-Z,0-9'
     }
     password = forms.CharField(required=True, min_length=5, widget=forms.TextInput(attrs=attributes))
-
     attributes = {
         'name': 'year',
         'class': 'form-control'
     }
 
-    year = forms.IntegerField(widget=forms.Select(attrs=attributes, choices=Student.year_level))
+    year = forms.IntegerField(widget=forms.Select(attrs=attributes, choices=Student.YEAR_LEVELS))
 
     attributes = {
         'name': 'section',
         'class': 'form-control'
     }
 
-    section = forms.CharField(widget=forms.Select(attrs=attributes, choices=Student.section))
+    section = forms.CharField(widget=forms.Select(attrs=attributes, choices=Student.SECTION_CHOICE))
 
     attributes = {
         'name': 'address',
@@ -113,7 +112,7 @@ class AddStudentForm(forms.ModelForm):
         'name': 'scholarship'
     }
 
-    scholarship = forms.CharField(widget=forms.Select(attrs=attributes, choices=Student.scholarship))
+    scholarship = forms.CharField(widget=forms.Select(attrs=attributes, choices=Student.SCHOLARSHIP_CHOICES))
 
     attributes = {
         'name': 'member',
@@ -122,4 +121,25 @@ class AddStudentForm(forms.ModelForm):
     }
 
     band_member = forms.BooleanField(widget=forms.CheckboxInput(attrs=attributes))
+
+    def save(self, commit=True):
+        user = super(AddStudentForm, self).save(commit=commit)
+        user.first_name = self.cleaned_data['firstname']
+        user.last_name = self.cleaned_data['lastname']
+        user.save()
+
+        student = Student()
+        student.year = self.cleaned_data['year']
+        student.section = self.cleaned_data['section']
+        student.address = self.cleaned_data['address']
+        student.guardian_firstname = self.cleaned_data['gfirstname']
+        student.guardian_lastname = self.cleaned_data['glastname']
+        student.guardian_address = self.cleaned_data['gaddress']
+        student.guardian_contact = self.cleaned_data['gcontact']
+        student.bandMem = self.cleaned_data['band_member']
+        student.sibling = self.cleaned_data['sibling']
+        student.scholarship = self.cleaned_data['scholarship']
+        student.user = user
+        student.save()
+
 

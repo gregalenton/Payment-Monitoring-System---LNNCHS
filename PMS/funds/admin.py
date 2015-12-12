@@ -15,3 +15,4 @@ class FundsAdmin(admin.ModelAdmin):
     inline = [DisbursementInline]
 
 admin.site.register(Project, FundsAdmin)
+admin.site.register(Due)

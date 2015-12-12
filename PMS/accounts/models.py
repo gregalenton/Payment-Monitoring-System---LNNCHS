@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 
 
 class Admin(models.Model):
-    admin_user = models.OneToOneField(User, related_name='admin')
-    admin_num = models.IntegerField(default=0)
+    user = models.OneToOneField(User, related_name='admin')
+    num = models.IntegerField(default=0)
 
 
 class Student(models.Model):
@@ -14,7 +14,7 @@ class Student(models.Model):
     G0 = "10"
     G1 = "11"
     G2 = "12"
-    year_level = (
+    YEAR_LEVELS = (
         (G7, 'grade 7'),
         (G8, 'grade 8'),
         (G9, 'grade 9'),
@@ -22,7 +22,7 @@ class Student(models.Model):
         (G1, 'grade 11'),
         (G2, 'grade 12'),
     )
-    section = (
+    SECTION_CHOICE = (
         ('A', 'section A'),
         ('B', 'section B'),
         ('C', 'section C'),
@@ -40,21 +40,21 @@ class Student(models.Model):
         ('SA', 'Ssection A'),
         ('SB', 'Ssection B'),
     )
-    scholarship = (
+    SCHOLARSHIP_CHOICES = (
         ('Academic', 'Academic Scholar'),
         ('Athletic', 'Athletic Scholar')
     )
 
-    student_user = models.OneToOneField(User, related_name='student')
-    student_year = models.IntegerField(choices=year_level, blank=False)
-    student_section = models.CharField(max_length=2, choices=section, blank=False)
-    student_address = models.CharField(max_length=100, blank=False)
-    student_guardian_firstname = models.CharField(max_length=50)
-    student_guardian_lastname = models.CharField(max_length=50)
-    student_guardian_contact = models.CharField(max_length=100)
-    student_guardian_address = models.CharField(max_length=100)
-    student_scholarship = models.CharField(max_length=100, choices=scholarship, null=True, blank=True)
-    student_sibling = models.BooleanField(default=False)
-    student_bandMem = models.BooleanField(default=False)
-    student_paid = models.FloatField(default=0.0)
-    student_toPay = models.FloatField(default=0.0)
+    user = models.OneToOneField(User, related_name='student')
+    year = models.IntegerField(choices=YEAR_LEVELS, blank=False)
+    section = models.CharField(max_length=2, choices=SECTION_CHOICE, blank=False)
+    address = models.CharField(max_length=100, blank=False)
+    guardian_firstname = models.CharField(max_length=50)
+    guardian_lastname = models.CharField(max_length=50)
+    guardian_contact = models.CharField(max_length=100)
+    guardian_address = models.CharField(max_length=100)
+    scholarship = models.CharField(max_length=100, choices=SCHOLARSHIP_CHOICES, null=True, blank=True)
+    sibling = models.BooleanField(default=False)
+    bandMem = models.BooleanField(default=False)
+    paid = models.FloatField(default=0.0)
+    toPay = models.FloatField(default=0.0)

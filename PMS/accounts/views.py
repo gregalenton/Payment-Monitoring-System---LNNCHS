@@ -38,7 +38,7 @@ class StudentLoginView(generic.FormView):
     form_class = forms.StudentLoginForm
 
     def form_valid(self, form):
-        user = authenticate(username=form.cleaned_data['student_ID'],
+        user = authenticate(username=form.cleaned_data['username'],
                             password=form.cleaned_data['password'])
         if user is not None:
             login(self.request, user)
@@ -51,15 +51,9 @@ class StudentLoginView(generic.FormView):
         return HttpResponseRedirect('accounts:Index')
 
 
-class AddStudentView(generic.CreateView):
-    template_name = 'accounts/addstudents.html'
-    form_class = forms.AddStudentForm
+#class AddStudentView(generic.View):
 
-    def form_valid(self, form):
-        return super(AddStudentView, self).form_valid(form)
 
-    def get_success_url(self):
-        return reverse('accounts:Admin')
 
 
 #class AllStudents():
