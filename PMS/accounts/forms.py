@@ -11,7 +11,7 @@ class AddStudentForm(forms.ModelForm):
                   'student_birthday', 'student_year', 'student_section',
                   'student_gender', 'student_address', 'student_guardian',
                   'student_guardian_contact', 'student_guardian_address', 'student_scholarship',
-                  'student_sibling', 'student_bandMem', 'student_paid', 'student_toPay']
+                  'student_sibling', 'student_bandMem']
 
 
 

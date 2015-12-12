@@ -1,0 +1,19 @@
+{% block body %}
+	<p>You searched for: <strong>{{ query }}</strong></p>
+
+	{% if projects %}
+	    <p>Found {{ projects|length }} project {{ projects|pluralize }}.</p>
+	    <ul>
+	        {% for project in projects %}
+
+            <li class="project">{{project}}
+                (<a href="{% url 'funds:editproject' project.project_id %}">edit</a> <a href="{% url 'funds:viewproject' project.project_id %}">view</a>)
+            </li>
+
+	        {% endfor %}
+	    </ul>
+	{% else %}
+	    <p>Nothing matched the query.</p>
+	{% endif %}
+
+{% endblock %}

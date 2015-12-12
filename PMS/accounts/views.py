@@ -80,7 +80,7 @@ class EditStudentView(LoginRequiredMixin, generic.UpdateView):
               'student_birthday', 'student_year', 'student_section',
               'student_gender', 'student_address', 'student_guardian',
               'student_guardian_contact', 'student_guardian_address', 'student_scholarship',
-              'student_sibling', 'student_bandMem', 'student_paid', 'student_toPay']
+              'student_sibling', 'student_bandMem']
 
 
     def get_success_url(self):
@@ -147,6 +147,22 @@ class StudentsWithLiabilitiesView(LoginRequiredMixin, generic.ListView):
 
         return context
 
+
+class CreatePaymentView(LoginRequiredMixin, generic.View):
+    def get(self, request):
+            return render_to_response('accounts/create_payment.html') 
+
+    def ResultsView(request):
+        if 'input' in request.GET and request.GET['input']:
+            inp = request.GET['input']
+            student = models.StudentInfo.objects.get(student_id=inp)
+            return render(request, 'accounts/search_studentinfo_result.html',
+                {'student': student, 'query': inp})
+        else:
+            return HttpResponseRedirect('/accounts/displaysearchresults/')   
+
+
+
 def DisplaySearchResults(request):
     if request.user.is_authenticated():
         if 'input' in request.GET and request.GET['input']:
@@ -158,6 +174,19 @@ def DisplaySearchResults(request):
             return HttpResponseRedirect('/accounts/searchstudent/')
     else:
         return HttpResponseRedirect('/accounts/login')
+
+
+# def DisplayResults(request):
+#     if request.user.is_authenticated():
+#         if 'input' in request.GET and request.GET['input']:
+#             inp = request.GET['input']
+#             students = models.StudentInfo.objects.filter(student_id=inp)
+#             return render(request, 'accounts/create_payment_result.html',
+#                 {'students': students, 'query': inp})
+#         else:
+#             return HttpResponseRedirect('/accounts/createpayment/')
+#     else:
+#         return HttpResponseRedirect('/accounts/login')
 
 # class DisplaySearchResults(LoginRequiredMixin, generic.View):
 #     def get(self, request):

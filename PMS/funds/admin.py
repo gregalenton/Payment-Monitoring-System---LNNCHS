@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Due, Receipt, Project, Disbursement
+from models import Due, Receipt, Project
 
 # Register your models here.
 
@@ -17,3 +17,4 @@ from models import Due, Receipt, Project, Disbursement
 
 # admin.site.register(Project, FundsAdmin)
 admin.site.register(Due)
+admin.site.register(Project)

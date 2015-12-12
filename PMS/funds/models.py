@@ -1,17 +1,6 @@
 from django.db import models
 from accounts.models import StudentInfo
 
-# class Funds(models.Model):
-
-#     """Sets the Fund details"""
-
-#     fund_id = models.AutoField(primary_key=True)	
-#     fund_name = models.CharField(max_length=255)
-#     fund_timestamp = models.DateTimeField(blank=True, auto_now_add=True)
-#     fund_amount = models.DecimalField(max_digits=10, decimal_places=2)
-
-#     def __str__(self):
-# 		return self.fund_id
 
 class Due(models.Model):
     due_id = models.AutoField(primary_key=True)
@@ -29,7 +18,7 @@ class Receipt(models.Model):
     due_id = models.ForeignKey(Due)
 
     def __unicode__(self):
-        return unicode(self.project_id)
+        return unicode(self.receipt_id)
 
 
 class Project(models.Model):
@@ -40,12 +29,4 @@ class Project(models.Model):
 
     def __unicode__(self):
         return unicode(self.project_id)
-
-
-class Disbursement(models.Model):
-    disbursement_id = models.AutoField(primary_key=True)
-    project_id = models.ForeignKey(Project, blank=False)
-    disbursement_cost = models.FloatField(default=0.0)
-
-    def __unicode__(self):
-        return unicode(disbursement_id)
+        

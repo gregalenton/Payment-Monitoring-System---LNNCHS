@@ -1,0 +1,16 @@
+{% if student %}
+	    <ul>
+	    	<form id="createpayment_form" method="post" action="/accounts/displayresults/" role ="form">
+	            {% csrf_token %}
+	            <div class="form-group">
+	             	<p>Enter student number:</p>
+	              	<input type="text" name="input">
+	            </div>
+
+	            <input type="submit" name="submit" value="Search"/>
+        	</form>
+
+	    </ul>
+{% else %}
+    <p>No student ID matched the query.</p>
+{% endif %}

@@ -97,16 +97,104 @@ class ViewMoneyOnHandView(LoginRequiredMixin, generic.ListView):
 
         context = super(ViewMoneyOnHandView, self).get_context_data(**kwargs)        
         students = StudentInfo.objects.all()
+        projects = models.Project.objects.all()
+        total1 = 0
+
+        for p in projects:
+            total1 = p.project_cost+total1
 
         total = 0
 
         for s in students:
             total = s.student_paid+total
 
+        total = total-total1
+
         context['total'] = total
 
         return context
 
+
+
+
+
+
+        
+
+
+
+class AddProjectView(LoginRequiredMixin, generic.CreateView):
+    template_name = 'funds/add_project.html'
+    form_class = forms.AddProjectForm
+
+    def form_valid(self, form):
+        return super(AddProjectView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('funds:changessaved')
+
+
+class SearchProjectView(LoginRequiredMixin, generic.View):
+    def get(self, request):
+            return render_to_response('funds/search_project.html') 
+
+    def ProjectInfoView(request):
+        if 'input' in request.GET and request.GET['input']:
+            inp = request.GET['input']
+            project = models.Project.objects.get(project_name=inp)
+            return render(request, 'funds/search_projectinfo_result.html',
+                {'project': project, 'query': inp})
+        else:
+            return HttpResponseRedirect('/funds/displayprojectsearchresults/')  
+
+
+class EditProjectView(LoginRequiredMixin, generic.UpdateView):
+    model = models.Project
+    template_name = 'funds/edit_project.html'
+    fields = ['project_name', 'project_receiver', 'project_cost']
+
+    def get_success_url(self):
+        return reverse('funds:changessaved')
+
+    def get_context_data(self, **kwargs):
+
+        context = super(EditProjectView, self).get_context_data(**kwargs)
+        context['action'] = reverse('funds:editproject',
+                                    kwargs={'pk': self.get_object().project_id})
+
+        return context
+
+
+class ViewProjectView(LoginRequiredMixin, generic.DetailView):
+    model = models.Project
+    template_name = 'funds/projectinfo_detail.html'
+    context_object_name = 'project'
+
+    def get_context_data(self, **kwargs):
+        context = super(ViewProjectView, self).get_context_data(**kwargs)
+        context['action'] = reverse('funds:viewproject',
+                                    kwargs={'pk': self.get_object().project_id})
+
+        return context
+
+
+class ViewAllProjectsView(LoginRequiredMixin, generic.ListView):
+    model = models.Project
+    template_name = 'funds/viewallprojects.html'
+
+    def get_context_data(self, **kwargs):
+
+        context = super(ViewAllProjectsView, self).get_context_data(**kwargs)        
+        projects = models.Project.objects.all()
+
+        total = 0
+
+        for p in projects:
+            total = p.project_cost+total
+
+        context['total'] = total
+
+        return context
 
 
 class ChangesSaved(LoginRequiredMixin, generic.View):
@@ -123,5 +211,18 @@ def DisplayFundSearchResults(request):
                 {'funds': funds, 'query': inp})
         else:
             return HttpResponseRedirect('/funds/searchfunds/')
+    else:
+        return HttpResponseRedirect('/accounts/login')
+
+
+def DisplayProjectSearchResults(request):
+    if request.user.is_authenticated():
+        if 'input' in request.GET and request.GET['input']:
+            inp = request.GET['input']
+            projects = models.Project.objects.filter(project_name=inp)
+            return render(request, 'funds/search_project_result.html',
+                {'projects': projects, 'query': inp})
+        else:
+            return HttpResponseRedirect('/funds/searchproject/')
     else:
         return HttpResponseRedirect('/accounts/login')

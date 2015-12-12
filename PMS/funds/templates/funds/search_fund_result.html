@@ -9,7 +9,7 @@
             <li class="fund">{{fund }}
                 (<a href="{% url 'funds:editfunds' fund.due_id %}">edit</a> <a href="{% url 'funds:viewfunds' fund.due_id %}">view</a>)
             </li>
-<!-- pde ra butngan ni nmo dri greg ug edit tapad sa each attribute.meheee -->
+
 	        {% endfor %}
 	    </ul>
 	{% else %}

@@ -12,6 +12,8 @@ urlpatterns = patterns('',
         url(r'^accounts/viewstudentinfo/(?P<pk>\d+)/$', views.ViewStudentInfoView.as_view(), name='viewstudentinfo'),
         url(r'^accounts/viewallstudents/$', views.ViewAllStudentsView.as_view(), name='viewallstudents'),
         url(r'^accounts/studentswithliabilities/$', views.StudentsWithLiabilitiesView.as_view(), name='studentswithliabilities'),
+        url(r'^accounts/createpayment/$', views.CreatePaymentView.as_view(), name='createpayment'),
         #url(r'^accounts/displaysearchresults/$', views.DisplaySearchResults.as_view(), name='displaysearchresults'),
         url(r'^accounts/displaysearchresults/$', views.DisplaySearchResults, name='displaysearchresults'),  
+        #url(r'^accounts/displayresults/$', views.DisplayResults, name='displayresults'),  
         )

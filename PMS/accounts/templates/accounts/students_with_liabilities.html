@@ -1,5 +1,5 @@
 	    <ul>
 	        {% for student in stud %}
-	        <li>Student number: {{ student.student_id }} || {{ student.student_lastname }}, {{ student.student_firstname }},  {{ student.student_middlename }}</li>
+	        <li>Student number: {{ student.student_id }} || Lastname: {{ student.student_lastname }} || Firstname: {{ student.student_firstname }} || Liability: {{ student.student_toPay }}</li>
 	        {% endfor %}
 	    </ul>
