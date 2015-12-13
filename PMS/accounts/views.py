@@ -103,4 +103,19 @@ class AddStudentView(generic.CreateView):
 class ViewAllStudents(generic.ListView):
     template_name = 'accounts/viewallstudents.html'
 
+    def get_queryset(self):
+        queryset = Student.objects.filter(year=7)
+        # if self.request.GET.get("browse"):
+        #     selection = self.request.GET.get("browse")
+        #     if selection == "Cats":
+        #         queryset = Cats.objects.all()
+        #     elif selection == "Dogs":
+        #         queryset = Dogs.objects.all()
+        #     elif selection == "Worms":
+        #         queryset = Worms.objects.all()
+        #     else:
+        #         queryset = Cats.objects.all()
+        print queryset
+        return queryset
+
 #class StudentView():
