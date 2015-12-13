@@ -1,8 +1,6 @@
 {% extends 'accounts/base.html' %}
-
 {% load staticfiles %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 {% block css %}
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
@@ -12,8 +10,7 @@
 
     {% block title %}<title>Admin Home</title>{% endblock title %}
 
-
-{% block body %}
+{% block body%}
 <div class="container">
   <div class="row">
     <h2 class="student-name text-center">Welcome to the Payment Monitoring System, Admin!</h2>
@@ -21,17 +18,17 @@
     
       <div class="row">
     <div class="col-sm-4">
-      <a href="{% url 'accounts:AddStudent'%}"><div class="tile red">
+      <a href="{% url 'accounts:AddStudent' %}"><div class="tile red">
         <h3 class="title">Add Student</h3>
       </div></a>
     </div>
     <div class="col-sm-4">
-      <a href="addfunds.html"><div class="tile red">
+      <a href="{% url 'funds:AddFunds' %}"><div class="tile red">
         <h3 class="title">Add Fund</h3>
       </div></a>
     </div>
     <div class="col-sm-4">
-      <a href="addproject.html"><div class="tile red">
+      <a href="{% url 'funds:AddProject' %}"><div class="tile red">
         <h3 class="title">Add Project</h3>
       </div></a>
     </div>
@@ -43,16 +40,22 @@
       </div></a>
     </div>
     <div class="col-sm-4">
-      <a href="viewallfunds.html"><div class="tile red">
+      <a href="{% url 'funds:ViewAllFunds' %}"><div class="tile red">
         <h3 class="title">View / Edit Fund</h3>
       </div></a>
     </div>  
 
     <div class="col-sm-4">
-      <a href="viewallproject.html"><div class="tile red">
+      <a href="{% url 'funds:ViewAllProjects' %}"><div class="tile red">
         <h3 class="title">View / Edit Project</h3>
       </div></a>
-    </div>     
+    </div>  
+
+    <div class="col-sm-4">
+      <a href="{% url 'funds:AddPayment' %}"><div class="tile red">
+        <h3 class="title">Add Payment</h3>
+      </div></a>
+    </div>   
   </div>
 
        <div class="row">
@@ -93,6 +96,7 @@
               </div><!-- Widget Area -->
             </div>   
   </div>
+</div>
 {% endblock body %}
 
 {% block js %}

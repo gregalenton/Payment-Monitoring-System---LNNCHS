@@ -21,6 +21,6 @@ from funds import urls as funds_url
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(accounts_url, namespace='accounts')),
-    url(r'^Funds', include(funds_url, namespace='funds')),
+    url(r'^funds', include(funds_url, namespace='funds')),
     url('',include('django.contrib.auth.urls',namespace='auth')),
 )

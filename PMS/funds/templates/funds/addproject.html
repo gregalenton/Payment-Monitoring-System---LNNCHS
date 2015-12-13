@@ -1,7 +1,5 @@
 {% extends 'accounts/base.html' %}
 
-{% load staticfiles %}
-
 {% block css %}
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
@@ -54,7 +52,7 @@
                                   <h4 class="info-text"> Type in legitimate information.</h4>
                                   <div class="col-sm-10 col-sm-offset-1">
                                       <div class="form-group">
-                                        <label>Fund Name <small>(required)</small></label>
+                                        <label>Project Name <small>(required)</small></label>
                                         <input name="fundname" type="text" class="form-control required" placeholder="Library Fee">
                                       </div>
                                       <div class="form-group">

@@ -82,6 +82,11 @@ class AddStudentView(generic.CreateView):
     template_name = 'accounts/addstudents.html'
     form_class = forms.AddStudentForm
 
+    def form_valid(self, form):
+        self.form_class.save()
+
+        return super(AddStudentView, self).form_valid(form)
+
 
 class ViewAllStudents(generic.ListView):
     template_name = 'accounts/viewallstudents.html'

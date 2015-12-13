@@ -3,5 +3,5 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^Funds', views.FundsView.as_view(), name="Funds"),
+    url(r'^funds', views.AddFundsView.as_view(), name="add_funds"),
 ]
