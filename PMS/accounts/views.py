@@ -83,7 +83,6 @@ class AddStudentView(generic.CreateView):
     form_class = forms.AddStudentForm
 
 
-
 class ViewAllStudents(generic.ListView):
     template_name = 'accounts/viewallstudents.html'
 
