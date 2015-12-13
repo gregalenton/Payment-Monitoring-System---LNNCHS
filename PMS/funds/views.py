@@ -69,6 +69,21 @@ class EditFundsView(LoginRequiredMixin, generic.UpdateView):
     def get_success_url(self):
         return reverse('funds:changessaved')
 
+    def form_valid(self, form):
+        due_id = self.get_object().due_id
+        due = models.Due.objects.get(due_id=due_id)
+        current_value = due.due_cost
+        new_value = form.cleaned_data['due_cost']
+        fund = form.save(commit=False)
+        students = StudentInfo.objects.all()
+
+        if len(students) > 0:
+            for s in students:
+                s.student_toPay = s.student_toPay - current_value
+                s.student_toPay = s.student_toPay + new_value
+                s.save()
+        return super(EditFundsView, self).form_valid(form)
+
     def get_context_data(self, **kwargs):
 
         context = super(EditFundsView, self).get_context_data(**kwargs)
