@@ -44,7 +44,7 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.admin.user }} <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="{% url 'auth:logout' %}?next={% url 'accounts:Index' %}">Logout</a></li>
                   </ul>

@@ -26,3 +26,7 @@ class Disbursement(models.Model):
     id = models.AutoField(primary_key=True)
     project = models.ForeignKey(Project, blank=False)
     cost = models.FloatField(default=0.0)
+
+class Payment(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50, blank=False)

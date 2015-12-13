@@ -24,7 +24,7 @@
         <div class="navbar-collapse collapse" id="navbar-collapsible">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% url 'accounts:Student' %}">Home</a></li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.student.user }} <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="#" data-toggle="modal" data-target="#myModal1">Change Password</a></li>
                     <li><a href="{% url 'auth:logout' %}?next={% url 'accounts:Index' %}">Logout</a></li>
@@ -40,7 +40,7 @@
 <br>
 <div class="container">
   <div class="row">
-    <h2 class="student-name text-center">Welcome to the Payment Monitoring System, Student Name!</h2>
+    <h2 class="student-name text-center">Welcome to the Payment Monitoring System, {{ request.user.student.user }}!</h2>
   </div>
     
        <div class="row">
