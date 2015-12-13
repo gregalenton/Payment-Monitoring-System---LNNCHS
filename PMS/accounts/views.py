@@ -225,6 +225,33 @@ class ReceiptInfoView(LoginRequiredMixin, generic.TemplateView):
 
     #     return context
 
+
+class ChangeSchoolYearView(LoginRequiredMixin, generic.DeleteView):
+    def get(self, request):
+        year = "12"
+        models.StudentInfo.objects.filter(student_year=year).delete()
+        students = models.StudentInfo.objects.all()
+        
+        if len(students) > 0:
+            for s in students:
+                s.student_paid = 0
+                s.student_toPay = 0
+                if s.student_year == "7":
+                    s.student_year = "8"
+                elif s.student_year == "8":
+                    s.student_year = "9"
+                elif s.student_year == "9":
+                    s.student_year = "10"
+                elif s.student_year == "10":
+                    s.student_year = "11"
+                elif s.student_year == "11":
+                    s.student_year = "12"
+
+                s.save()
+
+        return render(request, 'funds/changessaved.html',)
+
+
 def DisplaySearchResults(request):
     if request.user.is_authenticated():
         if 'input' in request.GET and request.GET['input']:
