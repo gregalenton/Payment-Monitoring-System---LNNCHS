@@ -20,6 +20,14 @@ class AddFundsView(LoginRequiredMixin, generic.CreateView):
     form_class = forms.AddFundsForm
 
     def form_valid(self, form):
+        student = StudentInfo.objects.all()
+        due_cost = form.cleaned_data['due_cost']
+
+        if len(student) > 0:
+            for s in student:
+                s.student_toPay = due_cost+s.student_toPay
+                s.save()
+
         return super(AddFundsView, self).form_valid(form)
 
     def get_success_url(self):
