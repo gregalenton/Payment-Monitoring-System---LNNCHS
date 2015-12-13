@@ -85,8 +85,6 @@ class AddStudentView(LoginRequiredMixin, generic.CreateView):
  
         return reverse('funds:changessaved')
 
-        
-
 
 class EditStudentView(LoginRequiredMixin, generic.UpdateView):
     model = models.StudentInfo
@@ -179,6 +177,7 @@ class CreatePaymentView(LoginRequiredMixin, generic.CreateView):
             total = paid+paying
             student.student_paid = total
             student.save()
+            #return render_to_response('accounts/receiptinfo.html', )
         else:
             #please change this one to some template :)
             return HttpResponse("Student already paid full.")
@@ -212,42 +211,43 @@ class EnterDiscountView(LoginRequiredMixin, generic.CreateView):
 
 
 class ReceiptInfoView(LoginRequiredMixin, generic.TemplateView):
-    def get(self, request):
-        return render(request,'accounts/receiptinfo.html')
-    # model = Receipt
-    # template_name = 'accounts/receiptinfo.html'
-    # context_object_name = 'receipt'
+    template_name = 'accounts/receiptinfo.html'
+    context_object_name = 'receipt'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(ReceiptInfoView, self).get_context_data(**kwargs)
-    #     context['action'] = reverse('accounts:receiptinfo',
-    #                                 kwargs={'pk': self.get_object().receipt_id})
-
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super(ReceiptInfoView, self).get_context_data(**kwargs)
+        
+        context['amount'] = 100
+        return context
 
 
 class ChangeSchoolYearView(LoginRequiredMixin, generic.DeleteView):
     def get(self, request):
         year = "12"
-        models.StudentInfo.objects.filter(student_year=year).delete()
+        #models.StudentInfo.objects.filter(student_year=year).delete()
         students = models.StudentInfo.objects.all()
-        
+
         if len(students) > 0:
             for s in students:
-                s.student_paid = 0
-                s.student_toPay = 0
                 if s.student_year == "7":
-                    s.student_year = "8"
+                    if s.student_toPay == 0:
+                        s.student_year = "8"
                 elif s.student_year == "8":
-                    s.student_year = "9"
+                    if s.student_toPay == 0:
+                        s.student_year = "9"
                 elif s.student_year == "9":
-                    s.student_year = "10"
+                    if s.student_toPay == 0:
+                        s.student_year = "10"
                 elif s.student_year == "10":
-                    s.student_year = "11"
+                    if s.student_toPay == 0:
+                        s.student_year = "11"
                 elif s.student_year == "11":
-                    s.student_year = "12"
-
+                    if s.student_toPay == 0:
+                        s.student_year = "12"
                 s.save()
+                if s.student_year =="12":
+                    if s.student_toPay == 0:
+                        models.StudentInfo.objects.filter(student_id=s.student_id).delete()
 
         return render(request, 'funds/changessaved.html',)
 
@@ -276,14 +276,4 @@ def DisplayResults(request):
             return HttpResponseRedirect('/accounts/createpayment/')
     else:
         return HttpResponseRedirect('/accounts/login')
-
-# class DisplaySearchResults(LoginRequiredMixin, generic.View):
-#     def get(self, request):
-#         if 'input' in request.GET and request.GET['input']:
-#             inp = request.GET['input']
-#             students = models.StudentInfo.objects.filter(student_lastname=inp)
-#             return render(request, 'accounts/search_student_result.html',
-#                 {'students': students, 'query': inp})
-#         else:
-#             return HttpResponseRedirect('/accounts/searchstudent/')
 
