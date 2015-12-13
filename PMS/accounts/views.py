@@ -4,6 +4,8 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django.shortcuts import render, redirect
 from . import forms
+from .models import Student
+from funds.models import Due, Receipt
 
 
 class IndexView(generic.TemplateView):
@@ -84,6 +86,14 @@ class AddStudentView(generic.CreateView):
 
     def form_valid(self, form):
         form.save()
+        due = Due.objects.all()
+        total = 0
+
+        if len(due) > 0:
+            for d in due:
+                total = d.cost + total
+
+        Student.toPay = total
         return HttpResponseRedirect(reverse('accounts:Admin'))
 
     def form_invalid(self, form):
@@ -95,5 +105,20 @@ class AddStudentView(generic.CreateView):
 
 class ViewAllStudents(generic.ListView):
     template_name = 'accounts/viewallstudents.html'
+
+    def get_queryset(self):
+        queryset = Student.objects.filter(year=7)
+        # if self.request.GET.get("browse"):
+        #     selection = self.request.GET.get("browse")
+        #     if selection == "Cats":
+        #         queryset = Cats.objects.all()
+        #     elif selection == "Dogs":
+        #         queryset = Dogs.objects.all()
+        #     elif selection == "Worms":
+        #         queryset = Worms.objects.all()
+        #     else:
+        #         queryset = Cats.objects.all()
+        print queryset
+        return queryset
 
 #class StudentView():

@@ -115,7 +115,7 @@ class AddStudentForm(UserCreationForm):
         'value': 'Yes'
     }
 
-    sibling = forms.BooleanField(widget=forms.CheckboxInput(attrs=attributes))
+    sibling = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs=attributes))
 
     attributes = {
         'class': 'form-control',
@@ -130,7 +130,7 @@ class AddStudentForm(UserCreationForm):
         'value': 'Yes',
     }
 
-    band_member = forms.BooleanField(widget=forms.CheckboxInput(attrs=attributes))
+    band_member = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs=attributes))
 
     class Meta:
         model = User
