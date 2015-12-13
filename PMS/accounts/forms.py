@@ -162,7 +162,6 @@ class AddStudentForm(UserCreationForm):
         student.sibling = self.cleaned_data['sibling']
         student.scholarship = self.cleaned_data['scholarship']
         student.user = user
-        print "Here"
         student.save()
 
 def __init__ (self, *args, **kwargs):
