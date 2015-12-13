@@ -15,6 +15,7 @@ urlpatterns = patterns('',
         url(r'^accounts/createpayment/$', views.CreatePaymentView.as_view(), name='createpayment'),
         url(r'^accounts/enterdiscount/$', views.EnterDiscountView.as_view(), name='enterdiscount'),
         #url(r'^accounts/displaysearchresults/$', views.DisplaySearchResults.as_view(), name='displaysearchresults'),
+        url(r'^accounts/receiptinfo/$', views.ReceiptInfoView.as_view(), name='receiptinfo'),
         url(r'^accounts/displaysearchresults/$', views.DisplaySearchResults, name='displaysearchresults'),  
         url(r'^accounts/displayresults/$', views.DisplayResults, name='displayresults'),  
         )

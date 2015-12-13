@@ -9,7 +9,7 @@ from django.views import generic
 from . import forms
 from django.core.urlresolvers import (reverse_lazy, reverse)
 from django.contrib.auth.decorators import login_required
-from funds.models import Due
+from funds.models import Due, Receipt
 
 
 
@@ -172,16 +172,21 @@ class CreatePaymentView(LoginRequiredMixin, generic.CreateView):
         paying = form.cleaned_data['amount']
         student = models.StudentInfo.objects.get(student_id=student_id.student_id)
         toPay = student.student_toPay
-        dif = toPay-paying
-        student.student_toPay = dif
-        paid = student.student_paid
-        total = paid+paying
-        student.student_paid = total
-        student.save()
+        if toPay != 0:
+            dif = toPay-paying
+            student.student_toPay = dif
+            paid = student.student_paid
+            total = paid+paying
+            student.student_paid = total
+            student.save()
+        else:
+            #please change this one to some template :)
+            return HttpResponse("Student already paid full.")
+
         return super(CreatePaymentView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse('funds:changessaved')
+        return reverse('accounts:receiptinfo')
 
 
 class EnterDiscountView(LoginRequiredMixin, generic.CreateView):
@@ -193,13 +198,32 @@ class EnterDiscountView(LoginRequiredMixin, generic.CreateView):
         paying = form.cleaned_data['amount']
         student = models.StudentInfo.objects.get(student_id=student_id.student_id)
         toPay = student.student_toPay
-        dif = toPay-paying
-        student.student_toPay = dif
-        student.save()
+        if toPay != 0:
+            dif = toPay-paying
+            student.student_toPay = dif
+            student.save()
+        else:
+            #please change this one to some template :)
+            return HttpResponse("Student already paid full.")
         return super(EnterDiscountView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse('funds:changessaved')
+        return reverse('accounts:receiptinfo')
+
+
+class ReceiptInfoView(LoginRequiredMixin, generic.TemplateView):
+    def get(self, request):
+        return render(request,'accounts/receiptinfo.html')
+    # model = Receipt
+    # template_name = 'accounts/receiptinfo.html'
+    # context_object_name = 'receipt'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super(ReceiptInfoView, self).get_context_data(**kwargs)
+    #     context['action'] = reverse('accounts:receiptinfo',
+    #                                 kwargs={'pk': self.get_object().receipt_id})
+
+    #     return context
 
 def DisplaySearchResults(request):
     if request.user.is_authenticated():
