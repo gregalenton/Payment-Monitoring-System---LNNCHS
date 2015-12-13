@@ -1,26 +1,104 @@
 {% extends 'accounts/base.html' %}
 
-{%load staticfiles %}
-
+{% load staticfiles %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 {% block css %}
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{% static 'css/reset.css' %}"> <!-- CSS reset -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Resource style -->
-    <script src="{% static 'js/modernizr.js' %}"></script> <!-- Modernizr -->
-{% endblock css%}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <link rel="stylesheet" href="{% static 'css/widget.css' %}">
+{% endblock css %}
 
-{% block title %}
-    <title>Admin</title>
-{% endblock title %}
+    {% block title %}<title>Admin Home</title>{% endblock title %}
 
-        {% block body%}
-        <div class="content-wrapper">
-            <h1>DASHBOARD</h1>
-        </div> <!-- .content-wrapper -->
-        {% endblock body %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <h2 class="student-name text-center">Welcome to the Payment Monitoring System, Admin!</h2>
+  </div>
+    
+      <div class="row">
+    <div class="col-sm-4">
+      <a href="{% url 'accounts:AddStudent'%}"><div class="tile red">
+        <h3 class="title">Add Student</h3>
+      </div></a>
+    </div>
+    <div class="col-sm-4">
+      <a href="addfunds.html"><div class="tile red">
+        <h3 class="title">Add Fund</h3>
+      </div></a>
+    </div>
+    <div class="col-sm-4">
+      <a href="addproject.html"><div class="tile red">
+        <h3 class="title">Add Project</h3>
+      </div></a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <a href="{% url 'accounts:ViewAllStudents' %}"><div class="tile red">
+        <h3 class="title">View / Edit Student</h3>
+      </div></a>
+    </div>
+    <div class="col-sm-4">
+      <a href="viewallfunds.html"><div class="tile red">
+        <h3 class="title">View / Edit Fund</h3>
+      </div></a>
+    </div>  
+
+    <div class="col-sm-4">
+      <a href="viewallproject.html"><div class="tile red">
+        <h3 class="title">View / Edit Project</h3>
+      </div></a>
+    </div>     
+  </div>
+
+       <div class="row">
+  
+    
+    <div class="col-md-4">
+                <div class="widget-area no-padding blank">
+                <div class="social-widget">
+                  <span id="fb"><i class="fa fa-facebook"></i>Financial Summary</span>
+                  <ul>
+                    <li><p>Php 1,265<i>Collected payments</i></p></li>
+                    <li><p>Php 235,000<i>Pending payments</i></p></li>
+                  </ul>
+                </div><!-- Social Widget -->
+              </div><!-- Widget Area -->
+
+  </div>
+                        
+                        <div class="col-md-8">
+                <div class="widget-area no-padding blank">
+                <div class="social-widget">
+                  <span id="twitter"><i class="fa fa-twitter"></i>List of Payables</span>
+                  <ul>
+                    <li class="fund">Library</li>
+                    <li class="cost">400.00</li>
+                    <li class="fund">Library</li>
+                    <li class="cost">400.00</li>
+                    <li class="fund">Library</li>
+                    <li class="cost">400.00</li>
+                    <li class="fund">Library</li>
+                    <li class="cost">400.00</li>
+                    <li class="fund">Library</li>
+                    <li class="cost">400.00</li>
+                    <li class="fund">Library</li>
+                    <li class="cost">400.00</li>
+                  </ul>
+                </div><!-- Social Widget -->
+              </div><!-- Widget Area -->
+            </div>   
+  </div>
+{% endblock body %}
 
 {% block js %}
-    <script src="{% static 'js/jquery-2.1.4.js' %}"></script>
-    <script src="{% static 'js/jquery.menu-aim.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script> <!-- Resource jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/homepage.js' %}"></script>
+    <script src="{% static 'js/passwordValidator.js' %}"></script>
+    <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 {% endblock js %}

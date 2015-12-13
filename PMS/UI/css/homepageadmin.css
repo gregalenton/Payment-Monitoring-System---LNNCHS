@@ -19,6 +19,10 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
+.student-name{
+  color:#FFF !important;
+}
+
  #wrapper {
     width: 100%;
     background:#413F3E;

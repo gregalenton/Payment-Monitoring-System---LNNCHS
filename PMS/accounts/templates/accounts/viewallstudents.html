@@ -1,27 +1,75 @@
-{% extends 'accounts/base.html' %}
-
-{% load staticfiles %}
-
-{% block css %]
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{% static 'css/reset.css' %}"> <!-- CSS reset -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Resource style -->
-    <link rel="stylesheet" href="{% static 'css/metrobuttons.css' %}">
-    <link rel="stylesheet" href="{% static 'css/students.css' %}">
-    <link rel="stylesheet" href="{% static 'css/viewallstudent.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/metro-bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static ' css/docs.css' %}">
-    <script src="{% static 'js/modernizr.js' %}"></script> <!-- Modernizr -->
-{% endblock css %}
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/homepage.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    
+    
+    <script src="js/modernizr.js"></script> <!-- Modernizr -->
+    
+    <title>View All Students</title>
+</head>
+<body>
+    <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand text-danger" href="homepageadmin.html">LNNCHS</a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-collapsible">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Student <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="addstudents.html">Add Student</a></li>
+                    <li><a href="viewallstudents.html">View / Edit Student</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Funds <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="addfunds.html">Add Fund</a></li>
+                    <li><a href="viewallfunds.html">View / Edit Fund</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Project <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="addproject.html">Add Project</a></li>
+                    <li><a href="viewallproject.html">View / Edit Project</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="homepage.html">Logout</a></li>
+                  </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+<br>
+<br>
+<br>
+<br>
+    <div class="row">
+    <h2 class="student-name text-center">VIEW / EDIT STUDENTS</h2>
+  </div>
+    <main class="cd-main-content">
+    </main> <!-- .cd-main-content -->
 
-{% block title %}
-    <title>View Students</title>
-{% endblock title %}
-
-{% block body %}
     <div class="container">
         <div class="col-md-3">
+            <br>
+            <br>
             <form action="#" method="get">
                 <div class="input-group">
                     <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
@@ -32,10 +80,10 @@
                 </div>
             </form>
         </div>
-    <div class="row">
+    <div class="row table">
         
-        <div class="col-md-9">
-         <table class="table table-list-search">
+        <div class="col-md-12">
+        <table class="table table-list-search">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -48,7 +96,66 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                        <tr>
+                            <td>Juan Miguel Dela Cruz</td>
+                            <td>12</td>
+                            <td>A</td>
+                            <td>Cleared</td>
+                            <td>123.00</td>
+                            <td>0.00</td>
+                            <td>
+                                <a href="editstudent.html"><button class="button primary">Edit</button></a>
+                                <a href="viewstudent.html"><button class="button primary">View</button></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Corazon Alcantara</td>
+                            <td>11</td>
+                            <td>N</td>
+                            <td>Pending</td>
+                            <td>50.00</td>
+                            <td>76.00</td>
+                            <td>
+                                <a href="editstudent.html"><button class="button primary">Edit</button></a>
+                                <a href="viewstudent.html"><button class="button primary">View</button></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Corazon Alcantara</td>
+                            <td>11</td>
+                            <td>N</td>
+                            <td>Pending</td>
+                            <td>50.00</td>
+                            <td>76.00</td>
+                            <td>
+                                <a href="editstudent.html"><button class="button primary">Edit</button></a>
+                                <a href="viewstudent.html"><button class="button primary">View</button></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Corazon Alcantara</td>
+                            <td>11</td>
+                            <td>N</td>
+                            <td>Pending</td>
+                            <td>50.00</td>
+                            <td>76.00</td>
+                            <td>
+                                <a href="editstudent.html"><button class="button primary">Edit</button></a>
+                                <a href="viewstudent.html"><button class="button primary">View</button></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Corazon Alcantara</td>
+                            <td>11</td>
+                            <td>N</td>
+                            <td>Pending</td>
+                            <td>50.00</td>
+                            <td>76.00</td>
+                            <td>
+                                <a href="editstudent.html"><button class="button primary">Edit</button></a>
+                                <a href="viewstudent.html"><button class="button primary">View</button></a>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>   
                 <div class="bs-example">
@@ -76,14 +183,22 @@
         </div>
     </div>
 </div>
-{% endblock body %}
-
-{% block js %}
-    <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-    <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-    <script src="{% static 'js/jquery-2.1.4.js' %}"></script>
-    <script src="{% static 'js/jquery.menu-aim.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script> <!-- Resource jQuery -->
-    <script src="{% static 'js/viewallstudents.js' %}"></script> <!-- Resource jQuery -->
-    <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-{% endblock js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/homepage.js"></script>
+<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+</div>
+<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+</div>
+<script src="js/jquery-2.1.4.js"></script>
+<script src="js/jquery.menu-aim.js"></script>
+<script src="js/main.js"></script> <!-- Resource jQuery -->
+<script src="js/viewallstudents.js"></script> <!-- Resource jQuery -->
+<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script type="text/javascript">
+            $(document).ready(function() {
+            $(".dropdown-toggle").dropdown();
+        });
+    </script>
+</body>
+</html>

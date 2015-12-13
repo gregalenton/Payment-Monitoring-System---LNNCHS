@@ -12,7 +12,6 @@ class IndexView(generic.TemplateView):
     def get(self, request, *args, **kwargs):
         
         if request.user.is_authenticated():
-            # print "Inside1"
             return HttpResponseRedirect(reverse('accounts:Admin'))
         
         context = {
@@ -24,15 +23,15 @@ class IndexView(generic.TemplateView):
                 'page_title': 'Welcome ' +
                 str(request.user.get_full_name()),
             }
-        # print "Inside2"
         return render(request, self.template_name, context)
+
 
 class AdminView(generic.TemplateView):
     template_name = 'accounts/homepageadmin.html'
 
 
-class AdminStudents(generic.TemplateView):
-    template_name = 'accounts/students.html'
+class StudentView(generic.TemplateView):
+    template_name = 'accounts/studenthomepage.html'
 
 
 class AdminLoginView(generic.FormView):
@@ -62,11 +61,8 @@ class StudentLoginView(generic.FormView):
                             password=form.cleaned_data['password'])
         if user:
             if user.is_active:
-                print "Inside"
                 login(self.request, user)
-                return HttpResponse("This is for the Student's Login View")
-                # return HttpResponseRedirect(reverse('accounts:Students'))
-                
+                return HttpResponseRedirect(reverse('accounts:Student'))
             else:
                 return HttpResponse("Account disabled.")    
         else:
@@ -74,28 +70,21 @@ class StudentLoginView(generic.FormView):
 
     def form_invalid(self, form):
         return HttpResponseRedirect(reverse('accounts:Index'))
-        # return HttpResponse("Invalid!")
 
 
 def user_logout(request):
-        if request.user.is_authenticated():
-            logout(request)
-            return HttpResponseRedirect(reverse('account:Index'))
+    if request.user.is_authenticated():
+        logout(request)
+        return HttpResponseRedirect(reverse('account:Index'))
 
 
 class AddStudentView(generic.CreateView):
     template_name = 'accounts/addstudents.html'
     form_class = forms.AddStudentForm
 
-    def form_valid(self, form):
-        return super(AddStudentView, self).form_valid(form)
 
-    def get_success_url(self):
-        return reverse('accounts:Admin')
-
-
-
-#class AllStudents():
+class ViewAllStudents(generic.ListView):
+    template_name = 'accounts/viewallstudents.html'
 
 
 #class StudentView():

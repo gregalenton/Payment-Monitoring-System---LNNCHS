@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="{% static 'css/widget.css' %}">
 {% endblock css %}
 
-    {% block title %}<title>Admin Home</title>{% endblock title %}
+{% block title %}<title>Student Home</title>{% endblock title %}
 
+{% block body %}
    <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -19,32 +20,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand text-danger" href="{% url 'accounts:Admin' %}">LNNCHS</a>
+            <a class="navbar-brand text-danger" href="{% url 'accounts:Student' %}">LNNCHS</a>
         </div>
         <div class="navbar-collapse collapse" id="navbar-collapsible">
-            <ul class="nav navbar-nav navbar-left">
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Student <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="{% url 'accounts:AddStudent' %}">Add Student</a></li>
-                    <li><a href="{% url 'accounts:ViewAllStudents' %}">View / Edit Student</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Funds <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="addfunds.html">Add Fund</a></li>
-                    <li><a href="viewallfunds.html">View / Edit Fund</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Project <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="addproject.html">Add Project</a></li>
-                    <li><a href="viewallproject.html">View / Edit Project</a></li>
-                  </ul>
-                </li>
-            </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'accounts:Student' %}">Home</a></li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
                   <ul class="dropdown-menu">
+                    <li><a href="#" data-toggle="modal" data-target="#myModal1">Change Password</a></li>
                     <li><a href="{% url 'auth:logout' %}?next={% url 'accounts:Index' %}">Logout</a></li>
                   </ul>
                 </li>
@@ -56,7 +39,57 @@
 <br>
 <br>
 <br>
-{% block body %}{% endblock body %}
+<div class="container">
+  <div class="row">
+    <h2 class="student-name text-center">Welcome to the Payment Monitoring System, Student Name!</h2>
+  </div>
+    
+       <div class="row">
+  
+    
+    <div class="col-md-4">
+                <div class="widget-area no-padding blank">
+                <div class="social-widget">
+                  <span id="fb"><i class="fa fa-facebook"></i>Financial Summary</span>
+                  <ul>
+                    <li><p>1,265<i>Amount Paid</i></p></li>
+                    <li><p>235<i>Liabilities</i></p></li>
+                  </ul>
+                </div><!-- Social Widget -->
+              </div><!-- Widget Area -->
+              <div class="widget-area no-padding blank">
+                <div class="social-widget">
+                  <span id="fb"><i class="fa fa-facebook"></i>Payables Summary</span>
+                  <ul>
+                    <li><p>1,265<i>Total Amount of Payables</i></p></li>
+                    <li><p>50%<i>Discount</i></p></li>
+                  </ul>
+                </div><!-- Social Widget -->
+              </div><!-- Widget Area -->
+  </div>
+                        
+                        <div class="col-md-8">
+                <div class="widget-area no-padding blank">
+                <div class="social-widget">
+                  <span id="twitter"><i class="fa fa-twitter"></i>List of Payables</span>
+                  <ul>
+                    <li class="fund">Library</li>
+                    <li class="cost">400.00</li>
+                    <li class="fund">Library</li>
+                    <li class="cost">400.00</li>
+                    <li class="fund">Library</li>
+                    <li class="cost">400.00</li>
+                    <li class="fund">Library</li>
+                    <li class="cost">400.00</li>
+                    <li class="fund">Library</li>
+                    <li class="cost">400.00</li>
+                    <li class="fund">Library</li>
+                    <li class="cost">400.00</li>
+                  </ul>
+                </div><!-- Social Widget -->
+              </div><!-- Widget Area -->
+            </div>   
+  </div>
   <div id="myModal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -71,7 +104,7 @@
                     </div>
                     <div class="form-group">
                         <input type="password" class="input-lg form-control" name="password2" id="password2" placeholder="Repeat Password" autocomplete="off">
-
+                        
                     </div>
                     <div class="form-group">
                         <button class="btn btn-danger btn-lg btn-block" id="submit">Submit</button>
@@ -83,7 +116,7 @@
         </div>
     </div>
 </div>
-</div>
+{% endblock body %}
 
 {% block js %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

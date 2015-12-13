@@ -122,7 +122,7 @@ class AddStudentForm(UserCreationForm):
 
     band_member = forms.BooleanField(widget=forms.CheckboxInput(attrs=attributes))
 
-    def save(self, commit=True):
+    def save(self):
         user = super(AddStudentForm, self).save(commit=commit)
         user.first_name = self.cleaned_data['firstname']
         user.last_name = self.cleaned_data['lastname']
@@ -141,5 +141,3 @@ class AddStudentForm(UserCreationForm):
         student.scholarship = self.cleaned_data['scholarship']
         student.user = user
         student.save()
-
-

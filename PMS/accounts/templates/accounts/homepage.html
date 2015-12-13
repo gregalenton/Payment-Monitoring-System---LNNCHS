@@ -1,14 +1,13 @@
 {% load staticfiles %}
-
-{% block css %}
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block css %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
     <link rel="stylesheet" href="{% static 'css/carousel.css' %}">
-{% endblock css %}
+    {% endblock css %}
 
-{% block title %}
-    <title> LNNCHS Payment Monitoring System </title>
-{% endblock title %}
+{% block title %}<title> LNNCHS Payment Monitoring System </title>{% endblock title %}
 
 {% block body %}
 <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
@@ -241,7 +240,7 @@
                 <h2 class="text-center"><img src="{% static 'img/LNNCHS_logo.png' %}" class="img-circle"><br>Admin Login</h2>
             </div>
             <div class="modal-body row">
-                <form class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0" method="post" action="{% url 'accounts:AdminLogin' %}">
+                <form class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0" action="{% url 'accounts:AdminLogin' %}" method="POST">
                     {% csrf_token %}
                     <div class="form-group">
                         <input type="text" class="form-control input-lg" placeholder="Admin ID" name="username">
@@ -268,8 +267,8 @@
                 <h2 class="text-center"><img src="{% static 'img/LNNCHS_logo.png' %}" class="img-circle"><br>Student Login</h2>
             </div>
             <div class="modal-body row">
-                <form class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0" method="post" action="{% url 'accounts:StudentLogin' %}">
-                   {% csrf_token %}
+                <form class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0" method="POST" action="{% url 'accounts:StudentLogin' %}">
+                    {% csrf_token %}
                     <div class="form-group">
                         <input type="text" class="form-control input-lg" placeholder="Student ID" name="username">
                     </div>
@@ -286,6 +285,7 @@
         </div>
     </div>
 </div>
+</section>
 {% endblock body %}
 
 {% block js %}
