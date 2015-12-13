@@ -2,6 +2,7 @@ from django.views import generic
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from . import forms
+from accounts.models import Student
 
 
 class FundsView(generic.TemplateView):
@@ -13,21 +14,36 @@ class AddFundsView(generic.CreateView):
     form_class = forms.AddFundsForm
 
     def form_valid(self, form):
-        return super(AddFundsView, self).form_valid(form)
+        student = Student.objects.all()
+        cost = form.cleaned_data['cost']
 
-    def get_success_url(self):
-        return reverse('accounts:Admin')
+        if len(student)>0:
+            for s in student:
+                s.student_toPay = cost + s.student_toPay
+                s.save()
 
+        form.save(commit=True)
+        return HttpResponseRedirect(reverse('accounts:Admin'))
+
+    def form_invalid(self, form):
+        # print form.firstname
+        print "Invalid!"
+        print form.errors
+        return HttpResponseRedirect(reverse('funds:AddFunds'))
 
 class AddProjectView(generic.CreateView):
     template_name = 'funds/addproject.html'
     form_class = forms.AddProjectForm
 
     def form_valid(self, form):
-        return super(AddProjectView, self).form_valid(form)
+        form.save()
+        return HttpResponseRedirect(reverse('accounts:Admin'))
 
-    def get_success_url(self):
-        return reverse('accounts:Admin')
+    def form_invalid(self, form):
+        # print form.firstname
+        print "Invalid!"
+        print form.errors
+        return HttpResponseRedirect(reverse('funds:AddProject'))
 
 
 class ViewAllFundsView(generic.ListView):

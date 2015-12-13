@@ -10,7 +10,7 @@ class DisbursementInline(admin.TabularInline):
 class FundsAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {
-            'fields': ('project_name', 'project_receiver', 'project_cost')}),
+            'fields': ('name', 'receiver', 'cost')}),
     ]
     inline = [DisbursementInline]
 

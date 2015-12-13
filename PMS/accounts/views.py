@@ -87,9 +87,12 @@ class AddStudentView(generic.CreateView):
         return HttpResponseRedirect(reverse('accounts:Admin'))
 
     def form_invalid(self, form):
+        # print form.firstname
+        print "Invalid!"
         print form.errors
         return HttpResponseRedirect(reverse('accounts:AddStudent'))
-    
+
+
 class ViewAllStudents(generic.ListView):
     template_name = 'accounts/viewallstudents.html'
 
