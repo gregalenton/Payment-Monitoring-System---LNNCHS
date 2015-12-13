@@ -9,6 +9,7 @@ from django.views import generic
 from . import forms
 from django.core.urlresolvers import (reverse_lazy, reverse)
 from django.contrib.auth.decorators import login_required
+from funds.models import Due
 
 
 
@@ -65,13 +66,26 @@ class AddStudentView(LoginRequiredMixin, generic.CreateView):
 
     template_name = 'accounts/add_student.html'
     form_class = forms.AddStudentForm
+    model = models.StudentInfo
 
     def form_valid(self, form):
+        student = form.save(commit=False)      
+        due = Due.objects.all()
+        total = 0
+
+        if len(due) > 0:
+            for d in due:
+                total = d.due_cost+total
+
+        student.student_toPay = total
+
         return super(AddStudentView, self).form_valid(form)
 
     def get_success_url(self):
  
         return reverse('funds:changessaved')
+
+        
 
 
 class EditStudentView(LoginRequiredMixin, generic.UpdateView):
