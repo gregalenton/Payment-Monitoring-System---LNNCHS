@@ -49,6 +49,6 @@ class Student(models.Model):
     guardian_address = models.CharField(max_length=100)
     scholarship = models.CharField(max_length=100, choices=SCHOLARSHIP_CHOICES, null=True, blank=True)
     sibling = models.BooleanField(default=False)
-    bandMem = models.BooleanField(default=False)
+    bandMem = models.BooleanField(default=False, blank=False)
     paid = models.FloatField(default=0.0)
     toPay = models.FloatField(default=0.0)

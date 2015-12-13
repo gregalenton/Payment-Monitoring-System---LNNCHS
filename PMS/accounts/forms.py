@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth.models import User
 from .models import Student
 
 
@@ -47,7 +47,17 @@ class AddStudentForm(UserCreationForm):
         'data-size': '8',
         'data-character-set': 'a-z,A-Z,0-9'
     }
-    password = forms.CharField(required=True, min_length=5, widget=forms.TextInput(attrs=attributes))
+    password1= forms.CharField(required=True, min_length=5, widget=forms.TextInput(attrs=attributes))
+    
+    attributes = {
+        'name': 'password',
+        'class': 'form-control',
+        'placeholder': '********',
+        'data-size': '8',
+        'data-character-set': 'a-z,A-Z,0-9'
+    }
+    password2= forms.CharField(required=True, min_length=5, widget=forms.TextInput(attrs=attributes))
+    
     attributes = {
         'name': 'year',
         'class': 'form-control'
@@ -117,15 +127,27 @@ class AddStudentForm(UserCreationForm):
     attributes = {
         'name': 'member',
         'id': 'yes-mem',
-        'value': 'Yes'
+        'value': 'Yes',
     }
 
     band_member = forms.BooleanField(widget=forms.CheckboxInput(attrs=attributes))
+
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'first_name',
+            'last_name',
+            'password1',
+            'password2'
+            ]
 
     def save(self, commit=True):
         user = super(AddStudentForm, self).save(commit=commit)
         user.first_name = self.cleaned_data['firstname']
         user.last_name = self.cleaned_data['lastname']
+        user.password1 = self.cleaned_data['password1']
+        user.password2 = self.cleaned_data['password2']
         user.save()
 
         student = Student()
@@ -140,4 +162,10 @@ class AddStudentForm(UserCreationForm):
         student.sibling = self.cleaned_data['sibling']
         student.scholarship = self.cleaned_data['scholarship']
         student.user = user
+        print "Here"
         student.save()
+
+def __init__ (self, *args, **kwargs):
+    super(AddStudentForm, self).__init__(*args, **kwargs)
+    self.fields.pop('password1')
+    self.fields.pop('password2')
