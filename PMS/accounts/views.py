@@ -165,6 +165,7 @@ class CreatePaymentView(LoginRequiredMixin, generic.CreateView):
     template_name = 'accounts/create_payment.html'
     form_class = forms.CreatePaymentForm
 
+
     def form_valid(self, form):
         student_id = form.cleaned_data['student_id']
         paying = form.cleaned_data['amount']
@@ -184,9 +185,17 @@ class CreatePaymentView(LoginRequiredMixin, generic.CreateView):
 
         return super(CreatePaymentView, self).form_valid(form)
 
+    def get_context_data(self, **kwargs):
+
+        context = super(CreatePaymentView, self).get_context_data(**kwargs)
+        context['action'] = reverse('accounts:receiptinfo')
+
+        return context
+
     def get_success_url(self):
         return reverse('accounts:receiptinfo')
 
+    #     return reverse('accounts:receiptinfo', kwargs={'receipt_id': self.kwargs['receipt_id']})
 
 class EnterDiscountView(LoginRequiredMixin, generic.CreateView):
     template_name = 'accounts/create_payment.html'
@@ -211,14 +220,18 @@ class EnterDiscountView(LoginRequiredMixin, generic.CreateView):
 
 
 class ReceiptInfoView(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'accounts/receiptinfo.html'
-    context_object_name = 'receipt'
 
-    def get_context_data(self, **kwargs):
-        context = super(ReceiptInfoView, self).get_context_data(**kwargs)
-        
-        context['amount'] = 100
-        return context
+    def get(self, request):
+        return render(request, 'accounts/receiptinfo.html')
+    # template_name = 'accounts/receiptinfo.html'
+    # context_object_name = 'receipt'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super(ReceiptInfoView, self).get_context_data(**kwargs)
+    #     context['action'] = reverse('accounts:receiptinfo',
+    #                                 kwargs={'pk': self.get_object().receipt_id})
+
+    #     return context
 
 
 class ChangeSchoolYearView(LoginRequiredMixin, generic.DeleteView):
