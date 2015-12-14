@@ -1,5 +1,5 @@
 from django import forms
-from .models import Due, Payment, Project, Receipt
+from .models import Due, Project, Receipt
 
 
 class AddFundsForm(forms.ModelForm):
@@ -63,6 +63,27 @@ class AddProjectForm(forms.ModelForm):
 
 
 class AddPaymentForm(forms.ModelForm):
+
+    attributes = {
+        'class': 'form-control required',
+    }
+
+    student_id = forms.CharField(required=True, max_length=50,  widget=forms.Select(attrs=attributes))
+    
+    attributes = {
+        'placeholder': '500',
+        'class': 'form-control required',
+    }
+
+    cost = forms.FloatField(required=True, widget=forms.TextInput(attrs=attributes))
+    
     class Meta:
-        model = Payment
-        fields = ['name']
+        model = Receipt
+        fields = ['student_id', 'cost']
+
+    def save(self, commit=True):
+        receipt = Receipt()
+        receipt.student_id = self.cleaned_data['student_id']
+        receipt.payment = self.cleaned_data['cost']
+        receipt.save()
+

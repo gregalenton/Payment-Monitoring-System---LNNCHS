@@ -109,8 +109,22 @@ class AddPaymentView(generic.CreateView):
     form_class = forms.AddPaymentForm
 
     def form_valid(self, form):
-        return super(AddPaymentView, self).form_valid(form)
+        # student_id = form.cleaned_data['student_id']
+        # payment = form.cleaned_data['cost']
+        student = Student.objects.filter(student_id=student_id)
+
+        toPay = student.toPay
+
+        if toPay != 0:
+            dif = toPay - payment
+            student.toPay = dif
+            paid = student.paid
+            total = paid + payment
+            student.paid = total
+            student.save()
+        else:
+            return HttpResponseRedirect(reverse('accounts:ViewAllStudents'))
+        return HttpResponseRedirect(reverse('accounts:ViewAllStudents'))
 
     def get_success_url(self):
         return reverse('accounts:Admin')
-
