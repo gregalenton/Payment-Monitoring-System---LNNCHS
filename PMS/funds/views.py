@@ -4,19 +4,27 @@ from django.core.urlresolvers import reverse
 from . import forms
 from accounts.models import Student
 from funds.models import Due, Project
+from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import (reverse_lazy, reverse)
 
-class AddFundsView(generic.CreateView):
+class LoginRequiredMixin(object):
+    @classmethod
+    def as_view(cls, **kwargs):
+        view = super(LoginRequiredMixin, cls).as_view(**kwargs)
+        return login_required(view, login_url=reverse_lazy('accounts:Index'))
+
+class AddFundsView(LoginRequiredMixin, generic.CreateView):
     template_name = 'funds/addfunds.html'
     form_class = forms.AddFundsForm
 
     def form_valid(self, form):
-        student = Student.objects.all()
-        cost = form.cleaned_data['cost']
+        # student = Student.objects.all()
+        # cost = form.cleaned_data['cost']
 
-        if len(student)>0:
-            for s in student:
-                s.toPay = cost + s.toPay
-                s.save()
+        # if len(student)>0:
+        #     for s in student:
+        #         s.toPay = cost + s.toPay
+        #         s.save()
 
         form.save(commit=True)
         return HttpResponseRedirect(reverse('accounts:Admin'))
@@ -27,7 +35,7 @@ class AddFundsView(generic.CreateView):
         print form.errors
         return HttpResponseRedirect(reverse('funds:AddFunds'))
 
-class EditFundsView(generic.UpdateView):
+class EditFundsView(LoginRequiredMixin, generic.UpdateView):
     template_name = 'funds/editfund.html'
     model = Due
 
@@ -44,10 +52,10 @@ class EditFundsView(generic.UpdateView):
         print "Hello"
         return context
 
-class ViewFundsView(generic.TemplateView):
+class ViewFundsView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'funds/viewfund.html'
 
-class ViewAllFundsView(generic.ListView):
+class ViewAllFundsView(LoginRequiredMixin, generic.ListView):
     template_name = 'funds/viewallfunds.html'
 
     def get_queryset(self):
@@ -56,7 +64,7 @@ class ViewAllFundsView(generic.ListView):
         return queryset
 
 
-class AddProjectView(generic.CreateView):
+class AddProjectView(LoginRequiredMixin, generic.CreateView):
     template_name = 'funds/addproject.html'
     form_class = forms.AddProjectForm
 
@@ -70,7 +78,7 @@ class AddProjectView(generic.CreateView):
         print form.errors
         return HttpResponseRedirect(reverse('funds:AddProject'))
 
-class EditProjectsView(generic.UpdateView):
+class EditProjectsView(LoginRequiredMixin, generic.UpdateView):
     template_name = 'funds/editproject.html'
     model = Project
 
@@ -87,10 +95,10 @@ class EditProjectsView(generic.UpdateView):
         print "Hello"
         return context
 
-class ViewProjectsView(generic.TemplateView):
+class ViewProjectsView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'funds/viewproject.html'
 
-class ViewAllProjectsView(generic.ListView):
+class ViewAllProjectsView(LoginRequiredMixin, generic.ListView):
     template_name = 'funds/viewallproject.html'
 
     def get_queryset(self):
@@ -99,7 +107,7 @@ class ViewAllProjectsView(generic.ListView):
         return queryset
 
 
-class AddPaymentView(generic.CreateView):
+class AddPaymentView(LoginRequiredMixin, generic.CreateView):
     template_name = 'funds/addpayment.html'
     form_class = forms.AddPaymentForm
 

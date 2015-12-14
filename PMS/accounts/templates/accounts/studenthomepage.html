@@ -23,8 +23,8 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-collapsible">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'accounts:Student' %}">Home</a></li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.student.user }} <b class="caret"></b></a>
+                <li><a href="{% url 'accounts:Student' %}">Home </a></li>
+                <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.student.user }}<b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="#" data-toggle="modal" data-target="#myModal1">Change Password</a></li>
                     <li><a href="{% url 'auth:logout' %}?next={% url 'accounts:Index' %}">Logout</a></li>
@@ -51,8 +51,8 @@
                 <div class="social-widget">
                   <span id="fb"><i class="fa fa-facebook"></i>Financial Summary</span>
                   <ul>
-                    <li><p>1,265<i>Amount Paid</i></p></li>
-                    <li><p>235<i>Liabilities</i></p></li>
+                    <li><p>Php {{ request.user.student.paid }}<i>Amount Paid</i></p></li>
+                    <li><p>Php {{ request.user.student.toPay }}<i>Liabilities</i></p></li>
                   </ul>
                 </div><!-- Social Widget -->
               </div><!-- Widget Area -->
@@ -60,7 +60,7 @@
                 <div class="social-widget">
                   <span id="fb"><i class="fa fa-facebook"></i>Payables Summary</span>
                   <ul>
-                    <li><p>1,265<i>Total Amount of Payables</i></p></li>
+                    <li><p>Php 1,265<i>Total Amount of Payables</i></p></li>
                     <li><p>50%<i>Discount</i></p></li>
                   </ul>
                 </div><!-- Social Widget -->
@@ -72,18 +72,10 @@
                 <div class="social-widget">
                   <span id="twitter"><i class="fa fa-twitter"></i>List of Payables</span>
                   <ul>
-                    <li class="fund">Library</li>
-                    <li class="cost">400.00</li>
-                    <li class="fund">Library</li>
-                    <li class="cost">400.00</li>
-                    <li class="fund">Library</li>
-                    <li class="cost">400.00</li>
-                    <li class="fund">Library</li>
-                    <li class="cost">400.00</li>
-                    <li class="fund">Library</li>
-                    <li class="cost">400.00</li>
-                    <li class="fund">Library</li>
-                    <li class="cost">400.00</li>
+                    {% for object in object_list %}
+                         <li class="fund">{{ object.name }}</li>
+                         <li class="cost">P{{ object.cost }}</li>
+                    {% endfor %}
                   </ul>
                 </div><!-- Social Widget -->
               </div><!-- Widget Area -->

@@ -122,7 +122,7 @@ class AddStudentForm(UserCreationForm):
         'name': 'scholarship'
     }
 
-    scholarship = forms.CharField(widget=forms.Select(attrs=attributes, choices=Student.SCHOLARSHIP_CHOICES))
+    scholarship = forms.CharField(required=False, widget=forms.Select(attrs=attributes, choices=Student.SCHOLARSHIP_CHOICES))
 
     attributes = {
         'name': 'member',

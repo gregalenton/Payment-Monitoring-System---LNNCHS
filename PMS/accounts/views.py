@@ -6,6 +6,14 @@ from django.shortcuts import render, redirect
 from . import forms
 from .models import Student
 from funds.models import Due, Receipt, Project
+from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import (reverse_lazy, reverse)
+
+class LoginRequiredMixin(object):
+    @classmethod
+    def as_view(cls, **kwargs):
+        view = super(LoginRequiredMixin, cls).as_view(**kwargs)
+        return login_required(view, login_url=reverse_lazy('accounts:Index'))
 
 class IndexView(generic.TemplateView):
     template_name = 'accounts/homepage.html'
@@ -27,7 +35,7 @@ class IndexView(generic.TemplateView):
         return render(request, self.template_name, context)
 
 
-class AdminView(generic.ListView):
+class AdminView(LoginRequiredMixin, generic.ListView):
     template_name = 'accounts/homepageadmin.html'
     total_topay = 0
     total_paid = 0
@@ -55,11 +63,33 @@ class AdminView(generic.ListView):
         print total_topay
         return total_topay
 
-class StudentView(generic.TemplateView):
+class StudentView(LoginRequiredMixin, generic.ListView):
     template_name = 'accounts/studenthomepage.html'
+    total_payments = 0
+    discount = 0   
+    # fundslist = Due.objects.all()
+    # if len(fundslist) > 0:
+    #     for p in fundslist:
+    #         total_payments = total_payments - p.cost
+    # if self.scholarship:
+    #     discount = 1  #100%
+    # elif self.sibling:
+    #     discount = .6 #60%
+    # elif self.band_member:
+    #     discount = .4 #40%
+
+    # self.toPay = total_payments - (total_payments * discount) 
 
 
-class AdminLoginView(generic.FormView):
+
+    def get_queryset(self):
+
+        queryset = Due.objects.all()
+        # print queryset
+        return queryset
+
+
+class AdminLoginView(LoginRequiredMixin, generic.FormView):
     form_class = forms.AdminLoginForm
 
     def form_valid(self, form):
@@ -78,7 +108,7 @@ class AdminLoginView(generic.FormView):
         return HttpResponseRedirect(reverse('accounts:Index'))
 
 
-class StudentLoginView(generic.FormView):
+class StudentLoginView(LoginRequiredMixin, generic.FormView):
     form_class = forms.StudentLoginForm
 
     def form_valid(self, form):
@@ -103,7 +133,7 @@ def user_logout(request):
         return HttpResponseRedirect(reverse('account:Index'))
 
 
-class AddStudentView(generic.CreateView):
+class AddStudentView(LoginRequiredMixin, generic.CreateView):
     template_name = 'accounts/addstudents.html'
     form_class = forms.AddStudentForm
 
@@ -115,8 +145,11 @@ class AddStudentView(generic.CreateView):
         if len(due) > 0:
             for d in due:
                 total = d.cost + total
-
-        Student.toPay = total
+        
+        student = Student.objects.get(pk=1)
+        # stud = Student.objects.filter(user.first_name = forms.first_name)
+        print student.user
+        student.toPay = total
         return HttpResponseRedirect(reverse('accounts:Admin'))
 
     def form_invalid(self, form):
@@ -126,17 +159,16 @@ class AddStudentView(generic.CreateView):
         return HttpResponseRedirect(reverse('accounts:AddStudent'))
 
 
-class ViewAllStudents(generic.ListView):
+class ViewAllStudents(LoginRequiredMixin, generic.ListView):
     template_name = 'accounts/viewallstudents.html'
 
     def get_queryset(self):
-        queryset = Student.objects.filter(paid=0)
-
+        queryset = Student.objects.all()
         # print queryset
         return queryset
 
 
-class EditStudentView(generic.UpdateView):
+class EditStudentView(LoginRequiredMixin, generic.UpdateView):
     template_name = 'accounts/editstudent.html'
     model = Student
 
@@ -155,7 +187,7 @@ class EditStudentView(generic.UpdateView):
         print "Hello"
         return context
 
-class ViewStudentView(generic.DetailView):
+class ViewStudentView(LoginRequiredMixin, generic.DetailView):
     model = Student
     template_name = 'accounts/viewstudent.html'
     context_object_name = 'student'
