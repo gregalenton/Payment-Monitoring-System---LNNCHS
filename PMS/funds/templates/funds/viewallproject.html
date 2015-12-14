@@ -48,46 +48,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Library</td>
-                            <td>123.00</td>
-                            <td>
-                                <a href="editproject.html"><button class="button primary">Edit</button></a>
-                                <a href="viewproject.html"><button class="button primary">View</button></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Computer lab</td>
-                            <td>123.00</td>
-                            <td>
-                                <a href="editproject.html"><button class="button primary">Edit</button></a>
-                                <a href="viewproject.html"><button class="button primary">View</button></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Sports</td>
-                            <td>123.00</td>
-                            <td>
-                                <a href="editproject.html"><button class="button primary">Edit</button></a>
-                                <a href="viewproject.html"><button class="button primary">View</button></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Classroom</td>
-                            <td>123.00</td>
-                            <td>
-                                <a href="editproject.html"><button class="button primary">Edit</button></a>
-                                <a href="viewproject.html"><button class="button primary">View</button></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Insurance</td>
-                            <td>123.00</td>
-                            <td>
-                                <a href="editproject.html"><button class="button primary">Edit</button></a>
-                                <a href="viewproject.html"><button class="button primary">View</button></a>
-                            </td>
-                        </tr>
+                        <form action="{% url 'funds:ViewAllProjects' %}" method="get">
+                            {% for object in object_list %}
+                                <tr class="{% cycle '<td>' '' '' %}">
+                                    <td>{{ object.name}}</td>
+                                    <td>P{{ object.cost}}</td>
+                                    <td>
+                                        <a href="{% url 'funds:EditFunds' %}"><button class="button primary">Edit</button></a>
+                                        <a href="{% url 'funds:ViewFunds' %}"><button class="button primary">View</button></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </form>
                     </tbody>
                 </table>   
                 <div class="bs-example">

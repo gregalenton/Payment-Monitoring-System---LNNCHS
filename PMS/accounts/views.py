@@ -126,7 +126,7 @@ class EditStudentView(generic.UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(EditStudentView, self).get_context_data(**kwargs)
-        context['action'] = reverse('accounts:editstudent', kwargs={'pk': self.get_object().student_id})
+        context['action'] = reverse('accounts:EditStudent', kwargs={'pk': self.get_object().student_id})
         queryset = Student.objects.filter(pk=kwargs)
         firstname = queryset[0].firstname
         print "Hello"

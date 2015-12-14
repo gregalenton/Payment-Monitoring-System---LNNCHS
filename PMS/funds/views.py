@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from . import forms
 from accounts.models import Student
+from funds.models import Due, Project
 
 
 class FundsView(generic.TemplateView):
@@ -19,7 +20,7 @@ class AddFundsView(generic.CreateView):
 
         if len(student)>0:
             for s in student:
-                s.student_toPay = cost + s.student_toPay
+                s.toPay = cost + s.toPay
                 s.save()
 
         form.save(commit=True)
@@ -30,6 +31,35 @@ class AddFundsView(generic.CreateView):
         print "Invalid!"
         print form.errors
         return HttpResponseRedirect(reverse('funds:AddFunds'))
+
+class EditFundsView(generic.UpdateView):
+    template_name = 'funds/editfund.html'
+    model = Due
+
+    fields = ['fundname', 'cost']
+
+    def get_success_url(self):
+        return reverse('accounts:Admin')
+
+    def get_context_data(self, **kwargs):
+        context = super(EditFundsView, self).get_context_data(**kwargs)
+        context['action'] = reverse('funds:EditFunds', kwargs={'pk': self.get_object().name})
+        queryset = Student.objects.filter(pk=kwargs)
+        # firstname = queryset[0].firstname
+        print "Hello"
+        return context
+
+class ViewFundsView(generic.TemplateView):
+    template_name = 'funds/viewfund.html'
+
+class ViewAllFundsView(generic.ListView):
+    template_name = 'funds/viewallfunds.html'
+
+    def get_queryset(self):
+        queryset = Due.objects.all()
+        # print queryset
+        return queryset
+
 
 class AddProjectView(generic.CreateView):
     template_name = 'funds/addproject.html'
@@ -45,13 +75,33 @@ class AddProjectView(generic.CreateView):
         print form.errors
         return HttpResponseRedirect(reverse('funds:AddProject'))
 
+class EditProjectsView(generic.UpdateView):
+    template_name = 'funds/editproject.html'
+    model = Project
 
-class ViewAllFundsView(generic.ListView):
-    template_name = 'funds/viewallfunds.html'
+    fields = ['name', 'receiver', 'cost']
 
+    def get_success_url(self):
+        return reverse('accounts:Admin')
+
+    def get_context_data(self, **kwargs):
+        context = super(EditProjectView, self).get_context_data(**kwargs)
+        context['action'] = reverse('funds:editproject', kwargs={'pk': self.get_object().name})
+        queryset = Project.objects.filter(pk=kwargs)
+        # firstname = queryset[0].firstname
+        print "Hello"
+        return context
+
+class ViewProjectsView(generic.TemplateView):
+    template_name = 'funds/viewproject.html'
 
 class ViewAllProjectsView(generic.ListView):
     template_name = 'funds/viewallproject.html'
+
+    def get_queryset(self):
+        queryset = Project.objects.all()
+        # print queryset
+        return queryset
 
 
 class AddPaymentView(generic.CreateView):
@@ -63,3 +113,4 @@ class AddPaymentView(generic.CreateView):
 
     def get_success_url(self):
         return reverse('accounts:Admin')
+
