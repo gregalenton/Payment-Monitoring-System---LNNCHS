@@ -5,8 +5,7 @@ from django.views import generic
 from django.shortcuts import render, redirect
 from . import forms
 from .models import Student
-from funds.models import Due, Receipt
-
+from funds.models import Due, Receipt, Project
 
 class IndexView(generic.TemplateView):
     template_name = 'accounts/homepage.html'
@@ -30,12 +29,31 @@ class IndexView(generic.TemplateView):
 
 class AdminView(generic.ListView):
     template_name = 'accounts/homepageadmin.html'
+    total_topay = 0
+    total_paid = 0
+    total_funds = 0
+    studentlist = Student.objects.all()
+    if len(studentlist) > 0:
+        for s in studentlist:
+            total_topay = s.toPay + total_topay
+            total_paid = s.paid + total_paid
+    print total_topay
+    total_funds = total_paid
+    projectlist = Project.objects.all()
+    if len(projectlist) > 0:
+        for p in projectlist:
+            total_funds = total_funds - p.cost
 
     def get_queryset(self):
+
         queryset = Due.objects.all()
         # print queryset
         return queryset
 
+    def get_total_topay(self, request):
+        # return render_to_response('homepageadmin.html', {'total_topay': total_topay})
+        print total_topay
+        return total_topay
 
 class StudentView(generic.TemplateView):
     template_name = 'accounts/studenthomepage.html'
@@ -137,5 +155,14 @@ class EditStudentView(generic.UpdateView):
         print "Hello"
         return context
 
-class ViewStudentView(generic.TemplateView):
+class ViewStudentView(generic.DetailView):
+    model = Student
     template_name = 'accounts/viewstudent.html'
+    context_object_name = 'student'
+
+    def get_context_data(self, **kwargs):
+        context = super(ViewStudentView, self).get_context_data(**kwargs)
+        context['action'] = reverse('accounts:ViewStudentView', 
+            kwargs={'pk': self.get_object().student_id})
+
+        return context
