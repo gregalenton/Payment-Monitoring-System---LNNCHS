@@ -43,73 +43,27 @@
                             <th>Name</th>
                             <th>Year</th>
                             <th>Section</th>
-                            <th>Status</th>
                             <th>Current Paid Amount</th>
                             <th>Receivables</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Juan Miguel Dela Cruz</td>
-                            <td>12</td>
-                            <td>A</td>
-                            <td>Cleared</td>
-                            <td>123.00</td>
-                            <td>0.00</td>
-                            <td>
-                                <a href="editstudent.html"><button class="button primary">Edit</button></a>
-                                <a href="viewstudent.html"><button class="button primary">View</button></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Corazon Alcantara</td>
-                            <td>11</td>
-                            <td>N</td>
-                            <td>Pending</td>
-                            <td>50.00</td>
-                            <td>76.00</td>
-                            <td>
-                                <a href="editstudent.html"><button class="button primary">Edit</button></a>
-                                <a href="viewstudent.html"><button class="button primary">View</button></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Corazon Alcantara</td>
-                            <td>11</td>
-                            <td>N</td>
-                            <td>Pending</td>
-                            <td>50.00</td>
-                            <td>76.00</td>
-                            <td>
-                                <a href="editstudent.html"><button class="button primary">Edit</button></a>
-                                <a href="viewstudent.html"><button class="button primary">View</button></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Corazon Alcantara</td>
-                            <td>11</td>
-                            <td>N</td>
-                            <td>Pending</td>
-                            <td>50.00</td>
-                            <td>76.00</td>
-                            <td>
-                                <a href="editstudent.html"><button class="button primary">Edit</button></a>
-                                <a href="viewstudent.html"><button class="button primary">View</button></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Corazon Alcantara</td>
-                            <td>11</td>
-                            <td>N</td>
-                            <td>Pending</td>
-                            <td>50.00</td>
-                            <td>76.00</td>
-                            <td>
-                                <a href="editstudent.html"><button class="button primary">Edit</button></a>
-                                <a href="viewstudent.html"><button class="button primary">View</button></a>
-                            </td>
-                        </tr>
+                        <form action="{% url 'accounts:ViewAllStudents' %}" method="get">
+                            {% for object in object_list %}
+                                <tr class="{% cycle '<td>' '' '' %}">
+                                    <td>{{ object.user.first_name }} {{ object.user.last_name }}</td>
+                                    <td>{{ object.year }}</td>
+                                    <td>{{ object.section }}</td>
+                                    <td>{{ object.paid }}</td>
+                                    <td>{{ object.toPay }}</td>
+                                    <td>
+                                        <a href="{% url 'accounts:EditStudent' %}"><button class="button primary">Edit</button></a>
+                                        <a href="{% url 'accounts:ViewStudent' %}"><button class="button primary">View</button></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </form>
                     </tbody>
                 </table>   
                 <div class="bs-example">

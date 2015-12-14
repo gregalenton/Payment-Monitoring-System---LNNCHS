@@ -107,18 +107,30 @@ class ViewAllStudents(generic.ListView):
     template_name = 'accounts/viewallstudents.html'
 
     def get_queryset(self):
-        queryset = Student.objects.filter(year=7)
-        # if self.request.GET.get("browse"):
-        #     selection = self.request.GET.get("browse")
-        #     if selection == "Cats":
-        #         queryset = Cats.objects.all()
-        #     elif selection == "Dogs":
-        #         queryset = Dogs.objects.all()
-        #     elif selection == "Worms":
-        #         queryset = Worms.objects.all()
-        #     else:
-        #         queryset = Cats.objects.all()
-        print queryset
+        queryset = Student.objects.filter(paid=0)
+
+        # print queryset
         return queryset
 
-#class StudentView():
+
+class EditStudentView(generic.UpdateView):
+    template_name = 'accounts/editstudent.html'
+    model = Student
+
+    fields = ['firstname', 'lastname', 'password1', 'password2','year',
+              'section', 'address','gfirstname', 'glastname', 'gaddress',
+              'gcontact', 'band_member', 'sibling', 'scholarship']
+
+    def get_success_url(self):
+        return reverse('accounts:Admin')
+
+    def get_context_data(self, **kwargs):
+        context = super(EditStudentView, self).get_context_data(**kwargs)
+        context['action'] = reverse('accounts:editstudent', kwargs={'pk': self.get_object().student_id})
+        queryset = Student.objects.filter(pk=kwargs)
+        firstname = queryset[0].firstname
+        print "Hello"
+        return context
+
+class ViewStudentView(generic.TemplateView):
+    template_name = 'accounts/viewstudent.html'
