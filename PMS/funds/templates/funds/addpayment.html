@@ -58,7 +58,7 @@
                                              <select name="studenttopay" class="form-control">
                                                 {% for object in object_list %}
                                                     <option class="{% cycle '<option>' '' '' %}">
-                                                        {{ object.user }} {{ object.user }}
+                                                        {{ object.user }} {{ object.user.first_name }}
                                                     </option>
                                                 {% endfor %}
                                                 <!-- <option value="student"> 201211234 </option>

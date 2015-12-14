@@ -28,8 +28,13 @@ class IndexView(generic.TemplateView):
         return render(request, self.template_name, context)
 
 
-class AdminView(generic.TemplateView):
+class AdminView(generic.ListView):
     template_name = 'accounts/homepageadmin.html'
+
+    def get_queryset(self):
+        queryset = Due.objects.all()
+        # print queryset
+        return queryset
 
 
 class StudentView(generic.TemplateView):

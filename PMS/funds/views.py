@@ -5,11 +5,6 @@ from . import forms
 from accounts.models import Student
 from funds.models import Due, Project
 
-
-class FundsView(generic.TemplateView):
-    template_name = 'funds/funds.html'
-
-
 class AddFundsView(generic.CreateView):
     template_name = 'funds/addfunds.html'
     form_class = forms.AddFundsForm
@@ -128,3 +123,8 @@ class AddPaymentView(generic.CreateView):
 
     def get_success_url(self):
         return reverse('accounts:Admin')
+
+def get_payables(self):
+        queryset = Due.objects.all()
+        # print queryset
+        return queryset

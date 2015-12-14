@@ -74,23 +74,15 @@
 
   </div>
                         
-                        <div class="col-md-8">
+              <div class="col-md-8">
                 <div class="widget-area no-padding blank">
                 <div class="social-widget">
                   <span id="twitter"><i class="fa fa-twitter"></i>List of Payables</span>
                   <ul>
-                    <li class="fund">Library</li>
-                    <li class="cost">400.00</li>
-                    <li class="fund">Library</li>
-                    <li class="cost">400.00</li>
-                    <li class="fund">Library</li>
-                    <li class="cost">400.00</li>
-                    <li class="fund">Library</li>
-                    <li class="cost">400.00</li>
-                    <li class="fund">Library</li>
-                    <li class="cost">400.00</li>
-                    <li class="fund">Library</li>
-                    <li class="cost">400.00</li>
+                    {% for object in object_list %}
+                         <li class="fund">{{ object.name }}</li>
+                         <li class="cost">P{{ object.cost }}</li>
+                    {% endfor %}
                   </ul>
                 </div><!-- Social Widget -->
               </div><!-- Widget Area -->
